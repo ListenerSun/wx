@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <parent>
+          <artifactId>wx</artifactId>
+          <groupId>com.sqt.edu</groupId>
+          <version>1.0-SNAPSHOT</version>
+     </parent>
+     <modelVersion>4.0.0</modelVersion>
+     <artifactId>core</artifactId>
+     <packaging>jar</packaging>
+
+     <properties>
+          <spring-cloud.version>Finchley.SR3</spring-cloud.version>
+          <spring-platform.version>Cairo-SR7</spring-platform.version>
+          <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          <maven.compiler.source>1.8</maven.compiler.source>
+          <maven.compiler.target>1.8</maven.compiler.target>
+          <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
+          <hutool.version>4.5.0</hutool.version>
+          <jasypt.version>2.1.0</jasypt.version>
+          <postgresql.version>42.2.5</postgresql.version>
+          <mybatis-plus-boot.version>3.0.7.1</mybatis-plus-boot.version>
+          <pagehelper-spring.version>1.2.10</pagehelper-spring.version>
+          <fastjson.version>1.2.46</fastjson.version>
+          <spring-data-redis.version>2.0.3.RELEASE</spring-data-redis.version>
+          <druid-spring.version>1.1.17</druid-spring.version>
+          <jjwt.version>0.9.1</jjwt.version>
+          <commons-lang3.version>3.5</commons-lang3.version>
+          <http.version>4.5.2</http.version>
+          <httpasyncclient.version>4.1.3</httpasyncclient.version>
+          <aliyun-oss.version>3.4.0</aliyun-oss.version>
+          <aliyun-rocket.version>1.7.8.Final</aliyun-rocket.version>
+          <ant.version>1.9.7</ant.version>
+          <jedis.version>2.9.0</jedis.version>
+          <redisson.version>3.11.0</redisson.version>
+          <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+          <springfox-swagger-ui.version>2.8.0</springfox-swagger-ui.version>
+     </properties>
+
+     <repositories>
+          <!--阿里云主仓库，代理了maven central和jcenter仓库-->
+          <repository>
+               <id>aliyun</id>
+               <name>aliyun</name>
+               <url>https://maven.aliyun.com/repository/public</url>
+               <releases>
+                    <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+               </snapshots>
+          </repository>
+          <!--阿里云代理Spring 官方仓库-->
+          <repository>
+               <id>spring-milestones</id>
+               <name>Spring Milestones</name>
+               <url>https://maven.aliyun.com/repository/spring</url>
+               <releases>
+                    <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+               </snapshots>
+          </repository>
+     </repositories>
+
+     <dependencies>
+
+          <dependency>
+               <groupId>cn.hutool</groupId>
+               <artifactId>hutool-all</artifactId>
+               <version>${hutool.version}</version>
+          </dependency>
+          <!--server-api-->
+          <dependency>
+               <groupId>javax.servlet</groupId>
+               <artifactId>javax.servlet-api</artifactId>
+          </dependency>
+
+          <!--web 模块-->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-web</artifactId>
+          </dependency>
+          <!--配置中心-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-config-server</artifactId>
+          </dependency>
+          <!--eureka 客户端-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+          </dependency>
+          <!--配置文件处理器-->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-configuration-processor</artifactId>
+               <optional>true</optional>
+          </dependency>
+          <!--监控-->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-actuator</artifactId>
+          </dependency>
+          <!-- redis相关包开始 -->
+          <dependency>
+               <groupId>org.springframework.data</groupId>
+               <artifactId>spring-data-redis</artifactId>
+               <version>${spring-data-redis.version}</version>
+          </dependency>
+
+          <dependency>
+               <groupId>redis.clients</groupId>
+               <artifactId>jedis</artifactId>
+               <version>${jedis.version}</version>
+          </dependency>
+
+          <dependency>
+               <groupId>org.redisson</groupId>
+               <artifactId>redisson</artifactId>
+               <version>${redisson.version}</version>
+          </dependency>
+          <!-- redis相关包结束 -->
+
+          <!--监控客户端-->
+          <dependency>
+               <groupId>de.codecentric</groupId>
+               <artifactId>spring-boot-admin-starter-client</artifactId>
+               <version>${spring-boot-admin.version}</version>
+          </dependency>
+
+          <!--服务链路追踪-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-sleuth</artifactId>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+          </dependency>
+
+          <!--断路器依赖-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+          </dependency>
+
+          <!--网关路由-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-openfeign</artifactId>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+          </dependency>
+
+          <!--http-->
+          <dependency>
+               <groupId>org.apache.httpcomponents</groupId>
+               <artifactId>httpmime</artifactId>
+               <version>${http.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>org.apache.httpcomponents</groupId>
+               <artifactId>httpclient</artifactId>
+               <version>${http.version}</version>
+          </dependency>
+
+          <dependency>
+               <groupId>org.apache.httpcomponents</groupId>
+               <artifactId>httpasyncclient</artifactId>
+               <version>${httpasyncclient.version}</version>
+          </dependency>
+
+          <!--Lombok-->
+          <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+          </dependency>
+
+          <!--配置文件加密-->
+          <dependency>
+               <groupId>com.github.ulisesbocchio</groupId>
+               <artifactId>jasypt-spring-boot-starter</artifactId>
+               <version>${jasypt.version}</version>
+          </dependency>
+
+          <!--数据相关-->
+          <dependency>
+               <groupId>mysql</groupId>
+               <artifactId>mysql-connector-java</artifactId>
+               <version>5.1.46</version>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-jdbc</artifactId>
+          </dependency>
+
+          <!--mybatis-->
+          <dependency>
+               <groupId>com.baomidou</groupId>
+               <artifactId>mybatis-plus-boot-starter</artifactId>
+               <version>${mybatis-plus-boot.version}</version>
+          </dependency>
+
+          <dependency>
+               <groupId>com.github.pagehelper</groupId>
+               <artifactId>pagehelper-spring-boot-starter</artifactId>
+               <version>${pagehelper-spring.version}</version>
+          </dependency>
+
+          <!--druid连接池-->
+          <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>druid-spring-boot-starter</artifactId>
+               <version>${druid-spring.version}</version>
+          </dependency>
+
+          <!--fastjson-->
+          <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>fastjson</artifactId>
+               <version>${fastjson.version}</version>
+          </dependency>
+
+          <!--jwt-->
+          <dependency>
+               <groupId>io.jsonwebtoken</groupId>
+               <artifactId>jjwt</artifactId>
+               <version>${jjwt.version}</version>
+          </dependency>
+
+          <!-- log4j2 日志记录-->
+          <!--<dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-log4j2</artifactId>
+          </dependency>-->
+
+          <dependency>
+               <groupId>org.apache.commons</groupId>
+               <artifactId>commons-lang3</artifactId>
+               <version>${commons-lang3.version}</version>
+          </dependency>
+
+          <!--spring测试-->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-test</artifactId>
+          </dependency>
+          <dependency>
+               <groupId>commons-codec</groupId>
+               <artifactId>commons-codec</artifactId>
+               <version>1.12</version>
+          </dependency>
+          <dependency>
+               <groupId>org.apache.commons</groupId>
+               <artifactId>commons-pool2</artifactId>
+               <version>2.4.2</version>
+          </dependency>
+
+          <!-- swagger -->
+          <dependency>
+               <groupId>io.springfox</groupId>
+               <artifactId>springfox-swagger2</artifactId>
+               <version>${springfox-swagger2.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>io.springfox</groupId>
+               <artifactId>springfox-swagger-ui</artifactId>
+               <version>${springfox-swagger-ui.version}</version>
+          </dependency>
+
+          <!--pinyin4j-->
+          <dependency>
+               <groupId>com.belerweb</groupId>
+               <artifactId>pinyin4j</artifactId>
+               <version>2.5.1</version>
+          </dependency>
+
+          <!--解压文件-->
+          <dependency>
+               <groupId>org.apache.ant</groupId>
+               <artifactId>ant</artifactId>
+               <version>${ant.version}</version>
+          </dependency>
+
+          <!--okhttp-->
+          <dependency>
+               <groupId>io.github.openfeign</groupId>
+               <artifactId>feign-okhttp</artifactId>
+               <version>9.5.0</version>
+          </dependency>
+
+          <!-- easy-export-->
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-base</artifactId>
+               <version>3.2.0</version>
+          </dependency>
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-web</artifactId>
+               <version>3.2.0</version>
+          </dependency>
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-annotation</artifactId>
+               <version>3.2.0</version>
+          </dependency>
+
+
+          <dependency>
+               <groupId>javax.validation</groupId>
+               <artifactId>validation-api</artifactId>
+               <version>RELEASE</version>
+               <scope>compile</scope>
+          </dependency>
+
+          <dependency>
+               <groupId>dom4j</groupId>
+               <artifactId>dom4j</artifactId>
+               <version>1.6.1</version>
+          </dependency>
+          <!-- slfj依赖-->
+          <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+               <version>1.7.21</version>
+          </dependency>
+          <dependency>
+               <groupId>log4j</groupId>
+               <artifactId>log4j</artifactId>
+               <version>1.2.17</version>
+          </dependency>
+          <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-log4j12</artifactId>
+               <version>1.7.21</version>
+          </dependency>
+     </dependencies>
+
+     <dependencyManagement>
+          <dependencies>
+
+               <dependency>
+                    <groupId>io.spring.platform</groupId>
+                    <artifactId>platform-bom</artifactId>
+                    <version>${spring-platform.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+               </dependency>
+
+               <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-dependencies</artifactId>
+                    <version>${spring-cloud.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+               </dependency>
+
+          </dependencies>
+     </dependencyManagement>
+
+     <!-- 项目发布管理 -->
+     <distributionManagement>
+          <repository>
+               <id>releases</id>
+               <name>Swifthealth Project Release</name>
+               <url>https://devrepo.devcloud.huaweicloud.com/02/nexus/content/repositories/95a5ead5fd7b46b0bd00b3e8c1a96a19_1_0/</url>
+          </repository>
+
+          <snapshotRepository>
+               <id>snapshots</id>
+               <name>Swifthealth Project SNAPSHOTS</name>
+               <url>https://devrepo.devcloud.huaweicloud.com/02/nexus/content/repositories/95a5ead5fd7b46b0bd00b3e8c1a96a19_2_0/</url>
+          </snapshotRepository>
+     </distributionManagement>
+
+
+</project>
