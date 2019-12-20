@@ -28,7 +28,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public int sendPhone(String phone) {
         int code = getRandomCode();
-        log.info("==========>手机号:{}生成的验证码为:{}",phone,code);
+        log.info("   ==========>手机号:{}生成的验证码为:{}",phone,code);
         return code;
     }
 
