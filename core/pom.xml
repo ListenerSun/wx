@@ -364,21 +364,4 @@
 
           </dependencies>
      </dependencyManagement>
-
-     <!-- 项目发布管理 -->
-     <distributionManagement>
-          <repository>
-               <id>releases</id>
-               <name>Swifthealth Project Release</name>
-               <url>https://devrepo.devcloud.huaweicloud.com/02/nexus/content/repositories/95a5ead5fd7b46b0bd00b3e8c1a96a19_1_0/</url>
-          </repository>
-
-          <snapshotRepository>
-               <id>snapshots</id>
-               <name>Swifthealth Project SNAPSHOTS</name>
-               <url>https://devrepo.devcloud.huaweicloud.com/02/nexus/content/repositories/95a5ead5fd7b46b0bd00b3e8c1a96a19_2_0/</url>
-          </snapshotRepository>
-     </distributionManagement>
-
-
 </project>

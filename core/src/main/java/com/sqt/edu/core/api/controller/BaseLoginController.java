@@ -1,6 +1,5 @@
 package com.sqt.edu.core.api.controller;
 
-import com.sqt.edu.core.base.BaseExceptionMsg;
 import com.sqt.edu.core.base.BaseLoginParam;
 import com.sqt.edu.core.base.JsonResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,7 @@ public abstract class BaseLoginController<T extends BaseLoginParam> {
      */
     @PostMapping("/login-by-password")
     public JsonResult loginByPassword(@RequestBody BaseLoginParam baseLoginParam){
-        return new JsonResult(BaseExceptionMsg.INTER_NOT_SURPPORT);
+        return null;
     }
 
     /**
@@ -30,7 +29,7 @@ public abstract class BaseLoginController<T extends BaseLoginParam> {
      */
     @PostMapping("/login-by-verificationcode")
     public JsonResult loginByVerificationcode(@RequestBody T loginParamVo) {
-        return new JsonResult(BaseExceptionMsg.INTER_NOT_SURPPORT);
+        return null;
     }
 
     /**
@@ -41,7 +40,7 @@ public abstract class BaseLoginController<T extends BaseLoginParam> {
      */
     @PostMapping("/login-by-wechat")
     public JsonResult loginByWechat(@RequestBody T loginParamVo) {
-        return new JsonResult(BaseExceptionMsg.INTER_NOT_SURPPORT);
+        return null;
     }
 
 }
