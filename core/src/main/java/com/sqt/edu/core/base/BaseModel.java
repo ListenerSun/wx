@@ -1,5 +1,7 @@
 package com.sqt.edu.core.base;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,11 +24,13 @@ public class BaseModel implements Serializable {
     /**
      * 创建人
      */
+    @TableField(fill = FieldFill.INSERT)
     protected Long createUser;
 
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date createTime;
@@ -34,11 +38,13 @@ public class BaseModel implements Serializable {
     /**
      * 修改人
      */
+    @TableField(fill = FieldFill.UPDATE)
     protected Long updateUser;
 
     /**
      * 修改时间
      */
+    @TableField(fill = FieldFill.UPDATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date updateTime;
