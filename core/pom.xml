@@ -341,6 +341,12 @@
                <artifactId>slf4j-log4j12</artifactId>
                <version>1.7.21</version>
           </dependency>
+          <!-- 格式化sql 依赖-->
+          <dependency>
+               <groupId>p6spy</groupId>
+               <artifactId>p6spy</artifactId>
+               <version>3.8.0</version>
+          </dependency>
      </dependencies>
 
      <dependencyManagement>
