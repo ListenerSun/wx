@@ -1,12 +1,14 @@
 package com.sqt.edu.account.config;
 
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.sqt.edu.core.interceptor.MybatisSqlInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -52,6 +54,7 @@ public class MybatisConfiguration {
         bean.setVfs(SpringBootVFS.class);
 //        configuration.addInterceptor(new OptimisticLocker());
 //        configuration.addInterceptor(new CreateTimeInterceptor());
+        configuration.addInterceptor(new MybatisSqlInterceptor());
         configuration.setLogImpl(StdOutImpl.class);
         configuration.setMapUnderscoreToCamelCase(true);
         bean.setConfiguration(configuration);
