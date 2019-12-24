@@ -18,5 +18,6 @@
           <module>core</module>
           <module>account</module>
           <module>account-api</module>
+          <module>teacher-api</module>
      </modules>
 </project>

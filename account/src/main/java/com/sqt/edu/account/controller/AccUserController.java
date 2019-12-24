@@ -2,6 +2,7 @@ package com.sqt.edu.account.controller;
 
 import com.sqt.edu.account.request.RegisterUserDTO;
 import com.sqt.edu.account.service.AccUserService;
+import com.sqt.edu.core.base.BaseLoginParam;
 import com.sqt.edu.core.base.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,5 +38,9 @@ public class AccUserController {
         return new JsonResult();
     }
 
-
+    @ApiOperation(value = "A-3-账号密码登入")
+    @PostMapping("/login_by_password")
+    public JsonResult loginByPassword(@RequestBody @Valid BaseLoginParam loginParam){
+        return accUserService.loginByPassword(loginParam);
+    }
 }
