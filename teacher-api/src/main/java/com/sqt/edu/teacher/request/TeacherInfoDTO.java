@@ -1,31 +1,29 @@
-package com.sqt.edu.teacher.entity;
+package com.sqt.edu.teacher.request;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.sqt.edu.core.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Description: 老师信息
+ * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
- * @Date: Created in 2019-12-24 15:59
+ * @Date: Created in 2019-12-24 18:23
  */
 @ApiModel
 @Builder
 @Data
-@TableName(value = "teacher_info")
-public class TeacherInfo extends BaseModel {
+public class TeacherInfoDTO implements Serializable {
 
-    private static final long serialVersionUID = 8627804769015263595L;
-
-    @ApiModelProperty("主键id")
-    private Long id;
+    @NotBlank
     @ApiModelProperty("姓名")
     private String teacherName;
+    @NotBlank
     @ApiModelProperty("性别")
     private String sex;
     @ApiModelProperty("生日")
@@ -38,6 +36,7 @@ public class TeacherInfo extends BaseModel {
     private String idCard;
     @ApiModelProperty("手机号")
     private String phone;
+    @NotNull
     @ApiModelProperty("用户id")
     private Long accUserId;
 }
