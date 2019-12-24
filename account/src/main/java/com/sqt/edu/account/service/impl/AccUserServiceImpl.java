@@ -67,7 +67,7 @@ public class AccUserServiceImpl implements AccUserService {
         }
         if (!StringUtils.equals(accUser.getPassword(),PasswordEncoder.encode(baseLoginParam.getPassword()))){
             log.error("==========>用户密码错误!phone:{}",baseLoginParam.getPhone());
-            throw new ServiceException(ResultCode.USER_NOT_EXIST);
+            throw new ServiceException(ResultCode.USER_PASSWORD_ERROR);
         }
         return new JsonResult();
     }
