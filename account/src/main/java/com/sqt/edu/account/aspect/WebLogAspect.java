@@ -31,8 +31,6 @@ public class WebLogAspect {
     public void requestLog() {
     }
 
-    ;
-
     /**
      * 方法之前执行，日志打印请求信息
      *
