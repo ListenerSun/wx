@@ -6,9 +6,7 @@ import com.sqt.edu.core.base.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description:
@@ -27,6 +25,12 @@ public class TestTableController {
     @GetMapping("/inteceptor")
     public JsonResult inteceptor(){
         return testTableService.inteceptor();
+    }
+
+    @ApiOperation(value = "t-1.2-切面日志打印测试")
+    @PostMapping("/web_log")
+    public JsonResult webLog(@RequestBody TestTable testTable){
+        return testTableService.webLog(testTable);
     }
 
 }

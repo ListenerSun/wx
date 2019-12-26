@@ -8,7 +8,7 @@ druid:
   type: com.alibaba.druid.pool.DruidDataSource
   master:
     name: master
-    url: jdbc:mysql://localhost:3306/wx?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true&useSSL=false&useAffectedRows=truedev
+    url: jdbc:mysql://132.232.13.29:3306/wx?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true&useSSL=false&useAffectedRows=truedev
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -58,7 +58,7 @@ eureka:
     lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
   client:
     service-url:
-      defaultZone: http://localhost:9002/eureka
+      defaultZone: http://132.232.13.29:8888/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
 #    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
 #    registerWithEureka: false

@@ -3,6 +3,27 @@ server:
     context-path: /account
   port: 9100
 
+
+spring:
+  #   redis 配置
+  redis:
+    enable: true
+    database: 7
+    host: 132.232.13.29
+    port: 6379
+    password: 123456
+    timeout: 5000
+    timeToLive: 15
+    lettuce:
+      pool:
+        MaxTotal: 50
+        minIdle: 1
+        maxWaitMillis: 5000
+        maxIdle: 5
+        testOnBorrow: true
+        testOnReturn: true
+        testWhileIdle: true
+
 druid:
   defaultDs: master
   type: com.alibaba.druid.pool.DruidDataSource
@@ -50,6 +71,9 @@ druid:
           multi-statement-allow: true
       config:
         enabled: true
+
+
+
 # eureka client
 eureka:
   instance:
@@ -58,9 +82,9 @@ eureka:
     lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
   client:
     service-url:
-      defaultZone: http://localhost:9002/eureka
+      defaultZone: http://132.232.13.29:8888/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
 #    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
 

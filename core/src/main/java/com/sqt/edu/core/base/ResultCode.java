@@ -49,6 +49,7 @@ public enum ResultCode {
     /**********************************用户相关异常:10001-10100USER_开头******************************/
     USER_NOT_EXIST(10001,"user not exist！"),
     USER_PASSWORD_ERROR(10002,"user password error！"),
+    PARAM_INVALID(10002, "无效参数"),
 
     ;
 

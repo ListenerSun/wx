@@ -1,5 +1,6 @@
 package com.sqt.edu.account.service;
 
+import com.sqt.edu.account.entity.TestTable;
 import com.sqt.edu.core.base.JsonResult;
 
 /**
@@ -13,4 +14,9 @@ public interface TestTableService {
      * @return
      */
     JsonResult inteceptor();
+
+    /**test AOP Log
+     * @param testTable
+     */
+    JsonResult webLog(TestTable testTable);
 }

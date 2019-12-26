@@ -28,4 +28,16 @@ public class TestTableServiceImpl implements TestTableService {
         testTableMapper.insert(testTable);
         return new JsonResult();
     }
+
+    @Override
+    public JsonResult webLog(TestTable testTable) {
+        if (null == testTable.getId()) {
+            TestTable table = TestTable.builder()
+                    .name("test01")
+                    .build();
+            testTableMapper.insert(table);
+            return new JsonResult(table);
+        }
+        return new JsonResult(testTableMapper.selectById(testTable.getId()));
+    }
 }

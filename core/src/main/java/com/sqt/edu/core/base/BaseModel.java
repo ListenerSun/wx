@@ -31,7 +31,6 @@ public class BaseModel implements Serializable {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date createTime;
 
@@ -45,7 +44,6 @@ public class BaseModel implements Serializable {
      * 修改时间
      */
     @TableField(fill = FieldFill.UPDATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date updateTime;
 
