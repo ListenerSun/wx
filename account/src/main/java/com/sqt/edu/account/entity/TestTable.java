@@ -1,5 +1,7 @@
 package com.sqt.edu.account.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sqt.edu.core.base.BaseModel;
 import io.swagger.annotations.ApiModel;
@@ -24,6 +26,7 @@ public class TestTable extends BaseModel {
     private Long id;
     @ApiModelProperty("姓名")
     private String name;
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty("邮箱")
     private String email;
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 /**
  * 密码加密工具类
  *
- * @author cyj
+ * @author sqt
  * @date 19-03-13
  */
 @Slf4j

@@ -1,6 +1,7 @@
 package com.sqt.edu.account.controller;
 
 import com.sqt.edu.account.request.RegisterUserDTO;
+import com.sqt.edu.account.request.UpdatePasswordDTO;
 import com.sqt.edu.account.service.AccUserService;
 import com.sqt.edu.core.base.BaseLoginParam;
 import com.sqt.edu.core.base.JsonResult;
@@ -42,5 +43,10 @@ public class AccUserController {
     @PostMapping("/login_by_password")
     public JsonResult loginByPassword(@RequestBody @Valid BaseLoginParam loginParam){
         return accUserService.loginByPassword(loginParam);
+    }
+    @ApiOperation(value = "A-4-修改密码")
+    @PostMapping("/update_password")
+    public JsonResult updatePassword(@RequestBody @Valid UpdatePasswordDTO updatePasswordDTO){
+        return accUserService.updatePassword(updatePasswordDTO);
     }
 }

@@ -1,13 +1,11 @@
-package com.sqt.edu.account.aspect;
+package com.sqt.edu.core.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
 import com.sqt.edu.core.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.weaver.AjAttribute;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

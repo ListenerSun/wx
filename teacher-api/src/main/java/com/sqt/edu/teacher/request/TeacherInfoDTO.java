@@ -20,10 +20,10 @@ import java.util.Date;
 @Data
 public class TeacherInfoDTO implements Serializable {
 
-    @NotBlank
+    @NotBlank(message = "姓名不能为空")
     @ApiModelProperty("姓名")
     private String teacherName;
-    @NotBlank
+    @NotBlank(message = "性别不能为空")
     @ApiModelProperty("性别")
     private String sex;
     @ApiModelProperty("生日")

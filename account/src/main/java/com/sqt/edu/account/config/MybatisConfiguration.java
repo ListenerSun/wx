@@ -1,14 +1,13 @@
 package com.sqt.edu.account.config;
 
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.sqt.edu.core.interceptor.MybatisSqlInterceptor;
+import com.sqt.edu.core.component.MyMetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +35,7 @@ public class MybatisConfiguration {
 
     @Bean(name = "sqlSessionFactory")
     @Primary
-    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = "dataSource") DataSource dataSource) throws Exception {
+    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "dataSource") DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -49,16 +48,16 @@ public class MybatisConfiguration {
         }
         bean.setMapperLocations(result.toArray(new org.springframework.core.io.Resource[0]));
         com.baomidou.mybatisplus.core.MybatisConfiguration configuration = new com.baomidou.mybatisplus.core.MybatisConfiguration();
-        //设置
-//        bean.setTypeHandlersPackage("cn.swifthealth.core.mybatis");
         bean.setVfs(SpringBootVFS.class);
-//        configuration.addInterceptor(new OptimisticLocker());
-//        configuration.addInterceptor(new CreateTimeInterceptor());
-        configuration.addInterceptor(new MybatisSqlInterceptor());
         configuration.setLogImpl(StdOutImpl.class);
         configuration.setMapUnderscoreToCamelCase(true);
         bean.setConfiguration(configuration);
-        return bean.getObject();
+
+        GlobalConfig globalConfig = GlobalConfigUtils.defaults();
+        //设置 字段自动填充处理
+        globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
+        bean.setGlobalConfig(globalConfig);
+        return bean;
     }
 
     @Bean(name = "namedParameterJdbcTemplate")

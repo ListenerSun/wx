@@ -2,6 +2,7 @@ package com.sqt.edu.account.service;
 
 import com.sqt.edu.account.entity.AccUser;
 import com.sqt.edu.account.request.RegisterUserDTO;
+import com.sqt.edu.account.request.UpdatePasswordDTO;
 import com.sqt.edu.core.base.BaseLoginParam;
 import com.sqt.edu.core.base.JsonResult;
 
@@ -23,9 +24,15 @@ public interface AccUserService {
      */
     void sendRegisterCode(String phone);
 
-    /**
+    /**根据 用户名 密码 登入
      * @param baseLoginParam
      * @return
      */
     JsonResult loginByPassword(BaseLoginParam baseLoginParam);
+
+    /**update password
+     * @param updatePasswordDTO
+     * @return
+     */
+    JsonResult updatePassword(UpdatePasswordDTO updatePasswordDTO);
 }

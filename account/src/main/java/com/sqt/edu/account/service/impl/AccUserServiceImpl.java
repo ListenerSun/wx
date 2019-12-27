@@ -6,6 +6,7 @@ import com.sqt.edu.account.constant.AccountEnum;
 import com.sqt.edu.account.entity.AccUser;
 import com.sqt.edu.account.mapper.AccUserMapper;
 import com.sqt.edu.account.request.RegisterUserDTO;
+import com.sqt.edu.account.request.UpdatePasswordDTO;
 import com.sqt.edu.account.service.AccUserService;
 import com.sqt.edu.account.service.SmsService;
 import com.sqt.edu.account.utils.PasswordEncoder;
@@ -13,6 +14,7 @@ import com.sqt.edu.core.base.BaseLoginParam;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.core.utils.RequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +71,19 @@ public class AccUserServiceImpl implements AccUserService {
             log.error("==========>用户密码错误!phone:{}",baseLoginParam.getPhone());
             throw new ServiceException(ResultCode.USER_PASSWORD_ERROR);
         }
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult updatePassword(UpdatePasswordDTO updatePasswordDTO) {
+        Long userId = RequestHelper.getUserId();
+        AccUser accUser = accUserMapper.selectById(userId);
+        if (!StringUtils.equals(accUser.getPassword(),PasswordEncoder.encode(updatePasswordDTO.getOldPassword()))){
+            throw new ServiceException(ResultCode.USER_PASSWORD_ERROR);
+        }
+        accUser.setPassword(PasswordEncoder.encode(updatePasswordDTO.getNewPassword()));
+        accUserMapper.updateById(accUser);
+        log.info("用户(userId):{}修改密码成功!",userId);
         return new JsonResult();
     }
 

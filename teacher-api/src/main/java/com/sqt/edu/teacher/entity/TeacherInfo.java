@@ -38,6 +38,8 @@ public class TeacherInfo extends BaseModel {
     private String idCard;
     @ApiModelProperty("手机号")
     private String phone;
+    @ApiModelProperty("类型: 1:在校大学生,2:已工作人员,3:其他")
+    private String type;
     @ApiModelProperty("用户id")
     private Long accUserId;
 }

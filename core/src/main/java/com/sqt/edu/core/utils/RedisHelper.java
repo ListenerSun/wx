@@ -50,7 +50,7 @@ public class RedisHelper {
      */
     public Boolean existKey(String cacheName, String key) {
         if (StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         return redisTemplate.hasKey(redisKey(cacheName, key).toLowerCase());
     }
@@ -65,7 +65,7 @@ public class RedisHelper {
      */
     public <T> void setObj(String cacheName, String key, T t) {
         if (t == null || StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         BoundValueOperations<String, T> valueOperations = redisTemplate.boundValueOps(redisKey(cacheName, key).toLowerCase());
         valueOperations.set(t);
@@ -81,7 +81,7 @@ public class RedisHelper {
      */
     public <T> void setObj(String cacheName, String key, List<T> t) {
         if (t == null || StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         BoundValueOperations<String, List<T>> valueOperations = redisTemplate.boundValueOps(redisKey(cacheName, key).toLowerCase());
         valueOperations.set(t);
@@ -98,7 +98,7 @@ public class RedisHelper {
      */
     public <T> void setObj(String cacheName, String key, T t, long timeout) {
         if (t == null || StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         BoundValueOperations<String, T> valueOperations = redisTemplate.boundValueOps(redisKey(cacheName, key).toLowerCase());
         valueOperations.set(t, timeout, TimeUnit.SECONDS);
@@ -115,7 +115,7 @@ public class RedisHelper {
      */
     public <T> void setObj(String cacheName, String key, List<T> t, long timeout) {
         if (t == null || StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         BoundValueOperations<String, List<T>> valueOperations = redisTemplate.boundValueOps(redisKey(cacheName, key).toLowerCase());
         valueOperations.set(t, timeout, TimeUnit.SECONDS);
@@ -132,7 +132,7 @@ public class RedisHelper {
      */
     public <T> T getObj(String cacheName, String key, Class<T> tClass) {
         if (StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         String redisKey = redisKey(cacheName, key).toLowerCase();
 
@@ -159,7 +159,7 @@ public class RedisHelper {
      */
     public <T> List<T> getArrayObj(String cacheName, String key, Class<T> tClass) {
         if (StringUtils.isAnyBlank(cacheName, key)) {
-            throw new ServiceException(ResultCode.PARAM_INVALID);
+            throw new ServiceException(ResultCode.CORE_PARAM_INVALID);
         }
         String redisKey = redisKey(cacheName, key).toLowerCase();
 
