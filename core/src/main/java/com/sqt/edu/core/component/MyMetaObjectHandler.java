@@ -55,7 +55,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     private void checkFieldInsert(String fieldName, MetaObject metaObject) {
         boolean bol = metaObject.hasSetter(fieldName);
-        ServiceException e = new ServiceException("11");
         //拿到字段属性的值
         Object fieldValue = getFieldValByName(fieldName, metaObject);
         Class<?> fieldClass = metaObject.getGetterType(fieldName);
