@@ -1,6 +1,7 @@
 package com.sqt.edu.core.component;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.core.utils.RequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
@@ -54,13 +55,17 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     private void checkFieldInsert(String fieldName, MetaObject metaObject) {
         boolean bol = metaObject.hasSetter(fieldName);
-        //拿到createdTime的值
-        Object createTime = getFieldValByName(fieldName, metaObject);
-        Class<?> getterType = metaObject.getGetterType(fieldName);
+        ServiceException e = new ServiceException("11");
+        //拿到字段属性的值
+        Object fieldValue = getFieldValByName(fieldName, metaObject);
+        Class<?> fieldClass = metaObject.getGetterType(fieldName);
         //插入时填充创建时间 fieldName是属性名
         if (bol) {
-            if (createTime == null) {
+            if (fieldClass.equals(Date.class) && fieldValue == null) {
                 setFieldValByName(fieldName, new Date(), metaObject);
+            }
+            if (fieldClass.equals(Long.class) && fieldValue == null){
+                setFieldValByName(fieldName, RequestHelper.getUserId(), metaObject);
             }
         }
     }
@@ -73,9 +78,15 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     private void checkFieldUpdate(String fieldName, MetaObject metaObject) {
         boolean bol = metaObject.hasSetter(fieldName);
+        Class<?> fieldClass = metaObject.getGetterType(fieldName);
         Long userId = RequestHelper.getUserId();
         if (bol) {
-            setFieldValByName(fieldName, userId, metaObject);
+            if (fieldClass.equals(Date.class)) {
+                setFieldValByName(fieldName, new Date(), metaObject);
+            }
+            if (fieldClass.equals(Long.class)){
+                setFieldValByName(fieldName, RequestHelper.getUserId(), metaObject);
+            }
         }
     }
 }
