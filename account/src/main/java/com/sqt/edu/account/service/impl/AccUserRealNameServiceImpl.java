@@ -29,6 +29,7 @@ public class AccUserRealNameServiceImpl implements AccUserRealNameService {
         AccUser accUser = accUserMapper.selectById(userId);
         accUser.setIdCardPath1(accUserRealNameDTO.getIdCardPath1());
         accUser.setIdCard(accUserRealNameDTO.getIdCard());
+        accUserMapper.updateById(accUser);
         return new JsonResult();
     }
 }
