@@ -42,7 +42,7 @@ public class AccUser extends BaseModel {
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "用户类型 0:管理员 1:teacher 2:student 3:parent")
+    @ApiModelProperty(value = "用户类型 0:管理员 1:普通老师 2:专业讲师 3:普通用户 ")
     private String type;
 
     @ApiModelProperty(value = "微信id")
@@ -59,6 +59,9 @@ public class AccUser extends BaseModel {
 
     @ApiModelProperty(value = "审核时间")
     private Date auditTime;
+
+    @ApiModelProperty(value = "身份证号")
+    private String idCard;
 
     @ApiModelProperty(value = "身份证正面照")
     private String idCardPath1;

@@ -1,5 +1,7 @@
 package com.sqt.edu.teacher.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sqt.edu.core.base.BaseModel;
 import io.swagger.annotations.ApiModel;
@@ -22,6 +24,7 @@ public class TeacherInfo extends BaseModel {
 
     private static final long serialVersionUID = 8627804769015263595L;
 
+    @TableId(type = IdType.AUTO)
     @ApiModelProperty("主键id")
     private Long id;
     @ApiModelProperty("姓名")

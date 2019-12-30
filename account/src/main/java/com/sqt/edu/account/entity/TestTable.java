@@ -1,12 +1,11 @@
 package com.sqt.edu.account.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.sqt.edu.core.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.omg.CORBA.IDLType;
 
 /**
  * @Description:
@@ -22,6 +21,7 @@ import lombok.*;
 @TableName(value = "test_table")
 public class TestTable extends BaseModel {
 
+    @TableId(type = IdType.AUTO)
     @ApiModelProperty("自增id")
     private Long id;
     @ApiModelProperty("姓名")

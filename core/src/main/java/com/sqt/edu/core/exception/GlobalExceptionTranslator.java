@@ -52,7 +52,7 @@ public class GlobalExceptionTranslator {
         BindingResult result = e.getBindingResult();
         FieldError error = result.getFieldError();
         String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
-        return new JsonResult(ResultCode.PARAM_VALID_ERROR);
+        return new JsonResult(ResultCode.FAILURE.getCode(),e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(BindException.class)

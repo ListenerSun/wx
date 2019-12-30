@@ -49,4 +49,5 @@ public class AccUserController {
     public JsonResult updatePassword(@RequestBody @Valid UpdatePasswordDTO updatePasswordDTO){
         return accUserService.updatePassword(updatePasswordDTO);
     }
+
 }

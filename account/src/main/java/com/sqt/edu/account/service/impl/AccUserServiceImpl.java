@@ -45,7 +45,7 @@ public class AccUserServiceImpl implements AccUserService {
                 .password(PasswordEncoder.encode(registerUserDTO.getPassword()))
                 .sex(registerUserDTO.getSex())
                 .authState(AccountEnum.AccUserAuthState.NOT_AUTH.getCode())
-                .type(registerUserDTO.getType())
+                .type(AccountEnum.AccUserType.NORMAL_USER.getCode())
                 .state(AccountEnum.AccUserState.IN_USE.getCode())
                 .build();
         accUser.setCreateTime(new Date());

@@ -5,11 +5,18 @@ import com.sqt.edu.account.service.TestTableService;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.constant.ServiceConstant;
 import com.sqt.edu.core.utils.RedisHelper;
+import com.sqt.edu.core.validation.IdCard;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @Description:
@@ -41,10 +48,28 @@ public class TestTableController {
     @ApiOperation(value = "t-1.3-redis测试")
     @PostMapping("/redis")
     public JsonResult redis(){
-        redisHelper.setObj(ServiceConstant.ACCOUNT_SERVICE_NAME,"account","test");
+          redisHelper.setObj(ServiceConstant.ACCOUNT_SERVICE_NAME,"account","test");
         String account = redisHelper.getObj(ServiceConstant.ACCOUNT_SERVICE_NAME, "account", String.class);
         log.info("==========>取出的值:{}",account);
         return new JsonResult(account);
     }
 
+    @ApiOperation(value = "t-1.4-身份证号验证注解")
+    @PostMapping("/idcard")
+    public JsonResult idCardValid(@RequestBody @Valid IdCardTest idCard){
+        log.info("=======> 进来了");
+        return new JsonResult(idCard);
+    }
+
+
+    @Data
+    @ApiModel
+    static final class IdCardTest{
+        @ApiModelProperty("idCarad")
+        private String idCard;
+
+        @NotBlank(message = "不能为空!")
+        @ApiModelProperty("name")
+        private String name;
+    }
 }

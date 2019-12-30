@@ -32,8 +32,10 @@ public class TeacherInfoDTO implements Serializable {
     private String graduateSchool;
     @ApiModelProperty("学历")
     private String education;
+    @NotBlank(message = "身份证号不能为空")
     @ApiModelProperty("身份证号")
     private String idCard;
+    @NotBlank(message = "手机号不能为空")
     @ApiModelProperty("手机号")
     private String phone;
     @NotNull

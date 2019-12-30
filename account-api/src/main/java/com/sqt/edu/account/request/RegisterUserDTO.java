@@ -34,10 +34,6 @@ public class RegisterUserDTO implements Serializable {
     @NotBlank
     private String phone;
 
-    @ApiModelProperty("用户类型")
-    @NotBlank
-    private String type;
-
     @ApiModelProperty("验证码")
     private String code;
 }
