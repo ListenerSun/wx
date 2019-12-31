@@ -63,6 +63,9 @@ public class AccUser extends BaseModel {
     @ApiModelProperty(value = "身份证号")
     private String idCard;
 
+    @ApiModelProperty(value = "用户实际姓名")
+    private String realName;
+
     @ApiModelProperty(value = "身份证正面照")
     private String idCardPath1;
 

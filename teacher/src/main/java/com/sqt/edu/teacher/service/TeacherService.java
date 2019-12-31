@@ -12,7 +12,7 @@ import javax.validation.Valid;
  */
 public interface TeacherService {
 
-    /** add
+    /** add a teacher info
      * @param teacherInfoDTO
      * @return
      */

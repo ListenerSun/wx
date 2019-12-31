@@ -27,7 +27,7 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    @PostMapping("/add")
+    @PostMapping("/auth_teacher")
     public JsonResult add(@RequestBody @Valid TeacherInfoDTO teacherInfoDTO){
         return teacherService.add(teacherInfoDTO);
     }

@@ -2,6 +2,7 @@ package com.sqt.edu.account.service;
 
 import com.sqt.edu.account.entity.AccUserRealNameDTO;
 import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.teacher.request.TeacherInfoDTO;
 
 /**
  * @Description: 实名认证
@@ -15,4 +16,17 @@ public interface AccUserRealNameService {
      * @return
      */
     JsonResult realName(AccUserRealNameDTO accUserRealNameDTO);
+
+    /**
+     *校验用户是否已认证
+     * @param userId
+     * @return
+     */
+    JsonResult authRealName(Long userId);
+
+    /** 认证普通老师
+     * @param teacherInfoDTO
+     * @return
+     */
+    JsonResult authNormalTeacher(TeacherInfoDTO teacherInfoDTO);
 }

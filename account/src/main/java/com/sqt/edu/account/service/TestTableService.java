@@ -3,6 +3,8 @@ package com.sqt.edu.account.service;
 import com.sqt.edu.account.entity.TestTable;
 import com.sqt.edu.core.base.JsonResult;
 
+import java.util.concurrent.Future;
+
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
@@ -19,4 +21,14 @@ public interface TestTableService {
      * @param testTable
      */
     JsonResult webLog(TestTable testTable);
+
+    /**
+     * @Asyn 测试
+     * @return
+     */
+    Future<String> doTaskOne() throws InterruptedException;
+
+    Future<String> doTaskTwo() throws InterruptedException;
+
+    Future<String> doTaskThree() throws InterruptedException;
 }
