@@ -6,12 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-17 13:40
  */
+@EnableAsync
 @Slf4j
 @SpringBootApplication
 @EnableFeignClients("com.sqt.edu")
