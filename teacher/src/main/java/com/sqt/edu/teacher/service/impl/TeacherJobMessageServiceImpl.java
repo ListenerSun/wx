@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
@@ -72,7 +74,9 @@ public class TeacherJobMessageServiceImpl implements TeacherJobMessageService {
         if (null == teacherInfo){
             throw new ServiceException(ResultCode.MSG_NOT_READABLE);
         }
-        return null;
+        List<TeacherJobMessage> teacherJobMessageList =
+                teacherJobMessageMapper.selectList(Wrappers.<TeacherJobMessage>lambdaQuery().eq(TeacherJobMessage::getTeacherId, teacherInfo.getId()));
+        return new JsonResult(teacherJobMessageList);
     }
 
 }

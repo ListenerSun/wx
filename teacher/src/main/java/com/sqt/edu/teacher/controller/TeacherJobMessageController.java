@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @Description:
@@ -30,5 +31,20 @@ public class TeacherJobMessageController {
     @PostMapping("create")
     public JsonResult create(@RequestBody @Valid TeacherJobMessageDTO teacherJobMessageDTO){
         return teacherJobMessageService.create(teacherJobMessageDTO);
+    }
+    @ApiOperation(value = "J-2-更新一条教教信息")
+    @PostMapping("update")
+    public JsonResult update(@RequestBody @Valid TeacherJobMessageDTO teacherJobMessageDTO){
+        return teacherJobMessageService.update(teacherJobMessageDTO);
+    }
+    @ApiOperation(value = "J-3-删除一条教教信息")
+    @PostMapping("delete")
+    public JsonResult delete(@RequestBody @Valid @NotBlank Long teacherJobMessageId){
+        return teacherJobMessageService.delete(teacherJobMessageId);
+    }
+    @ApiOperation(value = "J-4-查询某个教师发布的信息列表")
+    @PostMapping("list_by_teacherId")
+    public JsonResult listByTeacherId(@RequestBody @Valid @NotBlank Long userId){
+        return teacherJobMessageService.selectByTeacherId(userId);
     }
 }
