@@ -49,7 +49,10 @@ public class AccUserRealNameServiceImpl implements AccUserRealNameService {
     @Override
     public JsonResult authRealName(Long userId) {
         AccUser accUser = accUserMapper.selectById(userId);
-        Assert.isNull(accUser,"userId 用户不存在");
+        if (null == accUser){
+            log.error("==========> 用户不存在 ! userId:{}",userId);
+            throw new ServiceException(ResultCode.USER_NOT_EXIST);
+        }
         if (!StringUtils.equals(accUser.getAuthState(),AccountEnum.AccUserAuthState.AUTH_SUCCESS.getCode())){
             log.warn("==========> 用户未实名认证！ userId:{}",userId);
             throw new ServiceException(ResultCode.USER_NOT_AUTH);
@@ -63,6 +66,7 @@ public class AccUserRealNameServiceImpl implements AccUserRealNameService {
         AccUser accUser = accUserMapper.selectById(userId);
         // 避免接口攻击 再次校验用户是否实名认证
         authRealName(userId);
+        teacherInfoDTO.setAccUserId(userId);
         JsonResult jsonResult = teacherFeignClient.add(teacherInfoDTO);
         log.info("==========>调用 edu-teacher 服务返回结果:{}", JSON.toJSONString(jsonResult));
         if (jsonResult.isSuccess()){

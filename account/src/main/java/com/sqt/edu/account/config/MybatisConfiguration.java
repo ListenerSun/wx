@@ -2,6 +2,7 @@ package com.sqt.edu.account.config;
 
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.sqt.edu.core.component.MyMetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,8 @@ public class MybatisConfiguration {
         bean.setVfs(SpringBootVFS.class);
         configuration.setLogImpl(StdOutImpl.class);
         configuration.setMapUnderscoreToCamelCase(true);
+        //添加 乐观锁插件
+        configuration.addInterceptor(optimisticLockerInterceptor());
         bean.setConfiguration(configuration);
 
         GlobalConfig globalConfig = GlobalConfigUtils.defaults();
@@ -70,5 +73,12 @@ public class MybatisConfiguration {
         return new JdbcTemplate(dataSource);
     }
 
+    /**乐观锁插件
+     * @return
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
 
 }

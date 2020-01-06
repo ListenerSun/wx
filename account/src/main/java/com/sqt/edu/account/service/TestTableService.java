@@ -31,4 +31,14 @@ public interface TestTableService {
     Future<String> doTaskTwo() throws InterruptedException;
 
     Future<String> doTaskThree() throws InterruptedException;
+
+    /**乐观锁插件测试
+     * @return
+     */
+    JsonResult testTableService();
+
+    /** 事务 测试
+     * @return
+     */
+    JsonResult creatTx();
 }

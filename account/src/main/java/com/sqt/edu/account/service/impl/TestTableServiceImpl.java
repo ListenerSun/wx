@@ -4,6 +4,7 @@ import com.sqt.edu.account.entity.TestTable;
 import com.sqt.edu.account.mapper.TestTableMapper;
 import com.sqt.edu.account.service.TestTableService;
 import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.core.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.ServiceMode;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.Future;
 
 /**
@@ -89,5 +91,23 @@ public class TestTableServiceImpl implements TestTableService {
         long end = System.currentTimeMillis();
         log.info("完成任务三，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务三完成，耗时" + (end - start) + "毫秒");
+    }
+
+    @Override
+    public JsonResult testTableService() {
+        TestTable testTable = testTableMapper.selectById(1211471794976972809L);
+        testTable.setEmail("3333");
+        testTableMapper.updateById(testTable);
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult creatTx() {
+        TestTable testTable = TestTable.builder()
+                .name("sqt")
+                .email("123@qq.com")
+                .build();
+        testTableMapper.insert(testTable);
+        throw new ServiceException("抛出异常!测试数据库是否回滚!");
     }
 }

@@ -40,7 +40,7 @@ public class AccUserRealNameController {
         return accUserRealNameService.authRealName(userId);
     }
 
-    @ApiOperation(value = "R-2-校验用户是否实名认证")
+    @ApiOperation(value = "R-2-认证为普通老师")
     @PostMapping("/acc_normal_teacher")
     public JsonResult authNormalTeacher(@NotNull @RequestBody TeacherInfoDTO teacherInfoDTO) {
         return accUserRealNameService.authNormalTeacher(teacherInfoDTO);

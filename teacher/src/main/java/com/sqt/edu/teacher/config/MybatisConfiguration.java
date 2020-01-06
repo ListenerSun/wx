@@ -1,9 +1,12 @@
 package com.sqt.edu.teacher.config;
 
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.sqt.edu.core.component.MyMetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,12 +33,12 @@ import java.util.Set;
 @Slf4j
 @Configuration
 @AutoConfigureAfter({DataSourceConfiguration.class})
-@MapperScan(basePackages = {"com.sqt.teacher.*.mapper*"})
+@MapperScan(basePackages = {"com.sqt.edu.*.mapper*"})
 public class MybatisConfiguration {
 
     @Bean(name = "sqlSessionFactory")
     @Primary
-    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = "dataSource") DataSource dataSource) throws Exception {
+    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "dataSource") DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -48,15 +51,18 @@ public class MybatisConfiguration {
         }
         bean.setMapperLocations(result.toArray(new org.springframework.core.io.Resource[0]));
         com.baomidou.mybatisplus.core.MybatisConfiguration configuration = new com.baomidou.mybatisplus.core.MybatisConfiguration();
-        //设置
-//        bean.setTypeHandlersPackage("cn.swifthealth.core.mybatis");
         bean.setVfs(SpringBootVFS.class);
-//        configuration.addInterceptor(new OptimisticLocker());
-//        configuration.addInterceptor(new CreateTimeInterceptor());
         configuration.setLogImpl(StdOutImpl.class);
         configuration.setMapUnderscoreToCamelCase(true);
+        //添加 乐观锁插件
+        configuration.addInterceptor(optimisticLockerInterceptor());
         bean.setConfiguration(configuration);
-        return bean.getObject();
+
+        GlobalConfig globalConfig = GlobalConfigUtils.defaults();
+        //设置 字段自动填充处理
+        globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
+        bean.setGlobalConfig(globalConfig);
+        return bean;
     }
 
     @Bean(name = "namedParameterJdbcTemplate")
@@ -69,5 +75,12 @@ public class MybatisConfiguration {
         return new JdbcTemplate(dataSource);
     }
 
+    /**乐观锁插件
+     * @return
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
 
 }

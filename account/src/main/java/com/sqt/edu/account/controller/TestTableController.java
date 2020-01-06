@@ -91,6 +91,18 @@ public class TestTableController {
         return "ok";
     }
 
+    @ApiOperation(value = "t-1.6-乐观锁插件测试")
+    @GetMapping("/optimistic_locker")
+    public JsonResult optimisticLocker(){
+        return testTableService.testTableService();
+    }
+
+    @ApiOperation(value = "t-1.7-事务测试")
+    @GetMapping("/tx")
+    public JsonResult tx(){
+        return testTableService.creatTx();
+    }
+
     @Data
     @ApiModel
     static final class IdCardTest{
