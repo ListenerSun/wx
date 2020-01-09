@@ -43,6 +43,7 @@ public class TeacherJobMessageServiceImpl implements TeacherJobMessageService {
                 .price(teacherJobMessageDTO.getPrice())
                 .unit(teacherJobMessageDTO.getUnit())
                 .teacherId(teacherInfo.getId())
+                .graduateSchool(teacherInfo.getGraduateSchool())
                 .accUserId(userId)
                 .build();
         teacherJobMessageMapper.insert(teacherJobMessage);
