@@ -1,10 +1,6 @@
 package com.sqt.edu.teacher.service.impl;
 
-import com.sqt.edu.account.client.AccUserRealNameServiceClient;
 import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;

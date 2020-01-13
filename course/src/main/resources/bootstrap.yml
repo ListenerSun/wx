@@ -1,7 +1,7 @@
 #spring 配置
 spring:
   application:
-    name: edu-teacher
+    name: edu-course
   profiles:
       active: dev
   http:
@@ -22,9 +22,11 @@ spring:
           search-locations: classpath:/config/
 
 #feign 配置
+
 #feign:
 #  hystrix:
 #    enabled: true
+#feign:
 #  okhttp:
 #    enabled: true
 #    max-connections: 400        #线程池最大连接数
@@ -34,6 +36,5 @@ spring:
 #    read-timeout: 30000         #处理请求的超时时间（单位毫秒）
 #  httpclient:
 #    enabled: false
-
 
 

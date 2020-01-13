@@ -23,9 +23,9 @@ spring:
 
 #feign 配置
 
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
 #feign:
 #  okhttp:
 #    enabled: true

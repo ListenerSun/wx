@@ -42,8 +42,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        checkFieldUpdate(UPDATE_TIME_FIELD, metaObject);
-        checkFieldUpdate(UPDATE_USER_FIELD, metaObject);
+        this.setFieldValByName(UPDATE_TIME_FIELD,new Date(),metaObject);
+        this.setFieldValByName(UPDATE_USER_FIELD,RequestHelper.getUserId(),metaObject);
 
     }
 
@@ -69,23 +69,5 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         }
     }
 
-    /**
-     * 更修时 字段校验
-     *
-     * @param fieldName
-     * @param metaObject
-     */
-    private void checkFieldUpdate(String fieldName, MetaObject metaObject) {
-        boolean bol = metaObject.hasSetter(fieldName);
-        Class<?> fieldClass = metaObject.getGetterType(fieldName);
-        Long userId = RequestHelper.getUserId();
-        if (bol) {
-            if (fieldClass.equals(Date.class)) {
-                setFieldValByName(fieldName, new Date(), metaObject);
-            }
-            if (fieldClass.equals(Long.class)){
-                setFieldValByName(fieldName, RequestHelper.getUserId(), metaObject);
-            }
-        }
-    }
+
 }

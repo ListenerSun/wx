@@ -1,4 +1,4 @@
-package com.sqt.edu.teacher.config;
+package com.sqt.edu.course.config;
 
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
@@ -20,9 +20,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 数据源配置

@@ -1,7 +1,8 @@
 server:
   servlet:
     context-path: /
-  port: 9000
+  port: 9300
+
 
 spring:
   #   redis 配置
@@ -22,7 +23,6 @@ spring:
         testOnBorrow: true
         testOnReturn: true
         testWhileIdle: true
-
 
 druid:
   defaultDs: master
@@ -71,6 +71,9 @@ druid:
           multi-statement-allow: true
       config:
         enabled: true
+
+
+
 # eureka client
 eureka:
   instance:
@@ -82,6 +85,6 @@ eureka:
       defaultZone: http://132.232.13.29:8888/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
 #    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
-#    registerWithEureka: false
-#    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
 

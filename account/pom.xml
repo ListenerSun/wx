@@ -37,7 +37,7 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
-                         <mainClass>com.sqt.edu.account.Account_APP</mainClass>
+                         <mainClass>com.sqt.edu.course.Account_APP</mainClass>
                     </configuration>
                     <executions>
                          <execution>

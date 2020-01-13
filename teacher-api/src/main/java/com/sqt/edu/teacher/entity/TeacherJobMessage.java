@@ -32,6 +32,8 @@ public class TeacherJobMessage extends BaseModel {
     private BigDecimal price;
     @ApiModelProperty(value = "单位: 分钟，小时,天，月。和价格配合使用")
     private String unit;
+    @ApiModelProperty(value = "所属学校")
+    private String graduateSchool;
     @ApiModelProperty(value = "开始时间")
     private Date startTime;
     @ApiModelProperty(value = "结束时间")
