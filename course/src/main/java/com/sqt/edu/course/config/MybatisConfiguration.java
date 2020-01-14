@@ -20,7 +20,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 数据源配置
@@ -36,7 +38,8 @@ public class MybatisConfiguration {
 
     @Bean(name = "sqlSessionFactory")
     @Primary
-    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "dataSource") DataSource dataSource) throws Exception {
+    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "myRoutingDataSource") DataSource dataSource) throws Exception {
+        log.info("==========>开始注入 MybatisSqlSessionFactoryBean");
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -60,6 +63,7 @@ public class MybatisConfiguration {
         //设置 字段自动填充处理
         globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
         bean.setGlobalConfig(globalConfig);
+        log.info("==========>注入 MybatisSqlSessionFactoryBean 完成!");
         return bean;
     }
 

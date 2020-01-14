@@ -22,7 +22,12 @@ public class TeacherFeignClientFallBack implements FallbackFactory<TeacherFeignC
         return new TeacherFeignClient() {
             @Override
             public JsonResult add(@Valid TeacherInfoDTO teacherInfoDTO) {
-                throw new ServiceException(ResultCode.MSG_NOT_READABLE);
+                throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
+            }
+
+            @Override
+            public JsonResult getTeacherInfoByAccUserId(Long accUserId) {
+                throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
             }
         };
     }

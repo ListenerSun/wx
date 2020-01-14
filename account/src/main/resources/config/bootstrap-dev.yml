@@ -9,7 +9,7 @@ spring:
   redis:
     enable: true
     database: 7
-    host: 132.232.13.29
+    host: wx-edu
     port: 6379
     password: 123456
     timeout: 5000
@@ -29,7 +29,7 @@ druid:
   type: com.alibaba.druid.pool.DruidDataSource
   master:
     name: master
-    url: jdbc:mysql://132.232.13.29:3306/wx_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://wx-edu:3306/wx_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -82,7 +82,7 @@ eureka:
     lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
   client:
     service-url:
-      defaultZone: http://132.232.13.29:8888/eureka
+      defaultZone: http://wx-edu:8888/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
 #    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
     registerWithEureka: true

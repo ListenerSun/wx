@@ -13,8 +13,8 @@ import javax.sql.DataSource;
 /**
  * 数据源配置
  *
- * @author lfy
- * @date 19-7-1
+ * @author ListenerSun
+ * @date 19-12-20
  **/
 @Configuration
 public class DataSourceConfiguration {

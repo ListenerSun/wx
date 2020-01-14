@@ -1,5 +1,6 @@
 package com.sqt.edu.teacher.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Wrapper;
 
 /**
  * @Description:
@@ -28,5 +31,11 @@ public class TeacherServiceImpl implements TeacherService {
         BeanUtils.copyProperties(teacherInfoDTO,teacherInfo);
         teacherInfoMapper.insert(teacherInfo);
         return new JsonResult();
+    }
+
+    @Override
+    public JsonResult getTeacherInfoByAccUserId(Long acUserId) {
+        TeacherInfo teacherInfo = teacherInfoMapper.selectOne(Wrappers.<TeacherInfo>lambdaQuery().eq(TeacherInfo::getAccUserId, acUserId));
+        return new JsonResult(teacherInfo);
     }
 }

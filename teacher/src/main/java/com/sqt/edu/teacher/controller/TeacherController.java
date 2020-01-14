@@ -7,10 +7,7 @@ import com.sqt.edu.teacher.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,9 +24,15 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
+    @ApiOperation(value = "T-1.1-添加一个老师信息")
     @PostMapping("/auth_teacher")
     public JsonResult add(@RequestBody @Valid TeacherInfoDTO teacherInfoDTO){
         return teacherService.add(teacherInfoDTO);
+    }
+    @ApiOperation(value = "T-1.2-根据acc_user_id查询老师信息")
+    @GetMapping("info_by_acc_user_id")
+    public JsonResult getTeacherInfoByAccUserId(Long accUserId){
+        return teacherService.getTeacherInfoByAccUserId(accUserId);
     }
 
 }

@@ -2,9 +2,12 @@ package com.sqt.edu.teacher.client;
 
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.teacher.client.fallback.TeacherFeignClientFallBack;
+import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,4 +27,10 @@ public interface TeacherFeignClient {
      */
     @PostMapping("/auth_teacher")
     JsonResult add(@RequestBody @Valid TeacherInfoDTO teacherInfoDTO);
+
+    /**根据acc_user_id查询老师信息
+     * @param accUserId
+     */
+    @GetMapping("info_by_acc_user_id")
+    JsonResult<TeacherInfo> getTeacherInfoByAccUserId(Long accUserId);
 }

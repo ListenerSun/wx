@@ -1,5 +1,6 @@
 package com.sqt.edu.course;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Date: Created in 2020-01-09 11:37
  */
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @EnableFeignClients("com.sqt.edu")
 @EnableEurekaClient
 @ComponentScan(basePackages = "com.sqt.edu")

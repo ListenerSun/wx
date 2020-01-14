@@ -17,4 +17,10 @@ public interface TeacherService {
      * @return
      */
     JsonResult add(TeacherInfoDTO teacherInfoDTO);
+
+    /**根据用户id 查询老师信息
+     * @param accUserId
+     * @return
+     */
+    JsonResult getTeacherInfoByAccUserId(Long accUserId);
 }
