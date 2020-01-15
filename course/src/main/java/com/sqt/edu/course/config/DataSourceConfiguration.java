@@ -39,7 +39,7 @@ public class DataSourceConfiguration {
     @Primary
     @ConfigurationProperties(prefix = "druid.master")
     public DataSource dataSource() {
-        DataSource druidDataSource = DataSourceBuilder.create().build();
+        DruidDataSource druidDataSource = DataSourceBuilder.create().type(DruidDataSource.class).build();
         DbContextHolder.addDataSource("master", druidDataSource);
         DbContextHolder.setDefaultDs(defaultDs);
         return druidDataSource;
@@ -48,15 +48,15 @@ public class DataSourceConfiguration {
     @Bean(name = "dataSourceSlave")
     @ConfigurationProperties(prefix = "druid.slave")
     public DataSource slaveDataSource() {
-        DruidDataSource druidDataSource = (DruidDataSource) DataSourceBuilder.create().build();
+        DruidDataSource druidDataSource = DataSourceBuilder.create().type(DruidDataSource.class).build();
         DbContextHolder.addDataSource("slave", druidDataSource);
         DbContextHolder.setDefaultDs(defaultDs);
         return druidDataSource;
     }
 
     @Bean(name = "myRoutingDataSource")
-    public MyRoutingDataSource dataSource(@Qualifier("master") DataSource dataSourceMaster,
-                                          @Qualifier("slave") DataSource dataSourceSlave) {
+    public MyRoutingDataSource dataSource(@Qualifier("dataSourceMaster") DataSource dataSourceMaster,
+                                          @Qualifier("dataSourceSlave") DataSource dataSourceSlave) {
         MyRoutingDataSource dynamicDataSource = new MyRoutingDataSource();
         Map<Object, Object> targetDataResources = new HashMap<>();
         for (Map.Entry<String, DataSource> entry : DbContextHolder.getDataSources().entrySet()) {

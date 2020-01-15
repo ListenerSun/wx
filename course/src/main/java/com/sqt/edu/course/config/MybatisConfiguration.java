@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.sqt.edu.core.component.MyMetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,7 +39,7 @@ public class MybatisConfiguration {
 
     @Bean(name = "sqlSessionFactory")
     @Primary
-    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "myRoutingDataSource") DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = "myRoutingDataSource") DataSource dataSource) throws Exception {
         log.info("==========>开始注入 MybatisSqlSessionFactoryBean");
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
@@ -64,7 +65,7 @@ public class MybatisConfiguration {
         globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
         bean.setGlobalConfig(globalConfig);
         log.info("==========>注入 MybatisSqlSessionFactoryBean 完成!");
-        return bean;
+        return bean.getObject();
     }
 
     @Bean(name = "namedParameterJdbcTemplate")
