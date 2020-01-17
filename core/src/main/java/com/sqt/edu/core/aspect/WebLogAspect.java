@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: Created in 2019-12-26 7:31
  */
 @Slf4j
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class WebLogAspect {
 
     /**

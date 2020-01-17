@@ -101,14 +101,14 @@ public class TestTableServiceImpl implements TestTableService {
     }
 
     @Override
-    @Transactional
-    public JsonResult creatTx() {
+    public JsonResult createTx() {
         TestTable testTable = TestTable.builder()
                 .name("wby")
                 .email("123@qq.com")
                 .build();
         testTableMapper.insert(testTable);
-        throw new ServiceException("抛出异常!测试数据库是否回滚!");
+        int i = 1/0;
+        return new JsonResult();
     }
 
     @DS("slave")

@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * MsgEnum
  *
- * @author cyj
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-4-25
  */
 @AllArgsConstructor

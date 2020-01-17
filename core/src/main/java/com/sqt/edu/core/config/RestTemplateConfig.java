@@ -23,7 +23,7 @@ import java.security.cert.X509Certificate;
 /**
  * RestTemplateConfig
  *
- * @author cyj
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-4-9
  */
 @Configuration

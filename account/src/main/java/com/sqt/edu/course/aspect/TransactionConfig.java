@@ -34,7 +34,7 @@ public class TransactionConfig {
 
     private static final int TX_METHOD_TIMEOUT = 300;
 
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.sqt..service..*Service.*(..)" +
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.sqt.edu..service..*Service.*(..)" +
             ") and @target(org.springframework.stereotype.Service)";
 
     @Autowired

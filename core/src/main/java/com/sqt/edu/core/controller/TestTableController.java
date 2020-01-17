@@ -99,7 +99,7 @@ public class TestTableController {
     @ApiOperation(value = "t-1.7-事务测试")
     @GetMapping("/tx")
     public JsonResult tx(){
-        return testTableService.creatTx();
+        return testTableService.createTx();
     }
 
     @ApiOperation(value = "t-1.8-多数据源测试")

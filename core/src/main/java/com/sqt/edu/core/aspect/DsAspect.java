@@ -19,8 +19,8 @@ import java.lang.reflect.Method;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2020-01-17 10:24
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 @Slf4j
 public class DsAspect {
     /**

@@ -138,12 +138,6 @@ mybatis-plus:
     logic-not-delete-value: 1
     # SQL 解析缓存，开启后多租户 @SqlParser 注解生效
   #    sql-parser-cache: true
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
-    call-setters-on-nulls: true
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-
 
 # eureka client
 eureka:

@@ -40,7 +40,7 @@ public interface TestTableService {
     /** 事务 测试
      * @return
      */
-    JsonResult creatTx();
+    JsonResult createTx();
 
     /**多数据源测试
      * @param
