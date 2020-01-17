@@ -1,6 +1,6 @@
 package com.sqt.edu.course.aspect;
 
-import com.sqt.edu.course.config.MybatisConfiguration;
+import com.sqt.edu.core.config.mybatisplus.MybatisConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.Advisor;
@@ -34,7 +34,7 @@ public class TransactionConfig {
 
     private static final int TX_METHOD_TIMEOUT = 300;
 
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.sqt.edu..service..*Service.*(..)" +
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.sqt..service..*Service.*(..)" +
             ") and @target(org.springframework.stereotype.Service)";
 
     @Autowired
@@ -72,7 +72,6 @@ public class TransactionConfig {
         txMap.put("find*", readOnlyTx);
         txMap.put("*", requiredTx);
         source.setNameMap(txMap);
-
         TransactionInterceptor txAdvice = new TransactionInterceptor(transactionManager, source);
         return txAdvice;
     }

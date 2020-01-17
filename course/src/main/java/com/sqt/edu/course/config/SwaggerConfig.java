@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * swagger 配置
  *
- * @author sqt
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-7-1
  **/
 @Configuration
@@ -43,7 +43,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sqt.edu.course"))
+                .apis(RequestHandlerSelectors.basePackage("com.sqt.edu"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars)

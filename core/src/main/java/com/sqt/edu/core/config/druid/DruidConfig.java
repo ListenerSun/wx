@@ -1,4 +1,4 @@
-package com.sqt.edu.course.config;
+package com.sqt.edu.core.config.druid;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -14,7 +14,7 @@ import java.util.Map;
 /** 数据源连接池配置类
  * DruidConfig
  *
- * @author sqt
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-4-17
  **/
 @Configuration

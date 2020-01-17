@@ -1,15 +1,17 @@
-package com.sqt.edu.course.service.impl;
+package com.sqt.edu.core.service.impl;
 
-import com.sqt.edu.course.entity.TestTable;
-import com.sqt.edu.course.mapper.TestTableMapper;
-import com.sqt.edu.course.service.TestTableService;
+import com.sqt.edu.core.annotation.DS;
 import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.core.entity.TestTable;
 import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.core.mapper.TestTableMapper;
+import com.sqt.edu.core.service.TestTableService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -99,12 +101,25 @@ public class TestTableServiceImpl implements TestTableService {
     }
 
     @Override
+    @Transactional
     public JsonResult creatTx() {
         TestTable testTable = TestTable.builder()
-                .name("sqt")
+                .name("wby")
                 .email("123@qq.com")
                 .build();
         testTableMapper.insert(testTable);
         throw new ServiceException("抛出异常!测试数据库是否回滚!");
+    }
+
+    @DS("slave")
+    @Override
+    public JsonResult dsSlave() {
+        return new JsonResult(testTableMapper.selectById(1L));
+    }
+
+    @DS("master")
+    @Override
+    public JsonResult dsMaster() {
+        return new JsonResult(testTableMapper.selectById(1L));
     }
 }

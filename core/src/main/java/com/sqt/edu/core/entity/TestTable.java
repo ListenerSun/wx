@@ -1,4 +1,4 @@
-package com.sqt.edu.course.entity;
+package com.sqt.edu.core.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.sqt.edu.core.base.BaseModel;

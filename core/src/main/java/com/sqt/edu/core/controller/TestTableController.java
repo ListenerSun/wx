@@ -1,9 +1,9 @@
-package com.sqt.edu.course.controller;
+package com.sqt.edu.core.controller;
 
-import com.sqt.edu.course.entity.TestTable;
-import com.sqt.edu.course.service.TestTableService;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.constant.ServiceConstant;
+import com.sqt.edu.core.entity.TestTable;
+import com.sqt.edu.core.service.TestTableService;
 import com.sqt.edu.core.utils.RedisHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
@@ -100,6 +100,20 @@ public class TestTableController {
     @GetMapping("/tx")
     public JsonResult tx(){
         return testTableService.creatTx();
+    }
+
+    @ApiOperation(value = "t-1.8-多数据源测试")
+    @GetMapping("/ds/{type}")
+    public JsonResult ds(@PathVariable  String type){
+        switch (type) {
+            case "master":
+                return testTableService.dsMaster();
+            case "slave":
+                return testTableService.dsSlave();
+            default:
+                break;
+        }
+        return new JsonResult();
     }
 
     @Data

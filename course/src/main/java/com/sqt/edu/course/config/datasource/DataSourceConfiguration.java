@@ -1,10 +1,11 @@
-package com.sqt.edu.course.config;
+package com.sqt.edu.course.config.datasource;
 
-import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.sqt.edu.core.constant.CommonEnum;
+import com.sqt.edu.core.holder.DbContextHolder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +17,7 @@ import java.util.Map;
 /**
  * 数据源配置
  *
- * @author lfy
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-7-1
  **/
 @Configuration
@@ -25,32 +26,30 @@ public class DataSourceConfiguration {
     /**
      * 数据源类型
      */
-    @Value("${druid.type}")
+    @Value("${spring.datasource.druid.type}")
     private Class<? extends DataSource> dataSourceType;
 
     /**
      * 默认是数据源
      */
-    @Value("${druid.defaultDs}")
+    @Value("${spring.datasource.druid.defaultDs}")
     private String defaultDs;
-
 
     @Bean(name = "dataSourceMaster")
     @Primary
-    @ConfigurationProperties(prefix = "druid.master")
-    public DataSource dataSource() {
-        DruidDataSource druidDataSource = DataSourceBuilder.create().type(DruidDataSource.class).build();
-        DbContextHolder.addDataSource("master", druidDataSource);
+    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
+    public DataSource dataSourceMaster() {
+        DataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        DbContextHolder.addDataSource(CommonEnum.DsType.DS_MASTER.getValue(), druidDataSource);
         DbContextHolder.setDefaultDs(defaultDs);
         return druidDataSource;
     }
 
     @Bean(name = "dataSourceSlave")
-    @ConfigurationProperties(prefix = "druid.slave")
-    public DataSource slaveDataSource() {
-        DruidDataSource druidDataSource = DataSourceBuilder.create().type(DruidDataSource.class).build();
-        DbContextHolder.addDataSource("slave", druidDataSource);
-        DbContextHolder.setDefaultDs(defaultDs);
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave")
+    public DataSource dataSourceSlave() {
+        DataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        DbContextHolder.addDataSource(CommonEnum.DsType.DS_SLAVE.getValue(), druidDataSource);
         return druidDataSource;
     }
 
@@ -59,11 +58,10 @@ public class DataSourceConfiguration {
                                           @Qualifier("dataSourceSlave") DataSource dataSourceSlave) {
         MyRoutingDataSource dynamicDataSource = new MyRoutingDataSource();
         Map<Object, Object> targetDataResources = new HashMap<>();
-        for (Map.Entry<String, DataSource> entry : DbContextHolder.getDataSources().entrySet()) {
-            targetDataResources.put(entry.getKey(), entry.getValue());
-        }
+        targetDataResources.put(CommonEnum.DsType.DS_MASTER.getValue(), dataSourceMaster);
+        targetDataResources.put(CommonEnum.DsType.DS_SLAVE.getValue(), dataSourceSlave);
         //设置默认数据源
-        dynamicDataSource.setDefaultTargetDataSource(DbContextHolder.getDefaultDataSource());
+        dynamicDataSource.setDefaultTargetDataSource(dataSourceMaster);
         dynamicDataSource.setTargetDataSources(targetDataResources);
         return dynamicDataSource;
     }

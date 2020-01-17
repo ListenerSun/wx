@@ -1,7 +1,7 @@
-package com.sqt.edu.course.mapper;
+package com.sqt.edu.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sqt.edu.course.entity.TestTable;
+import com.sqt.edu.core.entity.TestTable;
 
 /**
  * @Description:

@@ -1,9 +1,4 @@
-package com.sqt.edu.course.config;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+package com.sqt.edu.core.holder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,13 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 数据源配置
  *
- * @author ListenerSun
+ * @author ListenerSun(男, 未婚) 微信:810548252
  * @date 19-3-19
  */
 
 
 @Slf4j
-class DbContextHolder {
+public class DbContextHolder {
 
     /**
      * 项目中配置数据源
@@ -56,12 +51,12 @@ class DbContextHolder {
      */
     public static void setCurrentDsStr(String dsName) {
         if (StringUtils.isBlank(dsName)) {
-            log.error("dbType is null,throw NullPointerException");
+            log.error("==========>dbType is null,throw NullPointerException");
             throw new NullPointerException();
         }
         if (!dataSources.containsKey(dsName)) {
-            log.error("datasource not exists,dsName={}", dsName);
-            throw new RuntimeException("datasource not exists,dsName={" + dsName + "}");
+            log.error("==========>datasource not exists,dsName={}", dsName);
+            throw new RuntimeException("==========>datasource not exists,dsName={" + dsName + "}");
         }
         contextHolder.get().push(dsName);
     }
@@ -99,7 +94,7 @@ class DbContextHolder {
      */
     public static void addDataSource(String dsName, DataSource dataSource) {
         if (dataSources.containsKey(dsName)) {
-            log.error("dataSource={} already exist", dsName);
+            log.error("==========>dataSource={} already exist", dsName);
             //throw new RuntimeException("dataSource={" + dsName + "} already exist");
             return;
         }
@@ -113,12 +108,12 @@ class DbContextHolder {
      */
     public static DataSource getDefaultDataSource() {
         if (StringUtils.isBlank(defaultDs)) {
-            log.error("default datasource must be configured");
+            log.error("==========>default datasource must be configured");
             throw new RuntimeException("default datasource must be configured.");
         }
         if (!dataSources.containsKey(defaultDs)) {
-            log.error("The default datasource must be included in the datasources");
-            throw new RuntimeException("The default datasource must be included in the datasources");
+            log.error("==========>The default datasource must be included in the datasources");
+            throw new RuntimeException("==========>The default datasource must be included in the datasources");
         }
         return dataSources.get(defaultDs);
     }
@@ -135,5 +130,12 @@ class DbContextHolder {
      */
     public static Map<String, DataSource> getDataSources() {
         return dataSources;
+    }
+
+    /**
+     * @return
+     */
+    public static String getDefaultDs() {
+        return defaultDs;
     }
 }

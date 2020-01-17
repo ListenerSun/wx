@@ -27,7 +27,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sqt.edu.teacher"))
+                .apis(RequestHandlerSelectors.basePackage("com.sqt.edu"))
                 .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/");
