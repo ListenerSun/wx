@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /
+    context-path: /course
   port: 9300
 
 spring:

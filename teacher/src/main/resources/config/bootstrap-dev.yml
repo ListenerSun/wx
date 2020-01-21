@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /
+    context-path: /teacher
   port: 9000
 
 spring:
