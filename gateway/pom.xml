@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <parent>
+          <artifactId>wx</artifactId>
+          <groupId>com.sqt.edu</groupId>
+          <version>1.0-SNAPSHOT</version>
+     </parent>
+     <modelVersion>4.0.0</modelVersion>
+     <description>wx-edu 网关</description>
+     <artifactId>gateway</artifactId>
+
+     <dependencies>
+
+          <!-- gateway网关 -->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-gateway</artifactId>
+               <version>2.0.3.RELEASE</version>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-webflux</artifactId>
+               <version>2.0.8.RELEASE</version>
+          </dependency>
+          <!--eureka 客户端-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+               <version>2.0.3.RELEASE</version>
+          </dependency>
+          <!--Lombok-->
+          <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+          </dependency>
+          <!-- 热部署 -->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-devtools</artifactId>
+               <optional>true</optional>
+          </dependency>
+
+     </dependencies>
+     <build>
+          <finalName>${project.artifactId}</finalName>
+          <plugins>
+               <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                         <mainClass>com.sqt.edu.teacher.Teacher_APP</mainClass>
+                    </configuration>
+                    <executions>
+                         <execution>
+                              <goals>
+                                   <goal>repackage</goal>
+                              </goals>
+                         </execution>
+                    </executions>
+               </plugin>
+          </plugins>
+     </build>
+
+
+</project>

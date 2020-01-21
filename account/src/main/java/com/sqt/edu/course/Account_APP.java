@@ -1,12 +1,21 @@
 package com.sqt.edu.course;
 
+import com.sqt.edu.core.utils.SpringContextHelper;
+import com.sqt.edu.course.component.TestImport1;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Description:
@@ -23,5 +32,16 @@ public class Account_APP {
     public static void main(String[] args) {
         SpringApplication.run(Account_APP.class);
         log.info("==========>Account service start successful !");
+    }
+
+    @Api(tags ="edu-account的testDemo")
+    @RestController
+    class Test{
+        @ApiOperation(value = "test")
+        @GetMapping("/test_demo")
+        public String testDemo(){
+            return "This is Account Service !!";
+        }
+
     }
 }

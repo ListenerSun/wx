@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -19,8 +20,9 @@ import java.lang.reflect.Method;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2020-01-17 10:24
  */
-//@Aspect
-//@Component
+@Order(0)
+@Aspect
+@Component
 @Slf4j
 public class DsAspect {
     /**

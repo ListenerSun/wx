@@ -21,5 +21,7 @@
           <module>teacher-api</module>
           <module>course</module>
           <module>course-api</module>
+          <module>fastwalk</module>
+          <module>gateway</module>
      </modules>
 </project>

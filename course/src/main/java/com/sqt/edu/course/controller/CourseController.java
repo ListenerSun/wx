@@ -6,12 +6,10 @@ import com.sqt.edu.course.service.CourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Description:
@@ -30,5 +28,16 @@ public class CourseController {
     @ApiOperation(value = "C-1.1-创建一个课程")
     public JsonResult create(@RequestBody @Valid CourseDTO courseDTO) {
         return courseService.create(courseDTO);
+    }
+
+    @GetMapping("/{courseId}")
+    @ApiOperation(value = "C-1.2-根绝courseId查询课程详细信息")
+    public JsonResult getCourseInfoById(@PathVariable @Valid @NotNull Long courseId){
+        return courseService.getCourseInfoById(courseId);
+    }
+
+    @GetMapping("list_by_teacher_id/{teacherId}")
+    public JsonResult listByTeacherId(@PathVariable @Valid @NotNull Long teacherId){
+        return courseService.listByTeacherId(teacherId);
     }
 }

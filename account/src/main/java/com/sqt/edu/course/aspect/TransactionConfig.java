@@ -1,8 +1,15 @@
 package com.sqt.edu.course.aspect;
 
+import cn.hutool.db.Db;
+import com.alibaba.fastjson.JSON;
+import com.sqt.edu.core.config.datasource.MyRoutingDataSource;
 import com.sqt.edu.core.config.mybatisplus.MybatisConfiguration;
+import com.sqt.edu.core.holder.DbContextHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -27,18 +34,18 @@ import java.util.Map;
  */
 @Aspect
 @Configuration
-@AutoConfigureAfter({MybatisConfiguration.class})
+@AutoConfigureAfter({MybatisConfiguration.class, MyRoutingDataSource.class})
 @Slf4j
 @Order(2)
 public class TransactionConfig {
 
     private static final int TX_METHOD_TIMEOUT = 300;
-
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.sqt.edu..service..*Service.*(..)" +
+    //* cn.swifthealth..api..service..*Service.*(..)
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (public * com.sqt.edu.*.service..*.*(..))" +
             ") and @target(org.springframework.stereotype.Service)";
 
     @Autowired
-    private DataSourceTransactionManager transactionManager;
+    private DataSourceTransactionManager dataSourceTransactionManager;
 
     @Bean(name = "txAdvice")
     public TransactionInterceptor txAdvice() {
@@ -72,7 +79,7 @@ public class TransactionConfig {
         txMap.put("find*", readOnlyTx);
         txMap.put("*", requiredTx);
         source.setNameMap(txMap);
-        TransactionInterceptor txAdvice = new TransactionInterceptor(transactionManager, source);
+        TransactionInterceptor txAdvice = new TransactionInterceptor(dataSourceTransactionManager, source);
         return txAdvice;
     }
 

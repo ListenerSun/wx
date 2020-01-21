@@ -100,6 +100,7 @@ public class TestTableServiceImpl implements TestTableService {
         return new JsonResult();
     }
 
+    @DS("master")
     @Override
     public JsonResult createTx() {
         TestTable testTable = TestTable.builder()

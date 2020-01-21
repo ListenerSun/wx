@@ -15,4 +15,16 @@ public interface CourseService {
      * @return
      */
     JsonResult create(CourseDTO courseDTO);
+
+    /**get a course detail message by courseId
+     * @param courseId
+     * @return
+     */
+    JsonResult getCourseInfoById(Long courseId);
+
+    /**get course list by teacherId
+     * @param teacherId
+     * @return
+     */
+    JsonResult listByTeacherId(Long teacherId);
 }
