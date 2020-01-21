@@ -18,14 +18,17 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: Created in 2019-12-26 7:31
  */
 @Slf4j
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class WebLogAspect {
+
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(public * com.sqt.edu.*.controller..*.*(..)) || " +
+            "@annotation(io.swagger.annotations.ApiOperation)";
 
     /**
      * 定义切入点，controller下面的所有类的所有公有方法，这里需要更改成自己项目的
      */
-    @Pointcut("execution(public * com.sqt.edu.*.controller..*.*(..))")
+    @Pointcut(AOP_POINTCUT_EXPRESSION)
     public void requestLog() {
     }
 
@@ -87,7 +90,5 @@ public class WebLogAspect {
         log.info("");
 
     }
-
-
 
 }
