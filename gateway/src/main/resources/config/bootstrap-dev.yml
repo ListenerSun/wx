@@ -6,12 +6,16 @@ server:
 spring:
   cloud:
     gateway:
+#      http 全局超时设置 ms 为单位
+#      httpclient:
+#        connect-timeout: 1000
+#        response-timeout: 5s
       discovery:
         locator:
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: account
+        - id: edu-account
           uri: lb://edu-account/
           predicates:
             - Path= /account/**
