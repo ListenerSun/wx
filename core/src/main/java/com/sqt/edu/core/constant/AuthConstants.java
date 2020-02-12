@@ -7,7 +7,6 @@ package com.sqt.edu.core.constant;
  */
 public final class AuthConstants {
 
-
     /**
      * HTTP 请求参数
      */
@@ -18,6 +17,5 @@ public final class AuthConstants {
      * 1小时　 pc过期时间 --1 * 60 * 60
      */
     public static final Long DEFAULT_WEB_TOKEN_EXPIRE = 604800L;
-
 
 }
