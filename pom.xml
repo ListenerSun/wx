@@ -23,5 +23,6 @@
           <module>course-api</module>
           <module>fastwalk</module>
           <module>gateway</module>
+          <module>student</module>
      </modules>
 </project>

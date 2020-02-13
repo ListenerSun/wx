@@ -1,4 +1,4 @@
-package com.sqt.edu.core.auth;
+package com.sqt.edu.course.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

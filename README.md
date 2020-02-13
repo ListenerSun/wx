@@ -15,6 +15,7 @@
     4. edu-gateway  端口号:80
     5. edu-eureka   端口号:8888
     6. fastwalk     自己开发的 快步网关，端口号:80
+    7. edu-student  端口号:9400
 
 ####  包依赖说明
 

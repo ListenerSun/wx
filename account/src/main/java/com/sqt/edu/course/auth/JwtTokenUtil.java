@@ -1,10 +1,9 @@
-package com.sqt.edu.core.auth;
+package com.sqt.edu.course.auth;
 
 import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -22,14 +21,12 @@ public class JwtTokenUtil {
     /**
      * jwt的秘钥
      */
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+    private String jwtSecret = "listenersun";
 
     /**
      * 默认jwt的过期时间
      */
-    @Value("${jwt.defaultExpiredDate}")
-    private Long defaultExpiredDate;
+    private Long defaultExpiredDate = 36000L;
 
 
     public JwtTokenUtil(String jwtSecret, Long defaultExpiredDate) {

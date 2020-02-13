@@ -1,8 +1,8 @@
 package com.sqt.edu.course.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.sqt.edu.core.auth.JwtSubject;
-import com.sqt.edu.core.auth.JwtTokenUtil;
+import com.sqt.edu.course.auth.JwtSubject;
+import com.sqt.edu.course.auth.JwtTokenUtil;
 import com.sqt.edu.course.constant.AccountEnum;
 import com.sqt.edu.course.entity.AccUser;
 import com.sqt.edu.course.mapper.AccUserMapper;
