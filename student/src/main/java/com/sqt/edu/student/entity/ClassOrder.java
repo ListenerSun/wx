@@ -11,38 +11,30 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
- * @Description: 补课班级信息
+ * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
- * @Date: Created in 2020-02-12 15:03
+ * @Date: Created in 2020-02-13 22:51
  */
 @ApiModel
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value = "class_info")
-public class ClassInfo extends BaseModel {
+@TableName(value = "class_order")
+public class ClassOrder extends BaseModel {
 
-    private static final long serialVersionUID = 2603141719763516683L;
+    private static final long serialVersionUID = -8931211328066754937L;
 
     @TableId(type = IdType.AUTO)
     @ApiModelProperty("主键id")
     private Long id;
-    @ApiModelProperty("补课科目")
-    private String subjects;
+    @ApiModelProperty("补课班级id")
+    private Long classInfoId;
+    @ApiModelProperty("学生姓名")
+    private String studentName;
     @ApiModelProperty("年级")
     private String grade;
-    @ApiModelProperty("补课天数")
-    private Integer days;
-    @ApiModelProperty("年份")
-    private Integer year;
-    @ApiModelProperty("已报名学生数量")
-    private Integer hasAmount;
-    @ApiModelProperty("计划招收学生数量")
-    private Integer planAmount;
-    @ApiModelProperty("假期类型: 1:暑假,2:寒假")
-    private Integer vacationType;
+    @ApiModelProperty("手机号")
+    private String phone;
 }
