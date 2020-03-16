@@ -27,7 +27,7 @@ public class ClassOrderDTO implements Serializable {
 
     @ApiModelProperty("补课班级id")
     @NotNull
-    private Long ClassInfoId;
+    private Long classInfoId;
     @ApiModelProperty("学生姓名")
     @NotBlank
     private String StudentName;

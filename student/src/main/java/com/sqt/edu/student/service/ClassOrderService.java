@@ -15,4 +15,5 @@ public interface ClassOrderService {
      * @return
      */
     JsonResult add(ClassOrderDTO classOrderDTO);
+
 }

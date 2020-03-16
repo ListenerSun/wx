@@ -18,7 +18,7 @@ import javax.validation.Valid;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2020-02-13 23:23
  */
-@Api(tags = "【学生报名信息】")
+@Api(tags = "【学生报名信息接口】")
 @RestController
 @RequestMapping("/class_order")
 public class ClassOrderController {
@@ -26,7 +26,7 @@ public class ClassOrderController {
     @Autowired
     private ClassOrderService classOrderService;
 
-    @ApiOperation(value = "S-1.1-学生报名接口")
+    @ApiOperation(value = "S-1.1-学生预约报名接口")
     @PostMapping("/add")
     public JsonResult add(@RequestBody @Valid ClassOrderDTO classOrderDTO){
         return classOrderService.add(classOrderDTO);
