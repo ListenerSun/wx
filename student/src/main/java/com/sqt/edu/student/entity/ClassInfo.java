@@ -41,4 +41,8 @@ public class ClassInfo extends BaseModel {
     private Integer year;
     @ApiModelProperty("假期类型: 1:暑假,2:寒假")
     private Integer vacationType;
+    @ApiModelProperty("计划招生名额")
+    private Integer planNum;
+    @ApiModelProperty("剩余名额")
+    private Integer hasNum;
 }
