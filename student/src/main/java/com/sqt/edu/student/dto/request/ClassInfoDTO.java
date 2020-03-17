@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class ClassInfoDTO implements Serializable {
 
     @ApiModelProperty("补课班级信息id")
-    private Long classInfoId;
+    private Long id;
     @ApiModelProperty("补课科目")
     @NotBlank
     private String subjects;

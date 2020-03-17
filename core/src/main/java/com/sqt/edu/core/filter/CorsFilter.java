@@ -1,4 +1,4 @@
-package com.sqt.edu.course.filter;
+package com.sqt.edu.core.filter;
 
 import com.sqt.edu.core.constant.AuthConstants;
 import org.springframework.core.annotation.Order;

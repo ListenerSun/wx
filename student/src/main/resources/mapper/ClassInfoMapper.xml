@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqt.edu.student.mapper.ClassInfoMapper">
+
+     <!--根据条件查询补课班级信息列表-->
+     <select id="list" parameterType="com.sqt.edu.student.dto.request.QueryClassInfoDTO"
+             resultType="com.sqt.edu.student.dto.request.ClassInfoDTO">
+          select * from class_info
+          where 1 = 1
+          <if test=" year != null and year != '' ">
+               and year = #{year,jdbcType=INTEGER}
+          </if>
+          <if test=" grade != null and grade != '' ">
+               and grade = #{grade,jdbcType=VARCHAR}
+          </if>
+     </select>
+</mapper>

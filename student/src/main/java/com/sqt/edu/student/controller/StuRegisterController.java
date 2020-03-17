@@ -33,7 +33,7 @@ public class StuRegisterController {
         return stuRegisterInfoService.add(stuRegisterInfoDTO);
     }
     @ApiOperation(value = "S-1.2-查询是否已经报名接口")
-    @PostMapping("/add")
+    @PostMapping("/query")
     public JsonResult queryStuRegisterInfo(@RequestBody @Valid QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
         return stuRegisterInfoService.queryStuRegisterInfo(queryStuRegisterInfoDTO);
     }

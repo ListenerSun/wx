@@ -1,6 +1,6 @@
-package com.sqt.edu.course.config;
+package com.sqt.edu.core.config;
 
-import com.sqt.edu.course.filter.CorsFilter;
+import com.sqt.edu.core.filter.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

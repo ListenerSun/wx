@@ -18,8 +18,14 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 数据源配置
@@ -46,6 +52,16 @@ public class MybatisConfiguration {
     public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier(value = "myRoutingDataSource") DataSource dataSource) throws Exception {
         log.info("==========>开始注入 MybatisSqlSessionFactoryBean");
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
+        Set<Resource> result = new LinkedHashSet<>(16);
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            result.addAll(Arrays.asList(resolver.getResources("classpath*:mapper/*.xml")));
+            result.addAll(Arrays.asList(resolver.getResources("classpath*:config/mapper/*/*.xml")));
+            result.addAll(Arrays.asList(resolver.getResources("classpath*:mapper/*/*.xml")));
+        } catch (IOException e) {
+            log.error("获取【classpath:mapper/*/*.xml,classpath:config/mapper/*/*.xml】资源错误!异常信息:{}", e);
+        }
+        bean.setMapperLocations(result.toArray(new org.springframework.core.io.Resource[0]));
         bean.setDataSource(dataSource);
         bean.setVfs(SpringBootVFS.class);
         com.baomidou.mybatisplus.core.MybatisConfiguration configuration = new com.baomidou.mybatisplus.core.MybatisConfiguration();
@@ -58,6 +74,7 @@ public class MybatisConfiguration {
         //设置 字段自动填充处理
         globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
         bean.setGlobalConfig(globalConfig);
+
         log.info("==========>注入 MybatisSqlSessionFactoryBean 完成!");
         return bean;
     }

@@ -2,6 +2,7 @@ package com.sqt.edu.student.controller;
 
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
+import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 import com.sqt.edu.student.service.ClassInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,14 +29,22 @@ public class ClassInfoController {
     public JsonResult add(@RequestBody @Valid ClassInfoDTO classInfoDTO) {
         return classInfoService.add(classInfoDTO);
     }
+
     @PostMapping("/update")
     @ApiOperation(value = "C2-1.2-更新补课班级信息")
     public JsonResult update(@RequestBody @Valid ClassInfoDTO classInfoDTO) {
         return classInfoService.update(classInfoDTO);
     }
-    @DeleteMapping("/delete/{classInfoId}")
+
+    @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "C2-1.3-删除补课班级信息")
     public JsonResult delete(@PathVariable @Valid Long classInfoId) {
         return classInfoService.delete(classInfoId);
+    }
+
+    @PostMapping("/list")
+    @ApiOperation(value = "C2-1.4-查询补课班级信息列表")
+    public JsonResult list(@RequestBody(required=false) QueryClassInfoDTO queryClassInfoDTO) {
+        return classInfoService.list(queryClassInfoDTO);
     }
 }

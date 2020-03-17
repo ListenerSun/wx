@@ -38,11 +38,11 @@ public class StuRegisterInfoServiceImpl implements StuRegisterInfoService {
     public JsonResult add(StuRegisterInfoDTO stuRegisterInfoDTO) {
         ClassInfo classInfo = classInfoMapper.selectById(stuRegisterInfoDTO.getClassInfoId());
         if (null == classInfo){
-            log.error("==========>补课班级信息不存在,classInfoId:{}", stuRegisterInfoDTO.getClassInfoId());
+            log.error("==========>补课班级信息不存在,id:{}", stuRegisterInfoDTO.getClassInfoId());
             throw new ServiceException(ResultCode.STU_CLASS_INFO_NOT_EXIST);
         }
         if (classInfo.getHasAmount() >= classInfo.getPlanAmount()){
-            log.warn("==========> 该班级名额已经报满!,classInfoId:{}", stuRegisterInfoDTO.getClassInfoId());
+            log.warn("==========> 该班级名额已经报满!,id:{}", stuRegisterInfoDTO.getClassInfoId());
             throw new ServiceException(ResultCode.STU_CLASS_ORDER_FULL);
         }
         Map<SFunction<StuRegisterInfo,?>,Object> param = new HashMap<>();

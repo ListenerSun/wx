@@ -2,6 +2,7 @@ package com.sqt.edu.student.service;
 
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
+import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 
 /**
  * @Description:
@@ -28,4 +29,9 @@ public interface ClassInfoService {
      * @return
      */
     JsonResult delete(Long classInfoId);
+
+    /**list
+     * @return
+     */
+    JsonResult list(QueryClassInfoDTO queryClassInfoDTO);
 }
