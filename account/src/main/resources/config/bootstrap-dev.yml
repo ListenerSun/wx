@@ -38,7 +38,7 @@ spring:
         min-idle: 10
         max-active: 100
         max-wait: 60000
-        pool-prepared-statements: false
+        pool-prepared-statements: true
         max-pool-prepared-statement-per-connection-size: 20
         time-between-eviction-runs-millis: 60000
         min-evictable-idle-time-millis: 300000
@@ -117,6 +117,7 @@ spring:
               multi-statement-allow: true
           config:
             enabled: true
+
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml,classpath*:mapper/*/*.xml
   #实体扫描，多个package用逗号或者分号分隔
@@ -153,5 +154,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
 
-
+# jwt配置
+jwt:
+  secret: listenersun
+  expiration: 36000
 

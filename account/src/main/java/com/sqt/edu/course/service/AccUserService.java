@@ -1,6 +1,7 @@
 package com.sqt.edu.course.service;
 
 import com.sqt.edu.course.entity.AccUser;
+import com.sqt.edu.course.request.AccUserInfoDTO;
 import com.sqt.edu.course.request.RegisterUserDTO;
 import com.sqt.edu.course.request.UpdatePasswordDTO;
 import com.sqt.edu.core.base.BaseLoginParam;
@@ -17,7 +18,7 @@ public interface AccUserService {
      * @param registerUserDTO
      * @return
      */
-    AccUser create(RegisterUserDTO registerUserDTO);
+    AccUserInfoDTO create(RegisterUserDTO registerUserDTO);
 
     /**注册用户发送 验证码
      * @param phone

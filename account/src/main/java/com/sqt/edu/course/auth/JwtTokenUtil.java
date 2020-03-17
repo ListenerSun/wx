@@ -15,19 +15,17 @@ import java.util.Map;
  * @Date: Created in 2020-01-21 19:43
  */
 @Slf4j
-@Component
 public class JwtTokenUtil {
 
     /**
      * jwt的秘钥
      */
-    private String jwtSecret = "listenersun";
+    String jwtSecret;
 
     /**
      * 默认jwt的过期时间
      */
-    private Long defaultExpiredDate = 36000L;
-
+    Long defaultExpiredDate;
 
     public JwtTokenUtil(String jwtSecret, Long defaultExpiredDate) {
         this.jwtSecret = jwtSecret;
@@ -47,7 +45,6 @@ public class JwtTokenUtil {
     public Date getExpirationDate(String token) {
         return getClaimFromToken(token).getExpiration();
     }
-
 
     /**
      * 获取jwt接收者
@@ -74,7 +71,7 @@ public class JwtTokenUtil {
                     .getBody();
         } catch (Exception e) {
             //出现异常原因是jwt解析不了的情况
-            log.error("==========>解析token失败！ e:{}",e);
+            log.error("==========>解析token失败！ e:{}", e);
             throw new ServiceException(ResultCode.AUTH_TOKEN_ERROR);
         }
     }
@@ -101,7 +98,7 @@ public class JwtTokenUtil {
             return expiration.before(new Date());
         } catch (ExpiredJwtException expiredJwtException) {
             expiredJwtException.printStackTrace();
-            log.error("获取jwt过期时间失败,message={}",expiredJwtException.getMessage());
+            log.error("获取jwt过期时间失败,message={}", expiredJwtException.getMessage());
             return true;
         }
     }

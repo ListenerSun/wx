@@ -18,17 +18,9 @@ import java.io.Serializable;
 public class RegisterUserDTO implements Serializable {
     private static final long serialVersionUID = -2879013568917152620L;
 
-    @ApiModelProperty("用户名")
-    @NotBlank
-    private String username;
-
     @ApiModelProperty("密码")
     @NotBlank
     private String password;
-
-    @ApiModelProperty(value = "性别 M:男 F:女 O:其他")
-    @Pattern(regexp = "F||M||O")
-    private String sex;
 
     @ApiModelProperty("手机号")
     @NotBlank

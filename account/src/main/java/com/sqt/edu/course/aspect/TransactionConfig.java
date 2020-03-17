@@ -32,11 +32,11 @@ import java.util.Map;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-21 16:49
  */
-@Aspect
-@Configuration
-@AutoConfigureAfter({MybatisConfiguration.class, MyRoutingDataSource.class})
-@Slf4j
-@Order(2)
+//@Aspect
+//@Configuration
+//@AutoConfigureAfter({MybatisConfiguration.class, MyRoutingDataSource.class})
+//@Slf4j
+//@Order(2)
 public class TransactionConfig {
 
     private static final int TX_METHOD_TIMEOUT = 300;

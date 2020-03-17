@@ -1,36 +1,36 @@
-package com.sqt.edu.course.entity;
+package com.sqt.edu.course.request;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.sqt.edu.core.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Description: 用户表
+ * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
- * @Date: Created in 2019-12-04 10:15
+ * @Date: Created in 2020-03-17 16:02
  */
-@ApiModel
+@ApiModel(value = "用户基本信息")
 @Builder
 @Data
-@TableName(value = "acc_user")
-public class AccUser extends BaseModel {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AccUserInfoDTO implements Serializable {
+
+    private static final long serialVersionUID = 447365611438592525L;
 
     @ApiModelProperty(value = "用户id")
-    @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "用户名")
     private String username;
-
-    @ApiModelProperty(value = "密码")
-    private String password;
 
     @ApiModelProperty(value = "电话")
     private String phone;
@@ -70,5 +70,4 @@ public class AccUser extends BaseModel {
 
     @ApiModelProperty(value = "身份证反面照")
     private String idCardPath2;
-
 }

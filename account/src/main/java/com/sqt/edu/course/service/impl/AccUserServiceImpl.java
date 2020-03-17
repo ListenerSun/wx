@@ -6,6 +6,7 @@ import com.sqt.edu.course.auth.JwtTokenUtil;
 import com.sqt.edu.course.constant.AccountEnum;
 import com.sqt.edu.course.entity.AccUser;
 import com.sqt.edu.course.mapper.AccUserMapper;
+import com.sqt.edu.course.request.AccUserInfoDTO;
 import com.sqt.edu.course.request.RegisterUserDTO;
 import com.sqt.edu.course.request.UpdatePasswordDTO;
 import com.sqt.edu.course.service.AccUserService;
@@ -18,6 +19,7 @@ import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.core.utils.RequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,13 +44,11 @@ public class AccUserServiceImpl implements AccUserService {
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public AccUser create(RegisterUserDTO registerUserDTO) {
+    public AccUserInfoDTO create(RegisterUserDTO registerUserDTO) {
         validMsgCode(registerUserDTO);
         AccUser accUser = AccUser.builder()
                 .phone(registerUserDTO.getPhone())
-                .username(registerUserDTO.getUsername())
                 .password(PasswordEncoder.encode(registerUserDTO.getPassword()))
-                .sex(registerUserDTO.getSex())
                 .authState(AccountEnum.AccUserAuthState.NOT_AUTH.getCode())
                 .type(AccountEnum.AccUserType.NORMAL_USER.getCode())
                 .state(AccountEnum.AccUserState.IN_USE.getCode())
@@ -56,7 +56,9 @@ public class AccUserServiceImpl implements AccUserService {
         accUser.setCreateTime(new Date());
         accUser.setUpdateTime(new Date());
         accUserMapper.insert(accUser);
-        return accUser;
+        AccUserInfoDTO accUserInfoDTO = new AccUserInfoDTO();
+        BeanUtils.copyProperties(accUser,accUserInfoDTO);
+        return accUserInfoDTO;
     }
 
     @Override
