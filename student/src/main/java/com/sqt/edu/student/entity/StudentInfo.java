@@ -37,8 +37,6 @@ public class StudentInfo extends BaseModel {
     private String sex;
     @ApiModelProperty("联系方式")
     private String phone;
-    @ApiModelProperty("生日")
-    private Date birthday;
     @ApiModelProperty("就读院校")
     private String School;
     @ApiModelProperty("身份证号")

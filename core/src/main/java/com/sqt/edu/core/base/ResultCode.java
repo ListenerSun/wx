@@ -84,6 +84,7 @@ public enum ResultCode {
     STU_CLASS_INFO_NOT_EXIST(10501,"补课班级信息不存在!"),
     STU_CLASS_ORDER_FULL(10502,"该班级名额已经报满!"),
     STU_SIGN_EXIST(10503,"您已预约成功,无需再次预约!"),
+    STU_REGISTER_INFO_NOT_EXIST(10504,"学生报名信息不存在!"),
 
     ;
 

@@ -4,7 +4,6 @@ import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
-import com.sqt.edu.student.dto.request.ClassOrderDTO;
 import com.sqt.edu.student.entity.ClassInfo;
 import com.sqt.edu.student.mapper.ClassInfoMapper;
 import com.sqt.edu.student.service.ClassInfoService;

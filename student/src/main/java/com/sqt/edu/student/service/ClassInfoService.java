@@ -2,7 +2,6 @@ package com.sqt.edu.student.service;
 
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
-import com.sqt.edu.student.dto.request.ClassOrderDTO;
 
 /**
  * @Description:

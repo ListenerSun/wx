@@ -1,8 +1,9 @@
 package com.sqt.edu.student.controller;
 
 import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.student.dto.request.ClassOrderDTO;
-import com.sqt.edu.student.service.ClassOrderService;
+import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
+import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
+import com.sqt.edu.student.service.StuRegisterInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,19 @@ import javax.validation.Valid;
 @Api(tags = "【学生报名信息接口】")
 @RestController
 @RequestMapping("/class_order")
-public class ClassOrderController {
+public class StuRegisterController {
 
     @Autowired
-    private ClassOrderService classOrderService;
+    private StuRegisterInfoService stuRegisterInfoService;
 
     @ApiOperation(value = "S-1.1-学生预约报名接口")
     @PostMapping("/add")
-    public JsonResult add(@RequestBody @Valid ClassOrderDTO classOrderDTO){
-        return classOrderService.add(classOrderDTO);
+    public JsonResult add(@RequestBody @Valid StuRegisterInfoDTO stuRegisterInfoDTO){
+        return stuRegisterInfoService.add(stuRegisterInfoDTO);
+    }
+    @ApiOperation(value = "S-1.2-查询是否已经报名接口")
+    @PostMapping("/add")
+    public JsonResult queryStuRegisterInfo(@RequestBody @Valid QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
+        return stuRegisterInfoService.queryStuRegisterInfo(queryStuRegisterInfoDTO);
     }
 }

@@ -1,9 +1,6 @@
-package com.sqt.edu.student.entity;
+package com.sqt.edu.student.dto.request;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.sqt.edu.core.base.BaseModel;
+import com.sqt.edu.core.validation.PhoneNumber;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -11,30 +8,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
- * @Date: Created in 2020-03-16 10:26
+ * @Date: Created in 2020-02-13 23:37
  */
-@ApiModel
+@ApiModel()
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value = "stu_register_info")
-public class StuRegisterInfo extends BaseModel {
+public class StuRegisterInfoDTO implements Serializable {
 
-    private static final long serialVersionUID = 6066845796839169527L;
+    private static final long serialVersionUID = 3601367411344998646L;
 
-    @TableId(type = IdType.AUTO)
-    @ApiModelProperty("主键id")
-    private Long id;
+    @NotBlank(message = "学生姓名不能为空!")
     @ApiModelProperty("学生姓名")
     private String studentName;
+    @NotBlank(message = "学生性别不能为空!")
     @ApiModelProperty("性别")
     private String sex;
+    @PhoneNumber(message = "手机号格式错误!")
+    @NotBlank(message = "联系方式别不能为空!")
     @ApiModelProperty("学生联系方式")
     private String phone;
     @ApiModelProperty("就读院校")
@@ -43,8 +42,10 @@ public class StuRegisterInfo extends BaseModel {
     private String idCard;
     @ApiModelProperty("地址")
     private String address;
+    @NotNull(message = "补课班级信息Id不能为空!")
     @ApiModelProperty("补课班级信息Id")
     private Long classInfoId;
+    @NotBlank(message = "补课科目不能为空")
     @ApiModelProperty("补课科目")
     private String subjects;
     @ApiModelProperty("用户id")
