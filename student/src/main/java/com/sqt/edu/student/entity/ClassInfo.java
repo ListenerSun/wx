@@ -31,6 +31,8 @@ public class ClassInfo extends BaseModel {
     @TableId(type = IdType.AUTO)
     @ApiModelProperty("主键id")
     private Long id;
+    @ApiModelProperty("班级名称")
+    private String className;
     @ApiModelProperty("补课科目")
     private String subjects;
     @ApiModelProperty("年级")

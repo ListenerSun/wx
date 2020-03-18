@@ -1,5 +1,6 @@
 package com.sqt.edu.student.dto.request;
 
+import com.sqt.edu.student.entity.SubjectInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -7,6 +8,7 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description:
@@ -23,9 +25,14 @@ public class ClassInfoDTO implements Serializable {
 
     @ApiModelProperty("补课班级信息id")
     private Long id;
+    /**
+     * 新增时使用
+     */
     @ApiModelProperty("补课科目")
+    private List<SubjectDTO> subjectList;
+    @ApiModelProperty("班级名称")
     @NotBlank
-    private String subjects;
+    private String className;
     @ApiModelProperty("年级")
     @NotBlank
     private String grade;
@@ -41,4 +48,9 @@ public class ClassInfoDTO implements Serializable {
     @ApiModelProperty("假期类型: 1:暑假,2:寒假")
     @NotNull
     private Integer vacationType;
+    /**
+     * 查询返回时使用
+     */
+    @ApiModelProperty("补课科目字符串")
+    private String subjects;
 }
