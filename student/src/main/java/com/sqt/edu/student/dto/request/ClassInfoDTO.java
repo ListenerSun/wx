@@ -31,23 +31,25 @@ public class ClassInfoDTO implements Serializable {
     @ApiModelProperty("补课科目")
     private List<SubjectDTO> subjectList;
     @ApiModelProperty("班级名称")
-    @NotBlank
+    @NotBlank(message = "班级名称不能为空")
     private String className;
     @ApiModelProperty("年级")
-    @NotBlank
+    @NotBlank(message = "年级名称不能为空")
     private String grade;
     @ApiModelProperty("补课天数")
-    @NotNull
+    @NotNull(message = "补课天数不能为空")
     private Integer days;
     @ApiModelProperty("年份")
-    @NotNull
+    @NotNull(message = "年份不能为空")
     private Integer year;
     @ApiModelProperty("计划招收学生数量")
-    @NotNull
+    @NotNull(message = "计划招生数量不能为空")
     private Integer planAmount;
+    @ApiModelProperty("已报名人数")
+    private Integer hasAmount;
     @ApiModelProperty("假期类型: 1:暑假,2:寒假")
-    @NotNull
-    private Integer vacationType;
+    @NotBlank(message = "假期类型不能为空")
+    private String vacationType;
     /**
      * 查询返回时使用
      */

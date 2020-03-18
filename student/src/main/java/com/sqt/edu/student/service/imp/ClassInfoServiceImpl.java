@@ -39,6 +39,7 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     public JsonResult add(ClassInfoDTO classInfoDTO) {
         List<SubjectDTO> subjectList = classInfoDTO.getSubjectList();
         ClassInfo classInfo = ClassInfo.builder()
+                .className(classInfoDTO.getClassName())
                 .grade(classInfoDTO.getGrade())
                 .days(classInfoDTO.getDays())
                 .planAmount(classInfoDTO.getPlanAmount())
