@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
@@ -21,10 +22,13 @@ import java.io.Serializable;
 public class QueryStuRegisterInfoDTO implements Serializable {
     private static final long serialVersionUID = 5647440559967649264L;
 
-    @NotBlank
     @ApiModelProperty("联系方式")
     private String phone;
-    @NotBlank
     @ApiModelProperty("学生姓名")
     private String studentName;
+    @ApiModelProperty("年份")
+    private Integer year;
+    @ApiModelProperty("班级名称")
+    private String className;
+
 }

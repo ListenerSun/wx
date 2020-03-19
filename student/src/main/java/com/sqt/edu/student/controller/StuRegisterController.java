@@ -1,18 +1,17 @@
 package com.sqt.edu.student.controller;
 
 import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.core.validation.PhoneNumber;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
 import com.sqt.edu.student.service.StuRegisterInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @Description:
@@ -32,9 +31,15 @@ public class StuRegisterController {
     public JsonResult add(@RequestBody @Valid StuRegisterInfoDTO stuRegisterInfoDTO){
         return stuRegisterInfoService.add(stuRegisterInfoDTO);
     }
-    @ApiOperation(value = "S-1.2-查询是否已经报名接口")
+    @ApiOperation(value = "S-1.2-查询报名信息接口")
     @PostMapping("/query")
-    public JsonResult queryStuRegisterInfo(@RequestBody @Valid QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
-        return stuRegisterInfoService.queryStuRegisterInfo(queryStuRegisterInfoDTO);
+    public JsonResult queryStuRegisterInfo(@RequestParam @Valid @PhoneNumber String phone,
+            @RequestParam Integer year){
+        return stuRegisterInfoService.queryStuRegisterInfo(phone,year);
+    }
+    @ApiOperation(value = "S-1.3-列表")
+    @GetMapping("/list")
+    public JsonResult list(@RequestBody QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
+        return stuRegisterInfoService.queryStuRegisterInfoList(queryStuRegisterInfoDTO);
     }
 }

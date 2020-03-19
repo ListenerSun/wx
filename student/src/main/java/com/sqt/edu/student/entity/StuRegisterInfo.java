@@ -47,6 +47,8 @@ public class StuRegisterInfo extends BaseModel {
     private Long classInfoId;
     @ApiModelProperty("补课科目")
     private String subjects;
+    @ApiModelProperty("补课年份")
+    private Integer year;
     @ApiModelProperty("用户id")
     private Long accUserId;
 }

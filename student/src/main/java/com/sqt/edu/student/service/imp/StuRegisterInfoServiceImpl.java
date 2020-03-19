@@ -7,6 +7,7 @@ import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
+import com.sqt.edu.student.dto.resp.StuRegisterInfoVo;
 import com.sqt.edu.student.entity.ClassInfo;
 import com.sqt.edu.student.entity.StuRegisterInfo;
 import com.sqt.edu.student.mapper.ClassInfoMapper;
@@ -37,39 +38,42 @@ public class StuRegisterInfoServiceImpl implements StuRegisterInfoService {
     @Override
     public JsonResult add(StuRegisterInfoDTO stuRegisterInfoDTO) {
         ClassInfo classInfo = classInfoMapper.selectById(stuRegisterInfoDTO.getClassInfoId());
-        if (null == classInfo){
+        if (null == classInfo) {
             log.error("==========>补课班级信息不存在,id:{}", stuRegisterInfoDTO.getClassInfoId());
             throw new ServiceException(ResultCode.STU_CLASS_INFO_NOT_EXIST);
         }
-        if (classInfo.getHasAmount() >= classInfo.getPlanAmount()){
+        if (classInfo.getHasAmount() >= classInfo.getPlanAmount()) {
             log.warn("==========> 该班级名额已经报满!,id:{}", stuRegisterInfoDTO.getClassInfoId());
             throw new ServiceException(ResultCode.STU_CLASS_ORDER_FULL);
         }
-        Map<SFunction<StuRegisterInfo,?>,Object> param = new HashMap<>();
+        Map<SFunction<StuRegisterInfo, ?>, Object> param = new HashMap<>();
         param.put(StuRegisterInfo::getStudentName, stuRegisterInfoDTO.getStudentName());
         param.put(StuRegisterInfo::getPhone, stuRegisterInfoDTO.getPhone());
         StuRegisterInfo result = stuRegisterMapper.selectOne(Wrappers.<StuRegisterInfo>lambdaQuery().allEq(param));
-        if (null != result){
+        if (null != result) {
             log.warn("==========> 该学生已经报过名,studentName:{},phone:{}", stuRegisterInfoDTO.getStudentName(), stuRegisterInfoDTO.getPhone());
             throw new ServiceException(ResultCode.STU_SIGN_EXIST);
         }
         StuRegisterInfo stuRegisterInfo = new StuRegisterInfo();
-        BeanUtils.copyProperties(stuRegisterInfoDTO,stuRegisterInfo);
+        BeanUtils.copyProperties(stuRegisterInfoDTO, stuRegisterInfo);
+        stuRegisterInfo.setYear(classInfo.getYear());
+        stuRegisterInfo.setSubjects(classInfo.getSubjects());
         stuRegisterMapper.insert(stuRegisterInfo);
         log.info("==========>学生:{}报名成功!", stuRegisterInfoDTO.getStudentName());
-        classInfo.setHasAmount((classInfo.getHasAmount()+1));
+        classInfo.setHasAmount((classInfo.getHasAmount() + 1));
         classInfoMapper.updateById(classInfo);
         return new JsonResult();
     }
 
     @Override
-    public JsonResult queryStuRegisterInfo(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO) {
-        StuRegisterInfo stuRegisterInfo = stuRegisterMapper.selectOne(Wrappers.<StuRegisterInfo>lambdaQuery()
-                .eq(StuRegisterInfo::getPhone, queryStuRegisterInfoDTO.getPhone())
-                .eq(StuRegisterInfo::getStudentName, queryStuRegisterInfoDTO.getStudentName()));
-        if (null == stuRegisterInfo){
-            return new JsonResult(ResultCode.STU_REGISTER_INFO_NOT_EXIST);
-        }
-        return new JsonResult();
+    public JsonResult queryStuRegisterInfo(String phone, Integer year) {
+
+        return null;
     }
+
+    @Override
+    public JsonResult queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO) {
+        return null;
+    }
+
 }

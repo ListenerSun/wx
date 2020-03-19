@@ -3,6 +3,7 @@ package com.sqt.edu.student.service;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Description:
@@ -11,15 +12,26 @@ import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
  */
 public interface StuRegisterInfoService {
 
-    /** add
+    /**
+     * add
+     *
      * @param stuRegisterInfoDTO
      * @return
      */
     JsonResult add(StuRegisterInfoDTO stuRegisterInfoDTO);
 
+    /** query one
+     * @param phone
+     * @param year
+     * @return
+     */
+    JsonResult queryStuRegisterInfo(String phone, Integer year);
+
     /**
+     * list
+     *
      * @param queryStuRegisterInfoDTO
      * @return
      */
-    JsonResult queryStuRegisterInfo(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO);
+    JsonResult queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO);
 }

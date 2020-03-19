@@ -12,6 +12,7 @@ import com.sqt.edu.student.dto.request.SubjectDTO;
 import com.sqt.edu.student.entity.ClassInfo;
 import com.sqt.edu.student.mapper.ClassInfoMapper;
 import com.sqt.edu.student.service.ClassInfoService;
+import com.sqt.edu.student.utils.StudentCommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,27 +86,10 @@ public class ClassInfoServiceImpl implements ClassInfoService {
             if (StringUtils.isNotEmpty(classInfoDTO.getSubjects())) {
                 List<SubjectDTO> subjectList = JSON.parseArray(classInfoDTO.getSubjects(), SubjectDTO.class);
                 classInfoDTO.setSubjectList(subjectList);
-                classInfoDTO.setSubjects(resolveSubjects(subjectList));
+                classInfoDTO.setSubjects(StudentCommonUtils.resolveSubjects(subjectList));
             }
         });
         return new JsonResult(classInfoDTOList);
-    }
-
-    /**将 [{"code":"2","name":"数学"},{"code":"4","name":"物理"}] 格式 转换成:  数学,语文,英语  格式
-     * @param subjectList
-     * @return
-     */
-    private String resolveSubjects(List<SubjectDTO> subjectList) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < subjectList.size(); i++) {
-            if (i == subjectList.size() - 1) {
-                sb.append(subjectList.get(i).getName());
-            } else {
-                sb.append(subjectList.get(i).getName())
-                        .append(",");
-            }
-        }
-        return sb.toString();
     }
 
 }
