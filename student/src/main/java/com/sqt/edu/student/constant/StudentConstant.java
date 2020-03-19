@@ -6,4 +6,8 @@ package com.sqt.edu.student.constant;
  * @Date: Created in 2020-02-14 0:19
  */
 public final class StudentConstant {
+
+    /**
+     * 课程发布状态
+     */
 }

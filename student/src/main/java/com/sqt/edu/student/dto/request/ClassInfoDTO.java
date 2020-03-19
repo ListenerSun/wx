@@ -55,4 +55,9 @@ public class ClassInfoDTO implements Serializable {
      */
     @ApiModelProperty("补课科目字符串")
     private String subjects;
+    /**
+     * 查询返回时使用
+     */
+    @ApiModelProperty("招生状态: 0:待招生;1:招生中;2:已招满")
+    private String enrollState;
 }

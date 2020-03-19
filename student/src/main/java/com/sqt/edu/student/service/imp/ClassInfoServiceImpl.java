@@ -2,15 +2,19 @@ package com.sqt.edu.student.service.imp;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.student.constant.StudentEnum;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
 import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 import com.sqt.edu.student.dto.request.SubjectDTO;
 import com.sqt.edu.student.entity.ClassInfo;
+import com.sqt.edu.student.entity.StuRegisterInfo;
 import com.sqt.edu.student.mapper.ClassInfoMapper;
+import com.sqt.edu.student.mapper.StuRegisterMapper;
 import com.sqt.edu.student.service.ClassInfoService;
 import com.sqt.edu.student.utils.StudentCommonUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +39,8 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 
     @Autowired
     private ClassInfoMapper classInfoMapper;
+    @Autowired
+    private StuRegisterMapper stuRegisterMapper;
 
     @Override
     public JsonResult add(ClassInfoDTO classInfoDTO) {
@@ -70,6 +76,8 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 
     @Override
     public JsonResult delete(Long classInfoId) {
+        stuRegisterMapper.delete(Wrappers.<StuRegisterInfo>lambdaQuery().eq(StuRegisterInfo::getClassInfoId,
+                classInfoId));
         classInfoMapper.deleteById(classInfoId);
         log.info("==========> 删除补课班级信息成功! id:{}", classInfoId);
         return new JsonResult();
@@ -90,6 +98,18 @@ public class ClassInfoServiceImpl implements ClassInfoService {
             }
         });
         return new JsonResult(classInfoDTOList);
+    }
+
+    @Override
+    public JsonResult enrollClass(Long classInfoId) {
+        ClassInfo classInfo = classInfoMapper.selectById(classInfoId);
+        if (null == classInfo) {
+            throw new ServiceException(ResultCode.STU_CLASS_INFO_NOT_EXIST);
+        }
+        classInfo.setEnrollState(StudentEnum.EnrollState.ING.getCode());
+        classInfoMapper.updateById(classInfo);
+        log.info("==========>发布招生成功,补课班级信息id:{}", classInfoId);
+        return new JsonResult();
     }
 
 }

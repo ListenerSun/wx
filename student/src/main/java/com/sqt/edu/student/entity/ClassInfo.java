@@ -45,6 +45,8 @@ public class ClassInfo extends BaseModel {
     private Integer hasAmount;
     @ApiModelProperty("计划招收学生数量")
     private Integer planAmount;
+    @ApiModelProperty("招生状态: 0:待招生;1:招生中;2:已招满")
+    private String enrollState;
     @ApiModelProperty("假期类型: 1:暑假,2:寒假")
     private String vacationType;
 }

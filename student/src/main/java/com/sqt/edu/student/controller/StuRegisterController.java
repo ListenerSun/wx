@@ -32,13 +32,13 @@ public class StuRegisterController {
         return stuRegisterInfoService.add(stuRegisterInfoDTO);
     }
     @ApiOperation(value = "S-1.2-查询报名信息接口")
-    @PostMapping("/query")
+    @GetMapping("/query")
     public JsonResult queryStuRegisterInfo(@RequestParam @Valid @PhoneNumber String phone,
             @RequestParam Integer year){
         return stuRegisterInfoService.queryStuRegisterInfo(phone,year);
     }
     @ApiOperation(value = "S-1.3-列表")
-    @GetMapping("/list")
+    @PostMapping("/list")
     public JsonResult list(@RequestBody QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
         return stuRegisterInfoService.queryStuRegisterInfoList(queryStuRegisterInfoDTO);
     }

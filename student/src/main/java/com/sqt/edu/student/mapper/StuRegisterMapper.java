@@ -1,10 +1,10 @@
 package com.sqt.edu.student.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.resp.StuRegisterInfoVo;
 import com.sqt.edu.student.entity.StuRegisterInfo;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,8 +18,14 @@ public interface StuRegisterMapper extends BaseMapper<StuRegisterInfo> {
 
     /** query by phone and studentName
      * @param phone
-     * @param studentName
+     * @param year
      * @return
      */
-    StuRegisterInfoVo queryByPhoneAndName(@Param("phone") String phone, @Param("studentName")String studentName);
+    List<StuRegisterInfoVo> queryByPhoneAndYear(@Param("phone") String phone, @Param("year")Integer year);
+
+    /**查询列表
+     * @param queryStuRegisterInfoDTO
+     * @return
+     */
+    List<StuRegisterInfoVo> queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO);
 }

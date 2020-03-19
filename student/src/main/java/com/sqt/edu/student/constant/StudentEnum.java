@@ -25,4 +25,18 @@ public final class StudentEnum {
         private String code;
         private String value;
     }
+
+    /**
+     * 科目类型
+     */
+    @AllArgsConstructor
+    @Getter
+    public enum EnrollState {
+        WAIT("0", "待招生"),
+        ING("1", "招生中"),
+        DONE("2", "已招满"),
+        ;
+        private String code;
+        private String value;
+    }
 }

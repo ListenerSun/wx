@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Description:
@@ -36,9 +37,9 @@ public class ClassInfoController {
         return classInfoService.update(classInfoDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     @ApiOperation(value = "C2-1.3-删除补课班级信息")
-    public JsonResult delete(@PathVariable @Valid Long classInfoId) {
+    public JsonResult delete(@PathVariable(value = "id") Long classInfoId) {
         return classInfoService.delete(classInfoId);
     }
 
@@ -46,5 +47,10 @@ public class ClassInfoController {
     @ApiOperation(value = "C2-1.4-查询补课班级信息列表")
     public JsonResult list(@RequestBody(required=false) QueryClassInfoDTO queryClassInfoDTO) {
         return classInfoService.list(queryClassInfoDTO);
+    }
+    @PostMapping("/enroll/{id}")
+    @ApiOperation(value = "C2-1.5-发布招生接口")
+    public JsonResult enrollClass(@PathVariable(value = "id") Long classInfoId){
+        return classInfoService.enrollClass(classInfoId);
     }
 }

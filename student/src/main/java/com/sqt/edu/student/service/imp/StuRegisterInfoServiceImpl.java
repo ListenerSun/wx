@@ -1,5 +1,6 @@
 package com.sqt.edu.student.service.imp;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.sqt.edu.core.base.JsonResult;
@@ -7,18 +8,21 @@ import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
+import com.sqt.edu.student.dto.request.SubjectDTO;
 import com.sqt.edu.student.dto.resp.StuRegisterInfoVo;
 import com.sqt.edu.student.entity.ClassInfo;
 import com.sqt.edu.student.entity.StuRegisterInfo;
 import com.sqt.edu.student.mapper.ClassInfoMapper;
 import com.sqt.edu.student.mapper.StuRegisterMapper;
 import com.sqt.edu.student.service.StuRegisterInfoService;
+import com.sqt.edu.student.utils.StudentCommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,7 +61,6 @@ public class StuRegisterInfoServiceImpl implements StuRegisterInfoService {
         StuRegisterInfo stuRegisterInfo = new StuRegisterInfo();
         BeanUtils.copyProperties(stuRegisterInfoDTO, stuRegisterInfo);
         stuRegisterInfo.setYear(classInfo.getYear());
-        stuRegisterInfo.setSubjects(classInfo.getSubjects());
         stuRegisterMapper.insert(stuRegisterInfo);
         log.info("==========>学生:{}报名成功!", stuRegisterInfoDTO.getStudentName());
         classInfo.setHasAmount((classInfo.getHasAmount() + 1));
@@ -67,13 +70,28 @@ public class StuRegisterInfoServiceImpl implements StuRegisterInfoService {
 
     @Override
     public JsonResult queryStuRegisterInfo(String phone, Integer year) {
-
-        return null;
+        List<StuRegisterInfoVo> stuRegisterInfoVoList = stuRegisterMapper.queryByPhoneAndYear(phone, year);
+        return new JsonResult(resolveToResult(stuRegisterInfoVoList));
     }
 
     @Override
     public JsonResult queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO) {
-        return null;
+        List<StuRegisterInfoVo> stuRegisterInfoVoList = stuRegisterMapper.queryStuRegisterInfoList(queryStuRegisterInfoDTO);
+        return new JsonResult(resolveToResult(stuRegisterInfoVoList));
+    }
+
+    /**转换  subjects
+     * @param stuRegisterInfoVoList
+     * @return
+     */
+    private List<StuRegisterInfoVo> resolveToResult(List<StuRegisterInfoVo> stuRegisterInfoVoList){
+        if (null != stuRegisterInfoVoList) {
+            stuRegisterInfoVoList.forEach(e -> {
+                List<SubjectDTO> subjectDTOList = JSON.parseArray(e.getSubjects(), SubjectDTO.class);
+                e.setSubjects(StudentCommonUtils.resolveSubjects(subjectDTOList));
+            });
+        }
+        return stuRegisterInfoVoList;
     }
 
 }

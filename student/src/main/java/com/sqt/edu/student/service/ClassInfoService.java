@@ -34,4 +34,10 @@ public interface ClassInfoService {
      * @return
      */
     JsonResult list(QueryClassInfoDTO queryClassInfoDTO);
+
+    /**发布招生
+     * @param classInfoId
+     * @return
+     */
+    JsonResult enrollClass(Long classInfoId);
 }
