@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.core.base.ResultCode;
 import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.student.Student_App;
+import com.sqt.edu.student.constant.StudentEnum;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.SubjectDTO;
@@ -64,6 +66,9 @@ public class StuRegisterInfoServiceImpl implements StuRegisterInfoService {
         stuRegisterMapper.insert(stuRegisterInfo);
         log.info("==========>学生:{}报名成功!", stuRegisterInfoDTO.getStudentName());
         classInfo.setHasAmount((classInfo.getHasAmount() + 1));
+        if (classInfo.getPlanAmount().equals(classInfo.getHasAmount())){
+            classInfo.setEnrollState(StudentEnum.EnrollState.DONE.getCode());
+        }
         classInfoMapper.updateById(classInfo);
         return new JsonResult();
     }
