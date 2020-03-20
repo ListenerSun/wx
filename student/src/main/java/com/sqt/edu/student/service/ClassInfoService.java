@@ -11,6 +11,8 @@ import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
  */
 public interface ClassInfoService {
 
+    /**********************************************后台管理端需要的接口******************************/
+
     /** add
      * @param classInfoDTO
      * @return
@@ -40,4 +42,12 @@ public interface ClassInfoService {
      * @return
      */
     JsonResult enrollClass(Long classInfoId);
+
+    /**********************************************用户端需要的接口******************************/
+
+    /**获取正在招生的补课班级列表
+     * @return
+     */
+    JsonResult enrollClassInfoList();
+
 }

@@ -25,6 +25,8 @@ public class ClassInfoController {
     @Autowired
     private ClassInfoService classInfoService;
 
+    /**********************************************后台管理端需要的接口******************************/
+
     @PostMapping("/add")
     @ApiOperation(value = "C2-1.1-新增补课班级信息")
     public JsonResult add(@RequestBody @Valid ClassInfoDTO classInfoDTO) {
@@ -45,12 +47,21 @@ public class ClassInfoController {
 
     @PostMapping("/list")
     @ApiOperation(value = "C2-1.4-查询补课班级信息列表")
-    public JsonResult list(@RequestBody(required=false) QueryClassInfoDTO queryClassInfoDTO) {
+    public JsonResult list(@RequestBody(required = false) QueryClassInfoDTO queryClassInfoDTO) {
         return classInfoService.list(queryClassInfoDTO);
     }
-    @PostMapping("/enroll/{id}")
+
+    @GetMapping("/enroll/{id}")
     @ApiOperation(value = "C2-1.5-发布招生接口")
-    public JsonResult enrollClass(@PathVariable(value = "id") Long classInfoId){
+    public JsonResult enrollClass(@PathVariable(value = "id") Long classInfoId) {
         return classInfoService.enrollClass(classInfoId);
+    }
+
+    /**********************************************用户端需要的接口******************************/
+
+    @PostMapping("/enroll/list")
+    @ApiOperation(value = "C2-1.5-获取正在招生的补课班级列表")
+    public JsonResult enrollClassInfoList() {
+        return classInfoService.enrollClassInfoList();
     }
 }

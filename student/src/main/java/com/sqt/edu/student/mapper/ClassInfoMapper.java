@@ -1,9 +1,11 @@
 package com.sqt.edu.student.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
 import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 import com.sqt.edu.student.entity.ClassInfo;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -21,5 +23,13 @@ public interface ClassInfoMapper extends BaseMapper<ClassInfo> {
      * @return
      */
     List<ClassInfoDTO> list(QueryClassInfoDTO queryClassInfoDTO);
+
+    /**
+     * 获取正在招生的补课班级列表
+     *
+     * @return
+     */
+    @Select(value = " select * from class_info where enroll_state = '1' or enroll_state = '2' ")
+    List<ClassInfoDTO> enrollClassInfoList();
 }
 

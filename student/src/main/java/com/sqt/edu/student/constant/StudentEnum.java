@@ -35,6 +35,7 @@ public final class StudentEnum {
         WAIT("0", "待招生"),
         ING("1", "招生中"),
         DONE("2", "已招满"),
+        PAUSE("3", "停止招生"),
         ;
         private String code;
         private String value;

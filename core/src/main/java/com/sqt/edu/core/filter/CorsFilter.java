@@ -16,7 +16,7 @@ import java.io.IOException;
 @Order(Integer.MIN_VALUE)
 public class CorsFilter implements Filter {
 
-    private static final String headers = "User-Agent,Access-Control-Allow-Origin,shareId,Origin,Cache-Control," +
+    private static final String headers = "User-Agent,shareId,Origin,Cache-Control," +
             "Content-type,Date,Server,withCredentials," + AuthConstants.HTTP_HEADER_TOKEN + AuthConstants.HTTP_HEADER_USERID;
 
     @Override

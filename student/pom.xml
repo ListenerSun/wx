@@ -25,7 +25,7 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
-                         <mainClass>com.sqt.edu.teacher.Teacher_APP</mainClass>
+                         <mainClass>com.sqt.edu.student.Student_App</mainClass>
                     </configuration>
                     <executions>
                          <execution>

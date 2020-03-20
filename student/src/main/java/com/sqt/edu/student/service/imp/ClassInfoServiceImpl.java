@@ -42,6 +42,8 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     @Autowired
     private StuRegisterMapper stuRegisterMapper;
 
+    /**********************************************后台管理端需要的接口******************************/
+
     @Override
     public JsonResult add(ClassInfoDTO classInfoDTO) {
         List<SubjectDTO> subjectList = classInfoDTO.getSubjectList();
@@ -90,6 +92,14 @@ public class ClassInfoServiceImpl implements ClassInfoService {
         param.put(ClassInfo::getGrade, queryClassInfoDTO.getGrade());
         List<ClassInfoDTO> classInfoDTOList =
                 classInfoMapper.list(queryClassInfoDTO);
+        handleClassInfoList(classInfoDTOList);
+        return new JsonResult(classInfoDTOList);
+    }
+
+    /**抽取重复代码未公共方法
+     * @param classInfoDTOList
+     */
+    private void handleClassInfoList(List<ClassInfoDTO> classInfoDTOList) {
         classInfoDTOList.forEach(classInfoDTO -> {
             if (StringUtils.isNotEmpty(classInfoDTO.getSubjects())) {
                 List<SubjectDTO> subjectList = JSON.parseArray(classInfoDTO.getSubjects(), SubjectDTO.class);
@@ -97,7 +107,6 @@ public class ClassInfoServiceImpl implements ClassInfoService {
                 classInfoDTO.setSubjects(StudentCommonUtils.resolveSubjects(subjectList));
             }
         });
-        return new JsonResult(classInfoDTOList);
     }
 
     @Override
@@ -110,6 +119,15 @@ public class ClassInfoServiceImpl implements ClassInfoService {
         classInfoMapper.updateById(classInfo);
         log.info("==========>发布招生成功,补课班级信息id:{}", classInfoId);
         return new JsonResult();
+    }
+
+    /**********************************************用户端需要的接口******************************/
+
+    @Override
+    public JsonResult enrollClassInfoList() {
+        List<ClassInfoDTO> enrollClassInfoList = classInfoMapper.enrollClassInfoList();
+        handleClassInfoList(enrollClassInfoList);
+        return new JsonResult(enrollClassInfoList);
     }
 
 }
