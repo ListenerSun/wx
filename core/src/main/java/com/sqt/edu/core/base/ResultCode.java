@@ -48,6 +48,7 @@ public enum ResultCode {
     /**********************************自定义公共异常:9900-10000 以CORE_开头**************************************/
     CORE_PARAM_INVALID(9900, "无效参数"),
     CORE_SPRINGCONTEXTHELPER_ERROR(9901, "Spring框架错误"),
+    CORE_EXPORT_FAIL(9902, "导出失败!"),
 
 
 
