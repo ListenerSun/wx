@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 /**
  * @Description:
@@ -41,5 +42,10 @@ public class StuRegisterController {
     @PostMapping("/list")
     public JsonResult list(@RequestBody QueryStuRegisterInfoDTO queryStuRegisterInfoDTO){
         return stuRegisterInfoService.queryStuRegisterInfoList(queryStuRegisterInfoDTO);
+    }
+    @ApiOperation("导出excel")
+    @PostMapping("/exportExcel")
+    public void exportExcel(@RequestBody List<Long> ids) {
+        stuRegisterInfoService.exportExcel(ids);
     }
 }

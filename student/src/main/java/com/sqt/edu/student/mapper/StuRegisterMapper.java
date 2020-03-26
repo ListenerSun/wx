@@ -28,4 +28,9 @@ public interface StuRegisterMapper extends BaseMapper<StuRegisterInfo> {
      * @return
      */
     List<StuRegisterInfoVo> queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO);
+
+    /**导出
+     * @param ids
+     */
+    List<StuRegisterInfoVo> exportExcel(@Param("ids") List<Long> ids);
 }

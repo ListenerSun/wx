@@ -5,6 +5,9 @@ import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+import java.util.List;
+
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
@@ -20,7 +23,9 @@ public interface StuRegisterInfoService {
      */
     JsonResult add(StuRegisterInfoDTO stuRegisterInfoDTO);
 
-    /** query one
+    /**
+     * query one
+     *
      * @param phone
      * @param year
      * @return
@@ -34,4 +39,12 @@ public interface StuRegisterInfoService {
      * @return
      */
     JsonResult queryStuRegisterInfoList(QueryStuRegisterInfoDTO queryStuRegisterInfoDTO);
+
+    /**
+     * 导出
+     *
+     * @param ids
+     * @return
+     */
+    void exportExcel(List<Long> ids);
 }
