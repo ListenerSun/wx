@@ -48,4 +48,10 @@ public interface TestTableService {
      */
     JsonResult dsMaster();
     JsonResult dsSlave();
+
+    /**redis 测试
+     * @param type
+     * @return
+     */
+    JsonResult redis(String type);
 }

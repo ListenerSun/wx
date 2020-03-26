@@ -12,6 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.DefaultTypedTuple;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,6 +22,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 /**
@@ -34,32 +40,29 @@ public class TestTableController {
 
     @Autowired
     private TestTableService testTableService;
-    @Autowired
-    private RedisHelper redisHelper;
 
     @ApiOperation(value = "t-1.1-sql拦截器测试")
     @GetMapping("/inteceptor")
-    public JsonResult inteceptor(){
+    public JsonResult inteceptor() {
         return testTableService.inteceptor();
     }
 
     @ApiOperation(value = "t-1.2-切面日志打印测试")
     @PostMapping("/web_log")
-    public JsonResult webLog(@RequestBody TestTable testTable){
+    public JsonResult webLog(@RequestBody TestTable testTable) {
         return testTableService.webLog(testTable);
     }
-    @ApiOperation(value = "t-1.3-redis测试")
-    @PostMapping("/redis")
-    public JsonResult redis(){
-          redisHelper.setObj(ServiceConstant.ACCOUNT_SERVICE_NAME,"account","test");
-        String account = redisHelper.getObj(ServiceConstant.ACCOUNT_SERVICE_NAME, "account", String.class);
-        log.info("==========>取出的值:{}",account);
-        return new JsonResult(account);
+
+    @ApiOperation(value = "t-1.3-redis测试", notes = "type:1 String数据类型测试;type:2 zset数据类型测试")
+    @PostMapping("/redis/{type}")
+    public JsonResult redis(@PathVariable(value = "type") @NotBlank(message = "type不能为空!") String type) {
+        return testTableService.redis(type);
+
     }
 
     @ApiOperation(value = "t-1.4-身份证号验证注解")
     @PostMapping("/idcard")
-    public JsonResult idCardValid(@RequestBody @Valid IdCardTest idCard){
+    public JsonResult idCardValid(@RequestBody @Valid IdCardTest idCard) {
         log.info("=======> 进来了");
         return new JsonResult(idCard);
     }
@@ -92,19 +95,19 @@ public class TestTableController {
 
     @ApiOperation(value = "t-1.6-乐观锁插件测试")
     @GetMapping("/optimistic_locker")
-    public JsonResult optimisticLocker(){
+    public JsonResult optimisticLocker() {
         return testTableService.testTableService();
     }
 
     @ApiOperation(value = "t-1.7-事务测试")
     @GetMapping("/tx")
-    public JsonResult tx(){
+    public JsonResult tx() {
         return testTableService.createTx();
     }
 
     @ApiOperation(value = "t-1.8-多数据源测试")
     @GetMapping("/ds/{type}")
-    public JsonResult ds(@PathVariable  String type){
+    public JsonResult ds(@PathVariable String type) {
         switch (type) {
             case "master":
                 return testTableService.dsMaster();
@@ -118,7 +121,7 @@ public class TestTableController {
 
     @Data
     @ApiModel
-    static final class IdCardTest{
+    static final class IdCardTest {
         @ApiModelProperty("idCarad")
         private String idCard;
 
