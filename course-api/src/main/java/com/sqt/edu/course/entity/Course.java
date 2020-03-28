@@ -27,6 +27,8 @@ public class Course extends BaseModel {
     private Long id;
     @ApiModelProperty(value = "课程名字")
     private String courseName;
+    @ApiModelProperty(value = "课程描述")
+    private String description;
     @ApiModelProperty(value = "课程价格")
     private BigDecimal coursePrice;
     @ApiModelProperty(value = "课程Logo")

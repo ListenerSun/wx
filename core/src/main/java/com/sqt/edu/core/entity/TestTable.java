@@ -6,11 +6,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.util.Date;
+
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-20 16:14
  */
+@Data
 @Builder
 @ApiModel
 @AllArgsConstructor
@@ -26,28 +29,7 @@ public class TestTable extends BaseModel {
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty("邮箱")
     private String email;
+    @ApiModelProperty("类型")
+    private String type;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
