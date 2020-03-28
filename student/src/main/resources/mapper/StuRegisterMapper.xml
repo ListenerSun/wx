@@ -20,7 +20,9 @@
      <!--根据条件查询补课班级信息列表-->
      <select id="queryStuRegisterInfoList" resultType="com.sqt.edu.student.dto.resp.StuRegisterInfoVo"
              parameterType="com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO">
-          select sri.student_name,
+          select
+          sri.id,
+          sri.student_name,
           sri.phone,
           sri.address,
           sri.class_info_id,
@@ -35,7 +37,7 @@
             and sri.phone = #{phone,jdbcType=VARCHAR}
           </if>
           <if test="studentName != null and studentName != '' ">
-               and sri.student_name = #{studentName,jdbcType=VARCHAR}
+               and sri.student_name like #{studentName,jdbcType=VARCHAR}
           </if>
           <if test="year != null and year != '' ">
                and sri.year = #{year,jdbcType=INTEGER}
@@ -43,5 +45,25 @@
           <if test="className != null and className != '' ">
                and ci.class_name = #{className,jdbcType=VARCHAR}
           </if>
+     </select>
+
+     <!--导出-->
+     <select id="exportExcel" resultType="com.sqt.edu.student.dto.resp.StuRegisterInfoVo">
+          select
+          sri.id,
+          sri.student_name,
+          sri.phone,
+          sri.address,
+          sri.class_info_id,
+          ci.class_name,
+          ci.grade,
+          ci.subjects,
+          sri.year
+          from stu_register_info sri
+          left join class_info ci on sri.class_info_id = ci.id
+          where sri.id in
+          <foreach collection="ids" open="(" close=")" separator="," item="id">
+               #{id}
+          </foreach>
      </select>
 </mapper>
