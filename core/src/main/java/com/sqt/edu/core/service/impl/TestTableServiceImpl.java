@@ -197,12 +197,7 @@ public class TestTableServiceImpl implements TestTableService {
                         redisHelper.releaseLock(CommonConstant.REDIS_LOCK_ID, clientId);
                     }
                 }else {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        log.error("==========>当前线程: {} 睡眠时出现了异常",Thread.currentThread().getName());
-                    }
-                    redis(type);
+                    redisLock(type);
                 }
             }
 
@@ -220,6 +215,7 @@ public class TestTableServiceImpl implements TestTableService {
             return new JsonResult();
         }
         TestTable testTable = JSON.parseObject(jsonTestTable, TestTable.class);
+        log.info("==========>当前线程:{} 在缓存中拿到了数据",Thread.currentThread().getName());
         return new JsonResult(testTable);
     }
 

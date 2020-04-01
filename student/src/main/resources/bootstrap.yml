@@ -42,4 +42,6 @@ spring:
 
 
 logging:
+#  level: {ERROR,"com.sqt.edu.student"}
   config: classpath:logback-spring.xml
+

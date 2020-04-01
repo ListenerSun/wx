@@ -24,4 +24,16 @@ public final class CommonEnum {
 
     }
 
+    /**
+     * 课程类型
+     */
+    @AllArgsConstructor
+    @Getter
+    public enum CourseType{
+        ;
+        private String code;
+        private String value;
+
+    }
+
 }

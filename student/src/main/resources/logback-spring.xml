@@ -76,7 +76,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
      false：表示只用当前logger的appender-ref，true：
      表示当前logger的appender-ref和rootLogger的appender-ref都有效
      -->
-     <logger name="com.sqt.edu.student" level="info"/>
+     <logger name="com.sqt.edu.student" level="error"/>
      <!-- Spring framework logger -->
      <logger name="org" level="error" additivity="false"></logger>
 

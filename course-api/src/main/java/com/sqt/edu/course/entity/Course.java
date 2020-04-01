@@ -41,4 +41,8 @@ public class Course extends BaseModel {
     private Integer countBuy;
     @ApiModelProperty(value = "已学习的人数")
     private Integer countStudy;
+    @ApiModelProperty(value = "课程类型")
+    private String courseType;
+    @ApiModelProperty(value = "是否是视频")
+    private Boolean isVideo;
 }

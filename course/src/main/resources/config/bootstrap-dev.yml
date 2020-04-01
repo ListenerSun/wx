@@ -15,7 +15,7 @@ spring:
     timeToLive: 15
     lettuce:
       pool:
-        MaxTotal: 50
+        MaxTotal: 500
         minIdle: 1
         maxWaitMillis: 5000
         maxIdle: 5
@@ -23,7 +23,7 @@ spring:
         testOnReturn: true
         testWhileIdle: true
 
-# 数据源配置
+  # 数据源配置
   datasource:
     druid:
       type: com.alibaba.druid.pool.DruidDataSource
@@ -72,7 +72,7 @@ spring:
           config:
             enabled: true
 
-  # slave 数据源
+      # slave 数据源
       slave:
         name: slave
         url: jdbc:mysql://wx-edu:3307/wx_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=false
@@ -118,9 +118,6 @@ spring:
           config:
             enabled: true
 mybatis-plus:
-  #实体扫描，多个package用逗号或者分号分隔
-#  typeAliasesPackage:
-  #  typeEnumsPackage:
   global-config:
     #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
     id-type: 0
@@ -137,13 +134,6 @@ mybatis-plus:
     logic-not-delete-value: 1
     # SQL 解析缓存，开启后多租户 @SqlParser 注解生效
   #    sql-parser-cache: true
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
-    call-setters-on-nulls: true
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-
-
 
 # eureka client
 eureka:
@@ -155,7 +145,7 @@ eureka:
     service-url:
       defaultZone: http://wx-edu:8888/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
-#    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    #    实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
     registerWithEureka: true
     fetchRegistry: true
 

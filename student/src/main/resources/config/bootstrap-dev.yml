@@ -8,9 +8,9 @@ spring:
   redis:
     enable: true
     database: 7
-    host: 47.111.247.86
-    port: 6379
-    password: 123456
+    host: 172.16.171.71
+    port: 6380
+    password:
     timeout: 5000ms
     timeToLive: 15
     lettuce:
