@@ -24,5 +24,69 @@
           <module>fastwalk</module>
           <module>gateway</module>
           <module>student</module>
+          <module>nacos</module>
      </modules>
+
+     <properties>
+          <maven.compiler.source>1.8</maven.compiler.source>
+          <maven.compiler.target>1.8</maven.compiler.target>
+          <spring-cloud.version>Finchley.SR3</spring-cloud.version>
+          <spring-platform.version>Cairo-SR7</spring-platform.version>
+     </properties>
+     <repositories>
+          <!--阿里云主仓库，代理了maven central和jcenter仓库-->
+          <repository>
+               <id>aliyun</id>
+               <name>aliyun</name>
+               <url>https://maven.aliyun.com/repository/public</url>
+               <releases>
+                    <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+               </snapshots>
+          </repository>
+          <!--阿里云代理Spring 官方仓库-->
+          <repository>
+               <id>spring-milestones</id>
+               <name>Spring Milestones</name>
+               <url>https://maven.aliyun.com/repository/spring</url>
+               <releases>
+                    <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+               </snapshots>
+          </repository>
+     </repositories>
+
+
+     <dependencyManagement>
+          <dependencies>
+
+               <dependency>
+                    <groupId>io.spring.platform</groupId>
+                    <artifactId>platform-bom</artifactId>
+                    <version>${spring-platform.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+               </dependency>
+
+               <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-dependencies</artifactId>
+                    <version>${spring-cloud.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+               </dependency>
+
+               <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                    <version>2.0.0.RELEASE</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+               </dependency>
+          </dependencies>
+     </dependencyManagement>
 </project>

@@ -15,12 +15,9 @@
           <spring-cloud.version>Finchley.SR3</spring-cloud.version>
           <spring-platform.version>Cairo-SR7</spring-platform.version>
           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-          <maven.compiler.source>1.8</maven.compiler.source>
-          <maven.compiler.target>1.8</maven.compiler.target>
           <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
           <hutool.version>4.5.0</hutool.version>
           <jasypt.version>2.1.0</jasypt.version>
-          <postgresql.version>42.2.5</postgresql.version>
           <mybatis-plus-boot.version>3.0.7.1</mybatis-plus-boot.version>
           <pagehelper-spring.version>1.2.10</pagehelper-spring.version>
           <fastjson.version>1.2.46</fastjson.version>
@@ -41,32 +38,6 @@
           <guava.version>28.2-jre</guava.version>
      </properties>
 
-     <repositories>
-          <!--阿里云主仓库，代理了maven central和jcenter仓库-->
-          <repository>
-               <id>aliyun</id>
-               <name>aliyun</name>
-               <url>https://maven.aliyun.com/repository/public</url>
-               <releases>
-                    <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                    <enabled>false</enabled>
-               </snapshots>
-          </repository>
-          <!--阿里云代理Spring 官方仓库-->
-          <repository>
-               <id>spring-milestones</id>
-               <name>Spring Milestones</name>
-               <url>https://maven.aliyun.com/repository/spring</url>
-               <releases>
-                    <enabled>true</enabled>
-               </releases>
-               <snapshots>
-                    <enabled>false</enabled>
-               </snapshots>
-          </repository>
-     </repositories>
 
      <dependencies>
 
@@ -86,22 +57,25 @@
                <artifactId>spring-boot-starter</artifactId>
           </dependency>
 
-
           <!--web 模块-->
           <dependency>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-web</artifactId>
           </dependency>
-          <!--配置中心-->
+          <!-- Nacos 依赖-->
           <dependency>
-               <groupId>org.springframework.cloud</groupId>
-               <artifactId>spring-cloud-config-server</artifactId>
+               <groupId>com.alibaba.cloud</groupId>
+               <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+          </dependency>
+          <dependency>
+               <groupId>com.alibaba.cloud</groupId>
+               <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
           </dependency>
           <!--eureka 客户端-->
-          <dependency>
+      <!--    <dependency>
                <groupId>org.springframework.cloud</groupId>
                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-          </dependency>
+          </dependency>-->
           <!--配置文件处理器-->
           <dependency>
                <groupId>org.springframework.boot</groupId>
@@ -139,16 +113,6 @@
                <artifactId>spring-boot-admin-starter-client</artifactId>
                <version>${spring-boot-admin.version}</version>
           </dependency>
-
-          <!--服务链路追踪-->
-          <!--  <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-sleuth</artifactId>
-            </dependency>
-            <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-            </dependency>-->
 
           <!--断路器依赖-->
           <dependency>
@@ -368,34 +332,8 @@
                <artifactId>spring-boot-devtools</artifactId>
                <optional>true</optional>
           </dependency>
-          <!--多数据源配置依赖-->
-          <!--<dependency>
-               <groupId>com.baomidou</groupId>
-               <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-               <version>${dynamic-datasource-spring-boot-starter.version}</version>
-          </dependency>-->
 
      </dependencies>
 
-     <dependencyManagement>
-          <dependencies>
 
-               <dependency>
-                    <groupId>io.spring.platform</groupId>
-                    <artifactId>platform-bom</artifactId>
-                    <version>${spring-platform.version}</version>
-                    <type>pom</type>
-                    <scope>import</scope>
-               </dependency>
-
-               <dependency>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-dependencies</artifactId>
-                    <version>${spring-cloud.version}</version>
-                    <type>pom</type>
-                    <scope>import</scope>
-               </dependency>
-
-          </dependencies>
-     </dependencyManagement>
 </project>

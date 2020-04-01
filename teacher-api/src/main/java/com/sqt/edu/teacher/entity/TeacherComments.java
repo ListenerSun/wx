@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 @ApiModel
 @Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @TableName(value = "teacher_comment")
 public class TeacherComments extends BaseModel {
     private static final long serialVersionUID = -6935366661149087634L;

@@ -1,29 +1,25 @@
 package com.sqt.edu.course.service.impl;
 
-        import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-        import com.google.common.collect.Lists;
-        import com.netflix.discovery.converters.Auto;
-        import com.sqt.edu.core.base.JsonResult;
-        import com.sqt.edu.core.base.ResultCode;
-        import com.sqt.edu.core.exception.ServiceException;
-        import com.sqt.edu.core.utils.RequestHelper;
-        import com.sqt.edu.course.constant.CourseConstant;
-        import com.sqt.edu.course.entity.Course;
-        import com.sqt.edu.course.mapper.CourseMapper;
-        import com.sqt.edu.course.request.CourseDTO;
-        import com.sqt.edu.course.response.CourseInfo;
-        import com.sqt.edu.course.service.CourseService;
-        import com.sqt.edu.teacher.client.TeacherFeignClient;
-        import com.sqt.edu.teacher.entity.TeacherInfo;
-        import lombok.extern.slf4j.Slf4j;
-        import org.apache.commons.collections4.ListUtils;
-        import org.springframework.beans.BeanUtils;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.core.base.ResultCode;
+import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.course.constant.CourseConstant;
+import com.sqt.edu.course.entity.Course;
+import com.sqt.edu.course.mapper.CourseMapper;
+import com.sqt.edu.course.request.CourseDTO;
+import com.sqt.edu.course.response.CourseInfo;
+import com.sqt.edu.course.service.CourseService;
+import com.sqt.edu.teacher.client.TeacherFeignClient;
+import com.sqt.edu.teacher.entity.TeacherInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-        import javax.sql.rowset.serial.SerialException;
-        import java.util.List;
-        import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description:

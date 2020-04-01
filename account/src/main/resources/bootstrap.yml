@@ -16,25 +16,14 @@ spring:
       max-file-size: 20MB
       max-request-size: 30MB
   cloud:
-    config:
-      server:
-        native:
-          search-locations: classpath:/config/
-
-#feign 配置
-
-#feign:
-#  hystrix:
-#    enabled: true
-#feign:
-#  okhttp:
-#    enabled: true
-#    max-connections: 400        #线程池最大连接数
-#    time-to-live: 60            #长链接保持时间（单位秒）
-#    follow-redirects: true      #是否遵循重定向
-#    connection-timeout: 20000   #创建连接的超时时间（单位毫秒）
-#    read-timeout: 30000         #处理请求的超时时间（单位毫秒）
-#  httpclient:
-#    enabled: false
+    nacos:
+      # 服务注册配置
+      discovery:
+        server-addr: wx-edu:8848
+      #配置文件管理 配置
+      config:
+        server-addr: wx-edu:8848
+        group: wx-edu-account
+        file-extension: yaml
 
 

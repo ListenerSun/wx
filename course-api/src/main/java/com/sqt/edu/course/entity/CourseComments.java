@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class CourseComments extends BaseModel {
     private static final long serialVersionUID = 6517874973495033628L;
 }

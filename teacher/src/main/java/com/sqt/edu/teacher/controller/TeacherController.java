@@ -1,6 +1,5 @@
 package com.sqt.edu.teacher.controller;
 
-import com.netflix.discovery.converters.Auto;
 import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
 import com.sqt.edu.teacher.service.TeacherService;
