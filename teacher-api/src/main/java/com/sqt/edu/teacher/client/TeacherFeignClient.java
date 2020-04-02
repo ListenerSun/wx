@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-24 18:34
  */
-@FeignClient(value = "edu-teacher",path = "/edu/teacher",fallbackFactory = TeacherFeignClientFallBack.class)
+@FeignClient(value = "edu-teacher",path = "/teacher/edu/teacher",fallbackFactory = TeacherFeignClientFallBack.class)
 public interface TeacherFeignClient {
 
     /**add a teacher info

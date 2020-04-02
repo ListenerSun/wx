@@ -16,6 +16,8 @@
     5. edu-eureka   端口号:8888
     6. fastwalk     自己开发的 快步网关，端口号:80
     7. edu-student  端口号:9400
+    8. nacos服务     通信端口号:8848
+    9. sentinel服务  通信端口号:8719,diashboard:4444
 
 ####  包依赖说明
 

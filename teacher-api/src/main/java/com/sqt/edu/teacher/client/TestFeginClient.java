@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2020-04-02 10:10
  */
-@FeignClient(value = "edu-teacher", path = "/edu/teacher", fallbackFactory = TestFeginClientFallBack.class)
+@FeignClient(value = "edu-teacher", path = "/teacher/test", fallbackFactory = TestFeginClientFallBack.class)
 public interface TestFeginClient {
 
     @GetMapping("/hello")
