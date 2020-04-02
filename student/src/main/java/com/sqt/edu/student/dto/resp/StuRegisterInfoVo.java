@@ -1,7 +1,6 @@
 package com.sqt.edu.student.dto.resp;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.sqt.edu.core.validation.PhoneNumber;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -9,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

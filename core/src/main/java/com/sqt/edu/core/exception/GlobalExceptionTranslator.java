@@ -1,8 +1,8 @@
 package com.sqt.edu.core.exception;
 
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.ResultCode;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.converter.HttpMessageNotReadableException;

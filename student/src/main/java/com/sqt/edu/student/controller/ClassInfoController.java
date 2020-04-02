@@ -1,6 +1,6 @@
 package com.sqt.edu.student.controller;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
 import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 import com.sqt.edu.student.service.ClassInfoService;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 /**
  * @Description:

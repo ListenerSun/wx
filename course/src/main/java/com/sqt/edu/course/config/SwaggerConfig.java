@@ -1,6 +1,6 @@
 package com.sqt.edu.course.config;
 
-import com.sqt.edu.core.constant.AuthConstants;
+import com.sqt.edu.common.constant.AuthConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

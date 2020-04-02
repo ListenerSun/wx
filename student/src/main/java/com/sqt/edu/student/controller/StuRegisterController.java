@@ -1,7 +1,7 @@
 package com.sqt.edu.student.controller;
 
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.validation.PhoneNumber;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.validation.PhoneNumber;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
 import com.sqt.edu.student.service.StuRegisterInfoService;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**

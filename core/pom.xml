@@ -12,15 +12,12 @@
      <packaging>jar</packaging>
 
      <properties>
-          <spring-cloud.version>Finchley.SR3</spring-cloud.version>
-          <spring-platform.version>Cairo-SR7</spring-platform.version>
           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
           <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
           <hutool.version>4.5.0</hutool.version>
           <jasypt.version>2.1.0</jasypt.version>
-          <mybatis-plus-boot.version>3.0.7.1</mybatis-plus-boot.version>
           <pagehelper-spring.version>1.2.10</pagehelper-spring.version>
-          <fastjson.version>1.2.46</fastjson.version>
+
           <spring-data-redis.version>2.0.3.RELEASE</spring-data-redis.version>
           <druid-spring.version>1.1.21</druid-spring.version>
           <jjwt.version>0.9.1</jjwt.version>
@@ -33,35 +30,24 @@
           <jedis.version>2.9.0</jedis.version>
           <redisson.version>3.11.0</redisson.version>
           <dynamic-datasource-spring-boot-starter.version>2.5.0</dynamic-datasource-spring-boot-starter.version>
-          <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-          <springfox-swagger-ui.version>2.8.0</springfox-swagger-ui.version>
           <guava.version>28.2-jre</guava.version>
      </properties>
 
 
      <dependencies>
-
+          <!--公共模块-->
+          <dependency>
+               <groupId>com.sqt.edu</groupId>
+               <artifactId>common</artifactId>
+               <version>1.0-SNAPSHOT</version>
+          </dependency>
           <dependency>
                <groupId>cn.hutool</groupId>
                <artifactId>hutool-all</artifactId>
                <version>${hutool.version}</version>
           </dependency>
-          <!--server-api-->
-          <dependency>
-               <groupId>javax.servlet</groupId>
-               <artifactId>javax.servlet-api</artifactId>
-          </dependency>
 
-          <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter</artifactId>
-          </dependency>
 
-          <!--web 模块-->
-          <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-web</artifactId>
-          </dependency>
           <!-- Nacos 依赖-->
           <dependency>
                <groupId>com.alibaba.cloud</groupId>
@@ -71,11 +57,6 @@
                <groupId>com.alibaba.cloud</groupId>
                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
           </dependency>
-          <!--eureka 客户端-->
-      <!--    <dependency>
-               <groupId>org.springframework.cloud</groupId>
-               <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-          </dependency>-->
           <!--配置文件处理器-->
           <dependency>
                <groupId>org.springframework.boot</groupId>
@@ -113,25 +94,6 @@
                <artifactId>spring-boot-admin-starter-client</artifactId>
                <version>${spring-boot-admin.version}</version>
           </dependency>
-
-          <!--断路器依赖-->
-          <dependency>
-               <groupId>org.springframework.cloud</groupId>
-               <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-          </dependency>
-
-          <!--网关路由-->
-          <dependency>
-               <groupId>org.springframework.cloud</groupId>
-               <artifactId>spring-cloud-starter-openfeign</artifactId>
-          </dependency>
-
-
-          <!--      <dependency>
-                     <groupId>org.springframework.cloud</groupId>
-                     <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-                </dependency>-->
-
           <!--http-->
           <dependency>
                <groupId>org.apache.httpcomponents</groupId>
@@ -150,11 +112,6 @@
                <version>${httpasyncclient.version}</version>
           </dependency>
 
-          <!--Lombok-->
-          <dependency>
-               <groupId>org.projectlombok</groupId>
-               <artifactId>lombok</artifactId>
-          </dependency>
 
           <!--配置文件加密-->
           <dependency>
@@ -174,13 +131,6 @@
                <artifactId>spring-boot-starter-jdbc</artifactId>
           </dependency>
 
-          <!--mybatis-->
-          <dependency>
-               <groupId>com.baomidou</groupId>
-               <artifactId>mybatis-plus-boot-starter</artifactId>
-               <version>${mybatis-plus-boot.version}</version>
-          </dependency>
-
           <dependency>
                <groupId>com.github.pagehelper</groupId>
                <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -194,12 +144,7 @@
                <version>${druid-spring.version}</version>
           </dependency>
 
-          <!--fastjson-->
-          <dependency>
-               <groupId>com.alibaba</groupId>
-               <artifactId>fastjson</artifactId>
-               <version>${fastjson.version}</version>
-          </dependency>
+
 
           <!--jwt-->
           <dependency>
@@ -214,11 +159,6 @@
               <artifactId>spring-boot-starter-log4j2</artifactId>
           </dependency>-->
 
-          <dependency>
-               <groupId>org.apache.commons</groupId>
-               <artifactId>commons-lang3</artifactId>
-               <version>${commons-lang3.version}</version>
-          </dependency>
 
           <!--spring测试-->
           <dependency>
@@ -236,17 +176,6 @@
                <version>2.4.2</version>
           </dependency>
 
-          <!-- swagger -->
-          <dependency>
-               <groupId>io.springfox</groupId>
-               <artifactId>springfox-swagger2</artifactId>
-               <version>${springfox-swagger2.version}</version>
-          </dependency>
-          <dependency>
-               <groupId>io.springfox</groupId>
-               <artifactId>springfox-swagger-ui</artifactId>
-               <version>${springfox-swagger-ui.version}</version>
-          </dependency>
 
           <!--pinyin4j-->
           <dependency>
@@ -269,30 +198,8 @@
                <version>9.5.0</version>
           </dependency>
 
-          <!-- easy-export-->
-          <dependency>
-               <groupId>cn.afterturn</groupId>
-               <artifactId>easypoi-base</artifactId>
-               <version>3.2.0</version>
-          </dependency>
-          <dependency>
-               <groupId>cn.afterturn</groupId>
-               <artifactId>easypoi-web</artifactId>
-               <version>3.2.0</version>
-          </dependency>
-          <dependency>
-               <groupId>cn.afterturn</groupId>
-               <artifactId>easypoi-annotation</artifactId>
-               <version>3.2.0</version>
-          </dependency>
 
 
-          <dependency>
-               <groupId>javax.validation</groupId>
-               <artifactId>validation-api</artifactId>
-               <version>RELEASE</version>
-               <scope>compile</scope>
-          </dependency>
 
           <dependency>
                <groupId>dom4j</groupId>
@@ -319,7 +226,6 @@
                <scope>provided</scope>
           </dependency>
 
-
           <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
           <dependency>
                <groupId>com.google.guava</groupId>
@@ -332,7 +238,6 @@
                <artifactId>spring-boot-devtools</artifactId>
                <optional>true</optional>
           </dependency>
-
      </dependencies>
 
 

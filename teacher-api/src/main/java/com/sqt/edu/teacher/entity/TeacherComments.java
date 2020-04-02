@@ -1,12 +1,10 @@
 package com.sqt.edu.teacher.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.sqt.edu.core.base.BaseModel;
+import com.sqt.edu.common.base.BaseModel;
 import io.swagger.annotations.ApiModel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /** 讲师评论表
  * @Description:

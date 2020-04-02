@@ -2,13 +2,13 @@ package com.sqt.edu.course.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.sqt.edu.course.constant.AccountEnum;
-import com.sqt.edu.course.entity.AccUser;
-import com.sqt.edu.course.entity.AccUserRealNameDTO;
+import com.sqt.edu.account.entity.AccUser;
+import com.sqt.edu.account.entity.AccUserRealNameDTO;
 import com.sqt.edu.course.mapper.AccUserMapper;
 import com.sqt.edu.course.service.AccUserRealNameService;
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.core.utils.RequestHelper;
 import com.sqt.edu.teacher.client.TeacherFeignClient;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;

@@ -1,7 +1,6 @@
 package com.sqt.edu.core.component;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.sqt.edu.core.exception.ServiceException;
 import com.sqt.edu.core.utils.RequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;

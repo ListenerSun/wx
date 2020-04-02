@@ -1,6 +1,6 @@
 package com.sqt.edu.course.service;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.course.request.CourseDTO;
 
 /**

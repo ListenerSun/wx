@@ -1,9 +1,9 @@
 package com.sqt.edu.course.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.core.utils.RequestHelper;
 import com.sqt.edu.course.constant.CourseConstant;
 import com.sqt.edu.course.entity.Course;

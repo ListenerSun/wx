@@ -1,11 +1,10 @@
 package com.sqt.edu.course.service;
 
-import com.sqt.edu.course.entity.AccUser;
-import com.sqt.edu.course.request.AccUserInfoDTO;
-import com.sqt.edu.course.request.RegisterUserDTO;
-import com.sqt.edu.course.request.UpdatePasswordDTO;
-import com.sqt.edu.core.base.BaseLoginParam;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.account.request.AccUserInfoDTO;
+import com.sqt.edu.account.request.RegisterUserDTO;
+import com.sqt.edu.account.request.UpdatePasswordDTO;
+import com.sqt.edu.common.base.BaseLoginParam;
+import com.sqt.edu.common.base.JsonResult;
 
 /**
  * @Description:

@@ -1,12 +1,10 @@
 package com.sqt.edu.core.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.sqt.edu.core.base.BaseModel;
+import com.sqt.edu.common.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-
-import java.util.Date;
 
 /**
  * @Description:

@@ -1,6 +1,6 @@
 package com.sqt.edu.course.client;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.course.client.fallback.CourseFeignClientFallBack;
 import com.sqt.edu.course.request.CourseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -24,5 +24,5 @@ public interface CourseFeignClient {
      * @return
      */
     @PostMapping("/create")
-    public JsonResult create(@RequestBody @Valid CourseDTO courseDTO);
+    JsonResult create(@RequestBody @Valid CourseDTO courseDTO);
 }

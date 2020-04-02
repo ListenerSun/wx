@@ -1,7 +1,7 @@
 package com.sqt.edu.course.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sqt.edu.course.entity.AccUser;
+import com.sqt.edu.account.entity.AccUser;
 import org.apache.ibatis.annotations.Select;
 
 /**

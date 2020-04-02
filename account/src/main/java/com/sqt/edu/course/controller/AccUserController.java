@@ -1,10 +1,10 @@
 package com.sqt.edu.course.controller;
 
-import com.sqt.edu.course.request.RegisterUserDTO;
-import com.sqt.edu.course.request.UpdatePasswordDTO;
+import com.sqt.edu.account.request.RegisterUserDTO;
+import com.sqt.edu.account.request.UpdatePasswordDTO;
 import com.sqt.edu.course.service.AccUserService;
-import com.sqt.edu.core.base.BaseLoginParam;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.BaseLoginParam;
+import com.sqt.edu.common.base.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

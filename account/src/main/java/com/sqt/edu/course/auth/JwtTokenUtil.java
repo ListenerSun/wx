@@ -1,10 +1,9 @@
 package com.sqt.edu.course.auth;
 
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.exception.ServiceException;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;

@@ -1,9 +1,8 @@
 package com.sqt.edu.core.utils;
 
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.constant.AuthConstants;
-import com.sqt.edu.core.constant.CacheConstants;
-import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.constant.AuthConstants;
+import com.sqt.edu.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;

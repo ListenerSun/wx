@@ -1,6 +1,6 @@
 package com.sqt.edu.student.dto.request;
 
-import com.sqt.edu.core.validation.PhoneNumber;
+import com.sqt.edu.common.validation.PhoneNumber;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

@@ -6,7 +6,7 @@ package com.sqt.edu.core.entity;
  * @Date: Created in 2020-03-26 15:10
  */
 
-import com.sqt.edu.core.base.BaseModel;
+import com.sqt.edu.common.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

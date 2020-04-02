@@ -1,7 +1,7 @@
 package com.sqt.edu.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Wrapper;
 
 /**
  * @Description:

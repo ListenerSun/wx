@@ -1,6 +1,6 @@
 package com.sqt.edu.course.utils;
 
-import com.sqt.edu.course.entity.AccUser;
+import com.sqt.edu.account.entity.AccUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 

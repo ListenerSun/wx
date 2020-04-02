@@ -1,10 +1,8 @@
 package com.sqt.edu.course.entity;
 
-import com.sqt.edu.core.base.BaseModel;
-import lombok.AllArgsConstructor;
+import com.sqt.edu.common.base.BaseModel;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /** 课程评论表
  * @Description:

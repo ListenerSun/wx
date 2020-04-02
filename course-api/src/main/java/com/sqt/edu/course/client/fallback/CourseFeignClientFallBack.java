@@ -1,8 +1,8 @@
 package com.sqt.edu.course.client.fallback;
 
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.base.ResultCode;
-import com.sqt.edu.core.exception.ServiceException;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.ResultCode;
+import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.course.client.CourseFeignClient;
 import com.sqt.edu.course.request.CourseDTO;
 import feign.hystrix.FallbackFactory;

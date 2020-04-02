@@ -1,6 +1,6 @@
 package com.sqt.edu.core.aspect;
 
-import com.sqt.edu.core.annotation.DS;
+import com.sqt.edu.common.annotation.DS;
 import com.sqt.edu.core.holder.DbContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

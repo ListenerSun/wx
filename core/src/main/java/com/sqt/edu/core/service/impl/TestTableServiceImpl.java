@@ -1,12 +1,10 @@
 package com.sqt.edu.core.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sqt.edu.core.annotation.DS;
-import com.sqt.edu.core.base.JsonResult;
-import com.sqt.edu.core.constant.CommonConstant;
-import com.sqt.edu.core.constant.CommonEnum;
-import com.sqt.edu.core.constant.ServiceConstant;
+import com.sqt.edu.common.annotation.DS;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.constant.CommonConstant;
+import com.sqt.edu.common.constant.ServiceConstant;
 import com.sqt.edu.core.entity.TestTable;
 import com.sqt.edu.core.entity.UserScore;
 import com.sqt.edu.core.mapper.TestTableMapper;
@@ -15,7 +13,6 @@ import com.sqt.edu.core.service.TestTableService;
 import com.sqt.edu.core.utils.RedisHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,9 +26,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.Future;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 /**

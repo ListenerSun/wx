@@ -1,8 +1,8 @@
 package com.sqt.edu.course.controller;
 
 import com.sqt.edu.course.service.AccUserService;
-import com.sqt.edu.core.base.BaseLoginParam;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.BaseLoginParam;
+import com.sqt.edu.common.base.JsonResult;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

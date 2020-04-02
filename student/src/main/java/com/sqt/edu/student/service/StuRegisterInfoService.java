@@ -1,11 +1,10 @@
 package com.sqt.edu.student.service;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

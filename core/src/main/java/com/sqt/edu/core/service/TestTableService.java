@@ -1,6 +1,6 @@
 package com.sqt.edu.core.service;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.core.entity.TestTable;
 
 import java.util.concurrent.Future;

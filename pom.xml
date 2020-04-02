@@ -25,6 +25,7 @@
           <module>gateway</module>
           <module>student</module>
           <module>nacos</module>
+          <module>common</module>
      </modules>
 
      <properties>
@@ -32,6 +33,7 @@
           <maven.compiler.target>1.8</maven.compiler.target>
           <spring-cloud.version>Finchley.SR3</spring-cloud.version>
           <spring-platform.version>Cairo-SR7</spring-platform.version>
+          <spring-cloud-alibaba.version>2.0.0.RELEASE</spring-cloud-alibaba.version>
      </properties>
      <repositories>
           <!--阿里云主仓库，代理了maven central和jcenter仓库-->
@@ -83,7 +85,7 @@
                <dependency>
                     <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                    <version>2.0.0.RELEASE</version>
+                    <version>${spring-cloud-alibaba.version}</version>
                     <type>pom</type>
                     <scope>import</scope>
                </dependency>

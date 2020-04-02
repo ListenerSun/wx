@@ -1,7 +1,6 @@
 package com.sqt.edu.student.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sqt.edu.core.base.JsonResult;
 import com.sqt.edu.student.dto.request.ClassInfoDTO;
 import com.sqt.edu.student.dto.request.QueryClassInfoDTO;
 import com.sqt.edu.student.entity.ClassInfo;

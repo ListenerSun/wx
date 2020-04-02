@@ -1,6 +1,6 @@
 package com.sqt.edu.core.filter;
 
-import com.sqt.edu.core.constant.AuthConstants;
+import com.sqt.edu.common.constant.AuthConstants;
 import org.springframework.core.annotation.Order;
 
 import javax.servlet.*;

@@ -1,6 +1,6 @@
 package com.sqt.edu.teacher.controller;
 
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
 import com.sqt.edu.teacher.service.TeacherService;
 import io.swagger.annotations.Api;

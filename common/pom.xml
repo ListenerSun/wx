@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <parent>
+          <artifactId>wx</artifactId>
+          <groupId>com.sqt.edu</groupId>
+          <version>1.0-SNAPSHOT</version>
+     </parent>
+     <modelVersion>4.0.0</modelVersion>
+     <description>公共模块</description>
+     <artifactId>common</artifactId>
+
+     <properties>
+          <commons-lang3.version>3.5</commons-lang3.version>
+          <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+          <springfox-swagger-ui.version>2.8.0</springfox-swagger-ui.version>
+          <mybatis-plus-boot.version>3.0.7.1</mybatis-plus-boot.version>
+          <easy-poi.version>3.2.0</easy-poi.version>
+          <easy-poi-web.version>3.2.0</easy-poi-web.version>
+          <easy-poi-annotation.version>3.2.0</easy-poi-annotation.version>
+          <fastjson.version>1.2.46</fastjson.version>
+     </properties>
+
+
+     <dependencies>
+          <dependency>
+               <groupId>org.apache.commons</groupId>
+               <artifactId>commons-lang3</artifactId>
+               <version>${commons-lang3.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter</artifactId>
+          </dependency>
+          <!--web 模块-->
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-web</artifactId>
+          </dependency>
+          <!--openfegin-->
+          <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-openfeign</artifactId>
+          </dependency>
+          <!--Lombok-->
+          <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+          </dependency>
+          <!-- swagger -->
+          <dependency>
+               <groupId>io.springfox</groupId>
+               <artifactId>springfox-swagger2</artifactId>
+               <version>${springfox-swagger2.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>io.springfox</groupId>
+               <artifactId>springfox-swagger-ui</artifactId>
+               <version>${springfox-swagger-ui.version}</version>
+          </dependency>
+          <!--校验相关 -->
+          <dependency>
+               <groupId>javax.validation</groupId>
+               <artifactId>validation-api</artifactId>
+               <version>RELEASE</version>
+               <scope>compile</scope>
+          </dependency>
+          <!--mybatisPlus-->
+          <dependency>
+               <groupId>com.baomidou</groupId>
+               <artifactId>mybatis-plus-boot-starter</artifactId>
+               <version>${mybatis-plus-boot.version}</version>
+          </dependency>
+
+          <!--server-api-->
+          <dependency>
+               <groupId>javax.servlet</groupId>
+               <artifactId>javax.servlet-api</artifactId>
+          </dependency>
+
+          <!-- easy-export-->
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-base</artifactId>
+               <version>${easy-poi.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-web</artifactId>
+               <version>${easy-poi-web.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>cn.afterturn</groupId>
+               <artifactId>easypoi-annotation</artifactId>
+               <version>${easy-poi-annotation.version}</version>
+          </dependency>
+          <!--fastjson-->
+          <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>fastjson</artifactId>
+               <version>${fastjson.version}</version>
+          </dependency>
+
+     </dependencies>
+
+</project>

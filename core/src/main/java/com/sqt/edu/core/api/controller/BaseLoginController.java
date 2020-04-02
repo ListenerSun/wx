@@ -1,7 +1,7 @@
 package com.sqt.edu.core.api.controller;
 
-import com.sqt.edu.core.base.BaseLoginParam;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.common.base.BaseLoginParam;
+import com.sqt.edu.common.base.JsonResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

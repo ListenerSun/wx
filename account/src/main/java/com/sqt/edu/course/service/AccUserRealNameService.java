@@ -1,7 +1,7 @@
 package com.sqt.edu.course.service;
 
-import com.sqt.edu.course.entity.AccUserRealNameDTO;
-import com.sqt.edu.core.base.JsonResult;
+import com.sqt.edu.account.entity.AccUserRealNameDTO;
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
 
 /**

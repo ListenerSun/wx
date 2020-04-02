@@ -1,7 +1,7 @@
 package com.sqt.edu.core.config.datasource;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.sqt.edu.core.constant.CommonEnum;
+import com.sqt.edu.common.constant.CommonEnum;
 import com.sqt.edu.core.holder.DbContextHolder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
