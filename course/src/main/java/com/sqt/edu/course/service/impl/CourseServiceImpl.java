@@ -84,4 +84,9 @@ public class CourseServiceImpl implements CourseService {
         return new JsonResult(courseInfoList);
     }
 
+    @Override
+    public JsonResult list() {
+        return null;
+    }
+
 }

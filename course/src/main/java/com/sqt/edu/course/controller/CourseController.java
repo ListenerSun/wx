@@ -24,6 +24,8 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+
+
     @PostMapping("/create")
     @ApiOperation(value = "C-1.1-创建一个课程")
     public JsonResult create(@RequestBody @Valid CourseDTO courseDTO) {
@@ -31,13 +33,20 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}")
-    @ApiOperation(value = "C-1.2-根绝courseId查询课程详细信息")
+    @ApiOperation(value = "C-1.2-根据courseId查询课程详细信息")
     public JsonResult getCourseInfoById(@PathVariable @Valid @NotNull Long courseId){
         return courseService.getCourseInfoById(courseId);
     }
 
     @GetMapping("list_by_teacher_id/{teacherId}")
+    @ApiOperation(value = "C-1.3-根据teacherId查询课程列表")
     public JsonResult listByTeacherId(@PathVariable @Valid @NotNull Long teacherId){
         return courseService.listByTeacherId(teacherId);
+    }
+
+    @GetMapping("/list")
+    @ApiOperation(value = "C-1.4-查询课程列表")
+    public JsonResult list(){
+        return courseService.list();
     }
 }

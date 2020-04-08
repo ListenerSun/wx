@@ -27,4 +27,9 @@ public interface CourseService {
      * @return
      */
     JsonResult listByTeacherId(Long teacherId);
+
+    /**查询 course list
+     * @return
+     */
+    JsonResult list();
 }

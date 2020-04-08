@@ -2,6 +2,10 @@ package com.sqt.edu.course.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sqt.edu.course.entity.Course;
+import com.sqt.edu.course.response.CourseInfo;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Description:
@@ -9,4 +13,10 @@ import com.sqt.edu.course.entity.Course;
  * @Date: Created in 2020-01-13 14:49
  */
 public interface CourseMapper extends BaseMapper<Course> {
+
+    /**查询所有的课程列表
+     * @return
+     */
+    @Select(value = "select * from course")
+    List<CourseInfo> listAll();
 }
