@@ -1,5 +1,8 @@
 package com.sqt.edu.teacher.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.exception.ServiceException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
+    @SentinelResource("/test/hello")
     @GetMapping("/hello")
-    public String test(){
-        return "test";
+    public JsonResult test() {
+        if (1 == 1) {
+            throw new ServiceException("teacher服务出异常了!");
+        }
+        return new JsonResult("test");
     }
 }

@@ -24,6 +24,11 @@
                <groupId>com.alibaba.cloud</groupId>
                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
           </dependency>
+          <!--集成 Sentinel 数据持久化到 Nacos-->
+          <dependency>
+               <groupId>com.alibaba.csp</groupId>
+               <artifactId>sentinel-datasource-nacos</artifactId>
+          </dependency>
           <!--web 模块-->
           <dependency>
                <groupId>org.springframework.boot</groupId>

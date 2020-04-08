@@ -20,6 +20,7 @@
           <easy-poi-web.version>3.2.0</easy-poi-web.version>
           <easy-poi-annotation.version>3.2.0</easy-poi-annotation.version>
           <fastjson.version>1.2.46</fastjson.version>
+          <oss.version>2.8.3</oss.version>
      </properties>
 
 
@@ -101,7 +102,16 @@
                <artifactId>fastjson</artifactId>
                <version>${fastjson.version}</version>
           </dependency>
-
+          <!-- 阿里云Oss -->
+          <dependency>
+               <groupId>com.aliyun.oss</groupId>
+               <artifactId>aliyun-sdk-oss</artifactId>
+               <version>${oss.version}</version>
+          </dependency>
+          <dependency>
+               <groupId>com.aliyun.oss</groupId>
+               <artifactId>aliyun-sdk-oss</artifactId>
+          </dependency>
      </dependencies>
 
 </project>

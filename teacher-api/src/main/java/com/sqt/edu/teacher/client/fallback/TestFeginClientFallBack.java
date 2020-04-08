@@ -1,9 +1,11 @@
 package com.sqt.edu.teacher.client.fallback;
 
+import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.teacher.client.TestFeginClient;
 import org.springframework.stereotype.Component;
+import springfox.documentation.spring.web.json.Json;
 
 /**
  * @Description:
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestFeginClientFallBack implements TestFeginClient {
     @Override
-    public String test() {
+    public JsonResult test() {
+//        return new JsonResult(ResultCode.MIC_SERVICE_EXCEPTION);
         throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
     }
 }
