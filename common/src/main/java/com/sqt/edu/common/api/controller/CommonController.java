@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +28,7 @@ public class CommonController {
 
     @ApiOperation(value = "OSS-1.1-上传文件")
     @PostMapping("/upload")
-    public JsonResult upLoadFile(MultipartFile imageFile) {
+    public JsonResult upLoadFile(@RequestParam("file") MultipartFile imageFile) {
 
         return ossService.upLoadFile(imageFile);
     }

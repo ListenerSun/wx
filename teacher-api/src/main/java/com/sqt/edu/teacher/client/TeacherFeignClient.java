@@ -8,6 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -16,7 +17,7 @@ import javax.validation.Valid;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-24 18:34
  */
-@FeignClient(value = "edu-teacher",path = "/teacher/edu/teacher",fallbackFactory = TeacherFeignClientFallBack.class)
+@FeignClient(name = "edu-teacher",path = "/teacher/edu/teacher",fallbackFactory = TeacherFeignClientFallBack.class)
 public interface TeacherFeignClient {
 
     /**add a teacher info
@@ -28,7 +29,8 @@ public interface TeacherFeignClient {
 
     /**根据acc_user_id查询老师信息
      * @param accUserId
+     * @return
      */
     @GetMapping("info_by_acc_user_id")
-    JsonResult<TeacherInfo> getTeacherInfoByAccUserId(Long accUserId);
+    JsonResult<TeacherInfo> getTeacherInfoByAccUserId(@RequestParam Long accUserId);
 }

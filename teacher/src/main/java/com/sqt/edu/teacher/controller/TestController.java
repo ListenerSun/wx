@@ -19,9 +19,9 @@ public class TestController {
     @SentinelResource("/test/hello")
     @GetMapping("/hello")
     public JsonResult test() {
-        if (1 == 1) {
-            throw new ServiceException("teacher服务出异常了!");
-        }
+//        if (1 == 1) {
+//            throw new ServiceException("teacher服务出异常了!");
+//        }
         return new JsonResult("test");
     }
 }

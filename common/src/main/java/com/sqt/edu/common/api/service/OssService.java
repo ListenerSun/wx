@@ -5,6 +5,7 @@ import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.sqt.edu.common.api.vo.OssReponseVO;
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.config.OssConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,7 @@ public class OssService {
     private static final String OSS_OTHER_FILE_PATH_NAME = "other";
 
     @Autowired
-    private OSS ossClient;
+    private OssConfig ossConfig;
 
     @Value("${oss.bucketName}")
     private String bucketName;
@@ -41,6 +42,7 @@ public class OssService {
      * @return
      */
     public JsonResult upLoadFile(MultipartFile imageFile) {
+        OSS ossClient = getOssClient();
         // 创建PutObjectRequest对象。
         PutObjectRequest putObjectRequest = null;
         String filepPath = "";
@@ -104,5 +106,10 @@ public class OssService {
         }
 
         return path;
+    }
+
+
+    private OSS getOssClient(){
+        return ossConfig.getOssClient();
     }
 }

@@ -20,11 +20,11 @@ public class TeacherFeignClientFallBack implements TeacherFeignClient {
 
     @Override
     public JsonResult add(@Valid TeacherInfoDTO teacherInfoDTO) {
-        throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
+        return new JsonResult<>(ResultCode.MIC_SERVICE_EXCEPTION);
     }
 
     @Override
     public JsonResult<TeacherInfo> getTeacherInfoByAccUserId(Long accUserId) {
-        throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
+        return new JsonResult<>(ResultCode.MIC_SERVICE_EXCEPTION);
     }
 }

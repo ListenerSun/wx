@@ -31,6 +31,8 @@ public class Course extends BaseModel {
     private String description;
     @ApiModelProperty(value = "课程价格")
     private BigDecimal coursePrice;
+    @ApiModelProperty(value = "打折价格")
+    private BigDecimal discountPrice;
     @ApiModelProperty(value = "课程Logo")
     private String courseLogo;
     @ApiModelProperty(value = "是否免费")
@@ -45,4 +47,6 @@ public class Course extends BaseModel {
     private String courseType;
     @ApiModelProperty(value = "是否是视频")
     private Boolean isVideo;
+    @ApiModelProperty(value = "上架状态: 0:未上架，1：上架中，2:已下架")
+    private String courseState;
 }

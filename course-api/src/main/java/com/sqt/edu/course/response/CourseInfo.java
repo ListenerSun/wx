@@ -27,6 +27,8 @@ public class CourseInfo implements Serializable {
     private String courseName;
     @ApiModelProperty(value = "课程价格")
     private BigDecimal coursePrice;
+    @ApiModelProperty(value = "打折价格")
+    private BigDecimal discountPrice;
     @ApiModelProperty(value = "课程Logo")
     private String courseLogo;
     @ApiModelProperty(value = "是否免费")
@@ -35,4 +37,6 @@ public class CourseInfo implements Serializable {
     private Integer countBuy;
     @ApiModelProperty(value = "已学习的人数")
     private Integer countStudy;
+    @ApiModelProperty(value = "课程上架状态")
+    private String courseState;
 }

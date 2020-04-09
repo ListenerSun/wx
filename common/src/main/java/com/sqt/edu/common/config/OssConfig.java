@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
@@ -22,8 +23,7 @@ public class OssConfig {
     @Autowired
     private ConfigurableApplicationContext ctx;
 
-    @Bean
-    public OSS oss() {
+    public OSS getOssClient() {
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         String endpoint = "";
         // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，创建RAM账号。
@@ -48,7 +48,6 @@ public class OssConfig {
             }
 
         }
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-        return ossClient;
+        return new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
     }
 }

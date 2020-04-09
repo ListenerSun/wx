@@ -3,7 +3,8 @@ package com.sqt.edu.gateway;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: Created in 2020-01-20 17:45
  */
 @Slf4j
-@EnableEurekaClient
+@ComponentScan(basePackages = "com.sqt.edu")
+@EnableDiscoveryClient
 @SpringBootApplication
 public class Gateway_App {
 

@@ -18,10 +18,10 @@ spring:
 
 # cloud 配置
   cloud:
-    sentinel:
-      transport:
-        port: 8719
-        dashboard: localhost:4444
+#    sentinel:
+#      transport:
+#        port: 8719
+#        dashboard: localhost:4444
     nacos:
       # 服务注册配置
       discovery:

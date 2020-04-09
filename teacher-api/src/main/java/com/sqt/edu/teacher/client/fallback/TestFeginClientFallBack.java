@@ -16,7 +16,7 @@ import springfox.documentation.spring.web.json.Json;
 public class TestFeginClientFallBack implements TestFeginClient {
     @Override
     public JsonResult test() {
-//        return new JsonResult(ResultCode.MIC_SERVICE_EXCEPTION);
-        throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
+        return new JsonResult(ResultCode.MIC_SERVICE_EXCEPTION);
+//        throw new ServiceException(ResultCode.MIC_SERVICE_EXCEPTION);
     }
 }

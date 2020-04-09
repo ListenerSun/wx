@@ -33,4 +33,6 @@ public class CourseDTO implements Serializable {
     private String courseLogo;
     @ApiModelProperty(value = "是否免费")
     private Boolean isFree;
+    @ApiModelProperty(value = "是否视频")
+    private Boolean isVideo;
 }

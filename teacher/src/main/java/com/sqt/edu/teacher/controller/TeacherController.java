@@ -28,9 +28,10 @@ public class TeacherController {
     public JsonResult add(@RequestBody @Valid TeacherInfoDTO teacherInfoDTO){
         return teacherService.add(teacherInfoDTO);
     }
+
     @ApiOperation(value = "T-1.2-根据acc_user_id查询老师信息")
     @GetMapping("info_by_acc_user_id")
-    public JsonResult getTeacherInfoByAccUserId(Long accUserId){
+    public JsonResult getTeacherInfoByAccUserId(@RequestParam Long accUserId){
         return teacherService.getTeacherInfoByAccUserId(accUserId);
     }
 

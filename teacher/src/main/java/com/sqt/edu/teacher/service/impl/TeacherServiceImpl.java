@@ -2,6 +2,7 @@ package com.sqt.edu.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
@@ -32,8 +33,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public JsonResult getTeacherInfoByAccUserId(Long acUserId) {
-        TeacherInfo teacherInfo = teacherInfoMapper.selectOne(Wrappers.<TeacherInfo>lambdaQuery().eq(TeacherInfo::getAccUserId, acUserId));
+    public JsonResult getTeacherInfoByAccUserId(Long accUserId) {
+        TeacherInfo teacherInfo = teacherInfoMapper.selectOne(Wrappers.<TeacherInfo>lambdaQuery().eq(TeacherInfo::getAccUserId, accUserId));
+        if (null == teacherInfo){
+            log.warn("==========>查询教师信息不存在。accUserId:{}",accUserId);
+            return new JsonResult(ResultCode.TEA_NOT_EXIST);
+        }
         return new JsonResult(teacherInfo);
     }
 }
