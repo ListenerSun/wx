@@ -25,8 +25,8 @@ spring:
         server-addr: wx-edu:8848
         group: wx-edu-student
         file-extension: yaml
-
-logging:
+#
+#logging:
 #  level: {ERROR,"com.sqt.edu.student"}
-  config: classpath:logback-spring.xml
+#  config: classpath:logback-spring.xml
 

@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--        https://www.springframework.org/schema/beans/spring-beans.xsd">-->
 
-     <!-- services -->
+<!--     &lt;!&ndash; services &ndash;&gt;-->
 
-     <bean id="home" class="com.sqt.edu.student.test.Home">
+<!--     <bean id="home" class="com.sqt.edu.student.test.Home">-->
 
-     </bean>
-     <bean id="myApplicationAware" class="com.sqt.edu.student.test.MyApplicationAware">
+<!--     </bean>-->
+<!--     <bean id="myApplicationAware" class="com.sqt.edu.student.test.MyApplicationAware">-->
 
-     </bean>
+<!--     </bean>-->
 
-     <!-- more bean definitions for services go here -->
+<!--     &lt;!&ndash; more bean definitions for services go here &ndash;&gt;-->
 
-</beans>
+<!--</beans>-->

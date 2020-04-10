@@ -1,5 +1,6 @@
 package com.sqt.edu.teacher;
 
+import com.sqt.edu.common.base.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,6 +32,10 @@ public class Teacher_APP {
 
     @RestController
     public class EchoController {
+        @GetMapping("/hello")
+        public JsonResult hello(){
+            return new JsonResult("This is Teacher Service !");
+        }
         @GetMapping(value = "/echo/{string}")
         public String echo(@PathVariable String string) {
             return "Hello Nacos Discovery " + string;

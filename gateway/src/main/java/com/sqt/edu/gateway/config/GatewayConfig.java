@@ -17,4 +17,5 @@ public class GatewayConfig {
         return new GatewayGlobalFilter();
     }
 
+
 }

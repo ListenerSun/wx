@@ -38,7 +38,7 @@ public class Account_APP {
     @RestController
     class Test{
         @ApiOperation(value = "test")
-        @GetMapping("/test_demo")
+        @GetMapping("/hello")
         public String testDemo(){
             return "This is Account Service !!";
         }

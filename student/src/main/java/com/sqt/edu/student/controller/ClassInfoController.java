@@ -58,7 +58,7 @@ public class ClassInfoController {
 
     /**********************************************用户端需要的接口******************************/
 
-    @PostMapping("/enroll/list")
+    @GetMapping("/enroll/list")
     @ApiOperation(value = "C2-1.5-获取正在招生的补课班级列表")
     public JsonResult enrollClassInfoList() {
         return classInfoService.enrollClassInfoList();

@@ -20,11 +20,42 @@ spring:
       # 服务注册配置
       discovery:
         server-addr: wx-edu:8848
+        register-enabled: true
       #配置文件管理 配置
       config:
         server-addr: wx-edu:8848
         group: wx-edu-gateway
         file-extension: yaml
+    #网关配置
+    gateway:
+      # 允许服务发现
+      discovery:
+        locator:
+          enabled: true
+
+      #      http 全局超时设置 ms 为单位
+      #      httpclient:
+      #        connect-timeout: 1000
+      #        response-timeout: 5s
+      routes:
+        - id: edu-account
+          uri: lb://edu-account/
+          predicates:
+            - Path= /account/**
+        - id: edu-course
+          uri: lb://edu-course/
+          predicates:
+            - Path= /course/**
+        - id: edu-teacher
+          uri: lb://edu-teacher/
+          predicates:
+            - Path= /teacher/**
+        - id: edu-student
+          uri: lb://edu-student/
+          predicates:
+            - Path= /student/**
+
+
 
 
 
