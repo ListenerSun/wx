@@ -16,6 +16,16 @@
           <dependency>
                <groupId>org.springframework.cloud</groupId>
                <artifactId>spring-cloud-starter-gateway</artifactId>
+               <exclusions>
+                    <exclusion>
+                         <groupId>org.springframework.boot</groupId>
+                         <artifactId>spring-boot-starter-web</artifactId>
+                    </exclusion>
+               </exclusions>
+          </dependency>
+          <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-webflux</artifactId>
           </dependency>
           <!--Nacos相关依赖 -->
           <dependency>
@@ -25,11 +35,6 @@
           <dependency>
                <groupId>com.alibaba.cloud</groupId>
                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-          </dependency>
-          <!-- tomcat -->
-          <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-tomcat</artifactId>
           </dependency>
           <dependency>
                <groupId>javax.servlet</groupId>
