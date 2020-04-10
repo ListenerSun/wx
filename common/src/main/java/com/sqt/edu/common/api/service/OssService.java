@@ -5,7 +5,7 @@ import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.sqt.edu.common.api.vo.OssReponseVO;
 import com.sqt.edu.common.base.JsonResult;
-import com.sqt.edu.common.config.OssConfig;
+import com.sqt.edu.common.config.OssAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +28,7 @@ public class OssService {
     private static final String OSS_OTHER_FILE_PATH_NAME = "other";
 
     @Autowired
-    private OssConfig ossConfig;
+    private OssAutoConfiguration ossConfig;
 
     @Value("${oss.bucketName}")
     private String bucketName;

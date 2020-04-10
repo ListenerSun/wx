@@ -1,5 +1,7 @@
 package com.sqt.edu.common.config;
 
+import com.alibaba.cloud.nacos.discovery.NacosDiscoveryClient;
+import com.alibaba.nacos.client.config.NacosConfigService;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +20,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
  */
 @Slf4j
 @Configuration
-public class OssConfig {
+public class OssAutoConfiguration {
+
 
     @Autowired
     private ConfigurableApplicationContext ctx;
