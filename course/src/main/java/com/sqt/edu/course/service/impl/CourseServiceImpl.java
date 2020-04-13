@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.course.constant.CourseConstant;
 import com.sqt.edu.course.entity.Course;
 import com.sqt.edu.course.mapper.CourseMapper;
@@ -13,7 +13,6 @@ import com.sqt.edu.course.request.CourseDTO;
 import com.sqt.edu.course.response.CourseInfo;
 import com.sqt.edu.course.service.CourseService;
 import com.sqt.edu.teacher.client.TeacherFeignClient;
-import com.sqt.edu.teacher.client.TestFeginClient;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -35,14 +34,11 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private TeacherFeignClient teacherFeignClient;
     @Autowired
-    private TestFeginClient testFeginClient;
-    @Autowired
     private CourseMapper courseMapper;
 
     @Override
     public JsonResult create(CourseDTO courseDTO) {
         Long accUserId = RequestHelper.getUserId();
-        JsonResult test = testFeginClient.test();
         JsonResult<TeacherInfo> teacherInfoJsonResult = teacherFeignClient.getTeacherInfoByAccUserId(accUserId);
         log.info("==========>调用edu-teacher服务,根据accUserId查询老师信息返回结果:{}", JSON.toJSONString(teacherInfoJsonResult));
         Course course = Course.builder()
@@ -55,6 +51,7 @@ public class CourseServiceImpl implements CourseService {
                 .teacherId(null == teacherInfoJsonResult.getData() ? -1L : teacherInfoJsonResult.getData().getId())
                 .build();
         courseMapper.insert(course);
+        log.info("=========> 新增课程成功");
         return new JsonResult();
     }
 

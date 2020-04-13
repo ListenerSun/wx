@@ -6,6 +6,12 @@ package com.sqt.edu.common.constant;
  * @Date: Created in 2019-12-27 19:13
  */
 public class CacheConstants {
+
+    /**
+     * redis key
+     */
+    public final static String CACHE_KEY_DEFAULT = "key";
+
     /**
      * 用户缓存
      */
@@ -25,6 +31,11 @@ public class CacheConstants {
      * 手机号发送短信次数
      */
     public final static String PHONE = "phone_send_count";
+
+    /**
+     * 字典缓存值
+     */
+    public final static String DIC_CACHE = "dic_data";
 
 
 }

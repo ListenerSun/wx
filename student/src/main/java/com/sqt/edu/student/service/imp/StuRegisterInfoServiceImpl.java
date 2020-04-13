@@ -2,14 +2,13 @@ package com.sqt.edu.student.service.imp;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-import cn.hutool.poi.excel.ExcelFileUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.student.constant.StudentEnum;
 import com.sqt.edu.student.dto.request.QueryStuRegisterInfoDTO;
 import com.sqt.edu.student.dto.request.StuRegisterInfoDTO;
@@ -27,7 +26,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;

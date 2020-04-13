@@ -1,16 +1,12 @@
 package com.sqt.edu.common.config;
 
-import com.alibaba.cloud.nacos.discovery.NacosDiscoveryClient;
-import com.alibaba.nacos.client.config.NacosConfigService;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 /**

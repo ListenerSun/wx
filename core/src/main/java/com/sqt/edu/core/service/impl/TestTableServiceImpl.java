@@ -2,6 +2,10 @@ package com.sqt.edu.core.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.sqt.edu.common.annotation.DS;
+import com.sqt.edu.common.api.entity.SysDicData;
+import com.sqt.edu.common.api.entity.SysDicType;
+import com.sqt.edu.common.api.mapper.SysDicDataMapper;
+import com.sqt.edu.common.api.mapper.SysDicTypeMapper;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.constant.CommonConstant;
 import com.sqt.edu.common.constant.ServiceConstant;
@@ -10,7 +14,7 @@ import com.sqt.edu.core.entity.UserScore;
 import com.sqt.edu.core.mapper.TestTableMapper;
 import com.sqt.edu.core.mapper.UserScoreMapper;
 import com.sqt.edu.core.service.TestTableService;
-import com.sqt.edu.core.utils.RedisHelper;
+import com.sqt.edu.common.utils.RedisHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
@@ -46,6 +49,11 @@ public class TestTableServiceImpl implements TestTableService {
     private RedisTemplate redisTemplate;
     @Autowired
     private UserScoreMapper userScoreMapper;
+    @Autowired
+    private SysDicTypeMapper sysDicTypeMapper;
+    @Autowired
+    private SysDicDataMapper sysDicDataMapper;
+
 
     @Override
     public JsonResult inteceptor() {
@@ -150,10 +158,31 @@ public class TestTableServiceImpl implements TestTableService {
                 return redisZsetScore();
             case "3":
                 return redisLock(type);
+            case "4":
+                return redisHash(type);
             default:
                 return redisFindTop(type);
         }
     }
+
+    /**测试 hash 数据类型
+     * @param type
+     * @return
+     */
+    private JsonResult redisHash(String type) {
+        Map<String,List<SysDicData>> map = new HashMap<>();
+        List<SysDicType> sysDicTypeList = sysDicTypeMapper.queryAllDicType();
+        if (null != sysDicTypeList && sysDicTypeList.size() != 0) {
+            sysDicTypeList.forEach(e -> {
+                List<SysDicData> sysDicDataList = sysDicDataMapper.queryByDicType(e.getCode());
+               redisHelper.hset("sqt","key",e.getCode(),sysDicDataList);
+            });
+        }
+        Map<String, Object> all = redisHelper.hgetAll("sqt", "key");
+
+        return new JsonResult(all);
+    }
+
 
     /**
      * 测试分布式锁

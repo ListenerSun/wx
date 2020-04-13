@@ -45,7 +45,7 @@ public class TestTableController {
         return testTableService.webLog(testTable);
     }
 
-    @ApiOperation(value = "t-1.3-redis测试", notes = "type:1 String数据类型测试;type:2 zset数据类型测试")
+    @ApiOperation(value = "t-1.3-redis测试", notes = "type:1 String数据类型测试;type:2 zset数据类型测试; type:3 hash数据类型测试 ")
     @PostMapping("/redis/{type}")
     public JsonResult redis(@PathVariable(value = "type") @NotBlank(message = "type不能为空!") String type) {
         return testTableService.redis(type);

@@ -1,4 +1,4 @@
-package com.sqt.edu.core.entity;
+package com.sqt.edu.common.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;

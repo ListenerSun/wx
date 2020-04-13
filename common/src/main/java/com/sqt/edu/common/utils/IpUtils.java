@@ -1,4 +1,4 @@
-package com.sqt.edu.core.utils;
+package com.sqt.edu.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

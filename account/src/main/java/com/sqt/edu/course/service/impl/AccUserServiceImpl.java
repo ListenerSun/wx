@@ -16,7 +16,7 @@ import com.sqt.edu.common.base.BaseLoginParam;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.common.utils.RequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;

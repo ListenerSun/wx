@@ -17,8 +17,6 @@
           <hutool.version>4.5.0</hutool.version>
           <jasypt.version>2.1.0</jasypt.version>
           <pagehelper-spring.version>1.2.10</pagehelper-spring.version>
-
-          <spring-data-redis.version>2.0.3.RELEASE</spring-data-redis.version>
           <druid-spring.version>1.1.21</druid-spring.version>
           <jjwt.version>0.9.1</jjwt.version>
           <commons-lang3.version>3.5</commons-lang3.version>
@@ -27,8 +25,6 @@
           <aliyun-oss.version>3.4.0</aliyun-oss.version>
           <aliyun-rocket.version>1.7.8.Final</aliyun-rocket.version>
           <ant.version>1.9.7</ant.version>
-          <jedis.version>2.9.0</jedis.version>
-          <redisson.version>3.11.0</redisson.version>
           <dynamic-datasource-spring-boot-starter.version>2.5.0</dynamic-datasource-spring-boot-starter.version>
           <guava.version>28.2-jre</guava.version>
      </properties>
@@ -46,8 +42,6 @@
                <artifactId>hutool-all</artifactId>
                <version>${hutool.version}</version>
           </dependency>
-
-
           <!-- Nacos 依赖-->
           <dependency>
                <groupId>com.alibaba.cloud</groupId>
@@ -68,26 +62,6 @@
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-actuator</artifactId>
           </dependency>
-          <!-- redis相关包开始 -->
-          <dependency>
-               <groupId>org.springframework.data</groupId>
-               <artifactId>spring-data-redis</artifactId>
-               <version>${spring-data-redis.version}</version>
-          </dependency>
-
-          <dependency>
-               <groupId>redis.clients</groupId>
-               <artifactId>jedis</artifactId>
-               <version>${jedis.version}</version>
-          </dependency>
-
-          <dependency>
-               <groupId>org.redisson</groupId>
-               <artifactId>redisson</artifactId>
-               <version>${redisson.version}</version>
-          </dependency>
-          <!-- redis相关包结束 -->
-
           <!--监控客户端-->
           <dependency>
                <groupId>de.codecentric</groupId>
@@ -105,14 +79,11 @@
                <artifactId>httpclient</artifactId>
                <version>${http.version}</version>
           </dependency>
-
           <dependency>
                <groupId>org.apache.httpcomponents</groupId>
                <artifactId>httpasyncclient</artifactId>
                <version>${httpasyncclient.version}</version>
           </dependency>
-
-
           <!--配置文件加密-->
           <dependency>
                <groupId>com.github.ulisesbocchio</groupId>
@@ -130,7 +101,6 @@
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-jdbc</artifactId>
           </dependency>
-
           <dependency>
                <groupId>com.github.pagehelper</groupId>
                <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -143,9 +113,6 @@
                <artifactId>druid-spring-boot-starter</artifactId>
                <version>${druid-spring.version}</version>
           </dependency>
-
-
-
           <!--jwt-->
           <dependency>
                <groupId>io.jsonwebtoken</groupId>
@@ -175,8 +142,6 @@
                <artifactId>commons-pool2</artifactId>
                <version>2.4.2</version>
           </dependency>
-
-
           <!--pinyin4j-->
           <dependency>
                <groupId>com.belerweb</groupId>
@@ -197,10 +162,6 @@
                <artifactId>feign-okhttp</artifactId>
                <version>9.5.0</version>
           </dependency>
-
-
-
-
           <dependency>
                <groupId>dom4j</groupId>
                <artifactId>dom4j</artifactId>

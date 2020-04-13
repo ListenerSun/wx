@@ -36,7 +36,7 @@ import java.util.Set;
 @Slf4j
 @Configuration
 @AutoConfigureAfter({DataSourceConfiguration.class})
-@MapperScan(basePackages = {"com.sqt.edu.*.mapper*"})
+@MapperScan(basePackages = {"com.sqt.edu.*.mapper*","com.sqt.edu.*.api.mapper*"})
 public class MybatisConfiguration {
 
     @Bean

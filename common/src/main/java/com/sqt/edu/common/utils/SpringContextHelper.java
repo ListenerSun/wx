@@ -1,4 +1,4 @@
-package com.sqt.edu.core.utils;
+package com.sqt.edu.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

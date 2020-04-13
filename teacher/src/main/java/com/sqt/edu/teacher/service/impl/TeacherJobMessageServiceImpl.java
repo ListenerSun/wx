@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.entity.TeacherJobMessage;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;

@@ -1,11 +1,11 @@
-package com.sqt.edu.core.utils;
+package com.sqt.edu.common.utils;
 
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.constant.AuthConstants;
 import com.sqt.edu.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -89,7 +89,7 @@ public class RequestHelper {
         }
         Long temp = -1L;
         try {
-            if (NumberUtils.isNumber(userId)) {
+            if (NumberUtils.isCreatable(userId)) {
                 temp = Long.parseLong(userId);
             }
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.sqt.edu.core.utils;
+package com.sqt.edu.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
  * key=微服务标识:数据标识（业务表主键｜自定义唯一Key）
  * <p>
  * 数据标识必须唯一
+ *
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-25 22:24
@@ -46,8 +47,6 @@ public class RedisHelper {
      */
     private static final String SET_WITH_EXPIRE_TIME = "PX";
     private static final String RELEASE_LOCK_SCRIPT = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-
-
 
     @Autowired
     RedisTemplate redisTemplate;
@@ -251,6 +250,7 @@ public class RedisHelper {
 
     /**
      * 获取key的一个value的score
+     *
      * @param key
      * @param value
      * @return
@@ -283,6 +283,7 @@ public class RedisHelper {
     public <T> void hset(String cacheName, String key, String field, T value) {
         redisTemplate.opsForHash().put(redisKey(cacheName, key), field, value);
     }
+
 
     /**
      * 查询hash缓存
@@ -338,25 +339,25 @@ public class RedisHelper {
     /**
      * 该加锁方法仅针对单实例 Redis 可实现分布式加锁
      * 对于 Redis 集群则无法使用
-     *
+     * <p>
      * 支持重复，线程安全
      *
-     * @param lockKey   加锁键
-     * @param clientId  加锁客户端唯一标识(采用UUID)
-     * @param seconds   锁过期时间
+     * @param lockKey  加锁键
+     * @param clientId 加锁客户端唯一标识(采用UUID)
+     * @param seconds  锁过期时间
      * @return
      */
-    public Boolean tryLock(String lockKey, String clientId, long seconds){
+    public Boolean tryLock(String lockKey, String clientId, long seconds) {
         return (Boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
             @Override
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
                 Jedis jedis = (Jedis) connection.getNativeConnection();
                 String result = jedis.set(lockKey, clientId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, seconds);
                 if (LOCK_SUCCESS.equals(result)) {
-                    log.info("==========>clientId：{} 加锁成功!",clientId);
+                    log.info("==========>clientId：{} 加锁成功!", clientId);
                     return Boolean.TRUE;
                 }
-                log.warn("==========>clientId:{} 获取锁失败!",clientId);
+                log.warn("==========>clientId:{} 获取锁失败!", clientId);
                 return Boolean.FALSE;
             }
         });
@@ -375,10 +376,10 @@ public class RedisHelper {
             Object result = jedis.eval(RELEASE_LOCK_SCRIPT, Collections.singletonList(lockKey),
                     Collections.singletonList(clientId));
             if (RELEASE_SUCCESS.equals(result)) {
-                log.info("==========>clientId：{} 释放锁成功!",clientId);
+                log.info("==========>clientId：{} 释放锁成功!", clientId);
                 return Boolean.TRUE;
             }
-            log.warn("==========>clientId：{} 释放锁失败!",clientId);
+            log.warn("==========>clientId：{} 释放锁失败!", clientId);
             return Boolean.FALSE;
         });
     }

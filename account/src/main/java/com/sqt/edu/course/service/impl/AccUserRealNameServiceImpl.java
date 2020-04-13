@@ -9,7 +9,7 @@ import com.sqt.edu.course.service.AccUserRealNameService;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
-import com.sqt.edu.core.utils.RequestHelper;
+import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.teacher.client.TeacherFeignClient;
 import com.sqt.edu.teacher.request.TeacherInfoDTO;
 import lombok.extern.slf4j.Slf4j;
