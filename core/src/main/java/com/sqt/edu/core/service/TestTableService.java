@@ -54,4 +54,9 @@ public interface TestTableService {
      * @return
      */
     JsonResult redis(String type);
+
+    /**jdbcType 测试
+     * @return
+     */
+    JsonResult jdbcType();
 }

@@ -110,6 +110,12 @@ public class TestTableController {
         }
         return new JsonResult();
     }
+    @ApiOperation(value = "t-1.9-数据类型测试")
+    @GetMapping("/jdbc_type")
+    public JsonResult jdbcType() {
+        return testTableService.jdbcType();
+    }
+
 
     @Data
     @ApiModel

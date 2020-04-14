@@ -54,7 +54,6 @@ public class TestTableServiceImpl implements TestTableService {
     @Autowired
     private SysDicDataMapper sysDicDataMapper;
 
-
     @Override
     public JsonResult inteceptor() {
         TestTable testTable = new TestTable();
@@ -165,24 +164,39 @@ public class TestTableServiceImpl implements TestTableService {
         }
     }
 
-    /**测试 hash 数据类型
+    @Override
+    public JsonResult jdbcType() {
+        List<Map<String, Integer>> maps = testTableMapper.jdbcType();
+        maps.forEach(e -> {
+            Integer id = e.get("id");
+            Integer name = e.get("name");
+            Integer email = e.get("email");
+            System.out.println(id);
+            System.out.println(name);
+            System.out.println(email);
+        });
+        return new JsonResult(maps);
+    }
+
+    /**
+     * 测试 hash 数据类型
+     *
      * @param type
      * @return
      */
     private JsonResult redisHash(String type) {
-        Map<String,List<SysDicData>> map = new HashMap<>();
+        Map<String, List<SysDicData>> map = new HashMap<>();
         List<SysDicType> sysDicTypeList = sysDicTypeMapper.queryAllDicType();
         if (null != sysDicTypeList && sysDicTypeList.size() != 0) {
             sysDicTypeList.forEach(e -> {
                 List<SysDicData> sysDicDataList = sysDicDataMapper.queryByDicType(e.getCode());
-               redisHelper.hset("sqt","key",e.getCode(),sysDicDataList);
+                redisHelper.hset("sqt", "key", e.getCode(), sysDicDataList);
             });
         }
         Map<String, Object> all = redisHelper.hgetAll("sqt", "key");
 
         return new JsonResult(all);
     }
-
 
     /**
      * 测试分布式锁
@@ -199,31 +213,31 @@ public class TestTableServiceImpl implements TestTableService {
             String clientId = Thread.currentThread().getName();
             Boolean isLock = redisHelper.tryLock(CommonConstant.REDIS_LOCK_ID, clientId,
                     CommonConstant.REDIS_LOCK_EXPIRE_TIME);
-                if (isLock) {
-                    try {
-                        //再次查询缓存
-                        String s = redisHelper.getObj("wby", "key", String.class);
-                        if (null != s) {
-                            return getJsonResult(s);
-                        }
-                        TestTable selectOne = testTableMapper.selectByType(type);
-                        if (null == selectOne) {
-                            redisHelper.setObj("wby", "key", CommonConstant.REDIS_NULL_DEFAULT);
-                            log.info("==========>当前线程: {} 设置了null！",Thread.currentThread().getName());
-                        } else {
-                            redisHelper.setObj("wby", "key", JSON.toJSONString(selectOne));
-                            log.info("==========>当前线程: {} 设置了test数据！",Thread.currentThread().getName());
-                        }
-                        return new JsonResult(selectOne);
-                    }catch (Exception e) {
-                        log.error("==========>当前线程:{},获取锁后业务出现异常:{}", Thread.currentThread().getName(),e);
-                    } finally {
-                        redisHelper.releaseLock(CommonConstant.REDIS_LOCK_ID, clientId);
+            if (isLock) {
+                try {
+                    //再次查询缓存
+                    String s = redisHelper.getObj("wby", "key", String.class);
+                    if (null != s) {
+                        return getJsonResult(s);
                     }
-                }else {
-                    redisLock(type);
+                    TestTable selectOne = testTableMapper.selectByType(type);
+                    if (null == selectOne) {
+                        redisHelper.setObj("wby", "key", CommonConstant.REDIS_NULL_DEFAULT);
+                        log.info("==========>当前线程: {} 设置了null！", Thread.currentThread().getName());
+                    } else {
+                        redisHelper.setObj("wby", "key", JSON.toJSONString(selectOne));
+                        log.info("==========>当前线程: {} 设置了test数据！", Thread.currentThread().getName());
+                    }
+                    return new JsonResult(selectOne);
+                } catch (Exception e) {
+                    log.error("==========>当前线程:{},获取锁后业务出现异常:{}", Thread.currentThread().getName(), e);
+                } finally {
+                    redisHelper.releaseLock(CommonConstant.REDIS_LOCK_ID, clientId);
                 }
+            } else {
+                redisLock(type);
             }
+        }
 
         return null;
     }
@@ -239,7 +253,7 @@ public class TestTableServiceImpl implements TestTableService {
             return new JsonResult();
         }
         TestTable testTable = JSON.parseObject(jsonTestTable, TestTable.class);
-        log.info("==========>当前线程:{} 在缓存中拿到了数据",Thread.currentThread().getName());
+        log.info("==========>当前线程:{} 在缓存中拿到了数据", Thread.currentThread().getName());
         return new JsonResult(testTable);
     }
 
