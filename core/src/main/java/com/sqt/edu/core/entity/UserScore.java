@@ -1,5 +1,6 @@
 package com.sqt.edu.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ import java.sql.Date;
 @TableName("user_score")
 public class UserScore implements Serializable {
 
+    @TableId
     private int userId;
     private int score;
     private Date createTime;

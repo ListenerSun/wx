@@ -12,6 +12,25 @@
      <artifactId>gateway</artifactId>
 
      <dependencies>
+          <dependency>
+               <groupId>com.sqt.edu</groupId>
+               <artifactId>core</artifactId>
+               <version>1.0-SNAPSHOT</version>
+               <exclusions>
+                    <exclusion>
+                         <groupId>org.springframework.boot</groupId>
+                         <artifactId>spring-boot-starter-web</artifactId>
+                    </exclusion>
+                    <exclusion>
+                         <groupId>org.springframework.boot</groupId>
+                         <artifactId>spring-boot-starter-test</artifactId>
+                    </exclusion>
+                    <exclusion>
+                         <groupId>org.springframework</groupId>
+                         <artifactId>spring-webmvc</artifactId>
+                    </exclusion>
+               </exclusions>
+          </dependency>
           <!-- gateway网关 -->
           <dependency>
                <groupId>org.springframework.cloud</groupId>

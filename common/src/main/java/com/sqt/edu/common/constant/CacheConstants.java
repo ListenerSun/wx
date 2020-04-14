@@ -13,6 +13,11 @@ public class CacheConstants {
     public final static String CACHE_KEY_DEFAULT = "key";
 
     /**
+     * access_token cache name
+     */
+    public static final String CACHE_ACCESS_TOKEN = "access_token";
+
+    /**
      * 用户缓存
      */
     public final static String CACHE_USER = "loginuser";

@@ -1,6 +1,6 @@
 package com.sqt.edu.gateway.config;
 
-import com.sqt.edu.gateway.filter.GatewayGlobalFilter;
+import com.sqt.edu.gateway.filter.AuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayConfig {
 
     @Bean
-    public GatewayGlobalFilter customFilter() {
-        return new GatewayGlobalFilter();
+    public AuthFilter customFilter() {
+        return new AuthFilter();
     }
 
 
