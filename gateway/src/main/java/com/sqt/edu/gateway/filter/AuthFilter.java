@@ -27,12 +27,16 @@ public class AuthFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info("==========> 经过了 AuthFilter 过滤器");
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
-        if (authService.authToken(request, response)){
-            return chain.filter(exchange);
-        }
-        return response.setComplete();
+//        if (authService.authToken(request, response)){
+//            return chain.filter(exchange);
+//        }
+
+
+        Mono<ServerHttpResponse> just = Mono.just(response);
+       return chain.filter(exchange);
     }
 
     @Override

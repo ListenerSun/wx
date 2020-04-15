@@ -20,7 +20,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BaseModel implements Serializable {
-    private static final long serialVersionUID = 8484911801440906141L;
     /**
      * 创建人
      */
@@ -58,9 +57,6 @@ public class BaseModel implements Serializable {
      */
     protected String comments;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Long getCreateUser() {
         return createUser;
@@ -72,10 +68,6 @@ public class BaseModel implements Serializable {
 
     public Date getCreateTime() {
         return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public Long getUpdateUser() {

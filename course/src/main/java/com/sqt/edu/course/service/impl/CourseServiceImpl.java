@@ -49,6 +49,7 @@ public class CourseServiceImpl implements CourseService {
                 .countBuy(CourseConstant.COURSE_COUNT_BUY_DEFAULT)
                 .countStudy(CourseConstant.COURSE_COUNT_STUDY_DEFAULT)
                 .teacherId(null == teacherInfoJsonResult.getData() ? -1L : teacherInfoJsonResult.getData().getId())
+                .courseState(CourseConstant.COURSE_STATE_0)
                 .build();
         courseMapper.insert(course);
         log.info("=========> 新增课程成功");

@@ -1,5 +1,6 @@
 package com.sqt.edu.gateway.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
 import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
@@ -24,6 +25,7 @@ import reactor.core.publisher.Mono;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2020-04-10 16:07
  */
+@Slf4j
 @Configuration
 public class CorsConfig {
 
@@ -32,6 +34,7 @@ public class CorsConfig {
     @Bean
     public WebFilter corsFilter() {
         return (ServerWebExchange ctx, WebFilterChain chain) -> {
+            log.info("==========> 经过了 CorsConfig 过滤器");
             ServerHttpRequest request = ctx.getRequest();
             if (CorsUtils.isCorsRequest(request)) {
                 HttpHeaders requestHeaders = request.getHeaders();
