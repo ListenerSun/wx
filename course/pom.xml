@@ -8,7 +8,7 @@
           <version>1.0-SNAPSHOT</version>
      </parent>
      <modelVersion>4.0.0</modelVersion>
-
+     <description>wx-edu 课程服务</description>
      <artifactId>course</artifactId>
 
      <dependencies>
@@ -28,6 +28,26 @@
                <version>1.0-SNAPSHOT</version>
           </dependency>
      </dependencies>
+
+     <build>
+          <finalName>${project.artifactId}</finalName>
+          <plugins>
+               <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                         <mainClass>com.sqt.edu.course.Course_App</mainClass>
+                    </configuration>
+                    <executions>
+                         <execution>
+                              <goals>
+                                   <goal>repackage</goal>
+                              </goals>
+                         </execution>
+                    </executions>
+               </plugin>
+          </plugins>
+     </build>
 
 
 </project>

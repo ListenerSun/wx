@@ -1,3 +1,5 @@
+
+
 #spring 配置
 spring:
   application:
@@ -28,15 +30,15 @@ spring:
         file-extension: yaml
     #网关配置
     gateway:
+      # http 全局超时设置 ms 为单位
+      httpclient:
+        connect-timeout: 10000 # 暂时设置 本地环境太差
+        response-timeout: 20s  # 暂时设置 本地环境太差
       # 允许服务发现
       discovery:
         locator:
           enabled: true
-
-      #      http 全局超时设置 ms 为单位
-      #      httpclient:
-      #        connect-timeout: 1000
-      #        response-timeout: 5s
+      # 路由规则
       routes:
         - id: edu-account
           uri: lb://edu-account/
@@ -54,8 +56,5 @@ spring:
           uri: lb://edu-student/
           predicates:
             - Path= /student/**
-
-
-
 
 
