@@ -46,7 +46,15 @@ public class CourseController {
 
     @GetMapping("/list")
     @ApiOperation(value = "C-1.4-查询课程列表")
-    public JsonResult list(){
-        return courseService.list();
+    public JsonResult list(@RequestParam int pageSize,@RequestParam int pageNum){
+        return courseService.list(pageSize,pageNum);
     }
+
+    @GetMapping("/course_info/{id}")
+    @ApiOperation(value = "C-1.5-查询课程详情信息")
+    public JsonResult courseInfo(@PathVariable Long id,@RequestParam int pageSize,@RequestParam int pageNum){
+        return courseService.courseInfo(id,pageSize,pageNum);
+    }
+
+
 }

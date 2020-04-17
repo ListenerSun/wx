@@ -29,7 +29,17 @@ public interface CourseService {
     JsonResult listByTeacherId(Long teacherId);
 
     /**查询 course list
+     * @param pageSize
+     * @param pageNum
      * @return
      */
-    JsonResult list();
+    JsonResult list(int pageSize,int pageNum);
+
+    /**查询 课程详情信息
+     * @param id
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    JsonResult courseInfo(Long id,int pageSize,int pageNum);
 }

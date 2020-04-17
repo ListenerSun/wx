@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CourseInfo implements Serializable {
+public class CourseVO implements Serializable {
 
     private static final long serialVersionUID = 854098411931329669L;
     @ApiModelProperty(value = "课程名字")

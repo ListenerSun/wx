@@ -2,7 +2,7 @@ package com.sqt.edu.course.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sqt.edu.course.entity.Course;
-import com.sqt.edu.course.response.CourseInfo;
+import com.sqt.edu.course.response.CourseVO;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @return
      */
     @Select(value = "select * from course")
-    List<CourseInfo> listAll();
+    List<CourseVO> listAll();
 }

@@ -3,14 +3,18 @@ package com.sqt.edu.course.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.PageResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
+import com.sqt.edu.common.utils.PageEduHelper;
 import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.course.constant.CourseConstant;
 import com.sqt.edu.course.entity.Course;
+import com.sqt.edu.course.mapper.CourseInfoMapper;
 import com.sqt.edu.course.mapper.CourseMapper;
 import com.sqt.edu.course.request.CourseDTO;
-import com.sqt.edu.course.response.CourseInfo;
+import com.sqt.edu.course.response.CourseInfoVO;
+import com.sqt.edu.course.response.CourseVO;
 import com.sqt.edu.course.service.CourseService;
 import com.sqt.edu.teacher.client.TeacherFeignClient;
 import com.sqt.edu.teacher.entity.TeacherInfo;
@@ -35,6 +39,8 @@ public class CourseServiceImpl implements CourseService {
     private TeacherFeignClient teacherFeignClient;
     @Autowired
     private CourseMapper courseMapper;
+    @Autowired
+    private CourseInfoMapper courseInfoMapper;
 
     @Override
     public JsonResult create(CourseDTO courseDTO) {
@@ -63,7 +69,7 @@ public class CourseServiceImpl implements CourseService {
             log.error("==========> 课程不存在! courseId:{}", courseId);
             throw new ServiceException(ResultCode.COURSE_NOT_EXIST);
         }
-        CourseInfo courseInfo = CourseInfo.builder()
+        CourseVO courseVO = CourseVO.builder()
                 .countBuy(course.getCountBuy())
                 .countStudy(course.getCountStudy())
                 .courseLogo(course.getCourseLogo())
@@ -71,26 +77,33 @@ public class CourseServiceImpl implements CourseService {
                 .isFree(course.getIsFree())
                 .courseName(course.getCourseName())
                 .build();
-        return new JsonResult(courseInfo);
+        return new JsonResult(courseVO);
     }
 
     @Override
     public JsonResult listByTeacherId(Long teacherId) {
         List<Course> courseList = courseMapper.selectList(Wrappers.<Course>lambdaQuery().eq(Course::getTeacherId, teacherId));
-        List<CourseInfo> courseInfoList = courseList.stream()
+        List<CourseVO> courseVOList = courseList.stream()
                 .map(course -> {
-                    CourseInfo courseInfo = new CourseInfo();
-                    BeanUtils.copyProperties(course, courseInfo);
-                    return courseInfo;
+                    CourseVO courseVO = new CourseVO();
+                    BeanUtils.copyProperties(course, courseVO);
+                    return courseVO;
                 })
                 .collect(Collectors.toList());
-        return new JsonResult(courseInfoList);
+        return new JsonResult(courseVOList);
     }
 
     @Override
-    public JsonResult list() {
-        List<CourseInfo> courseInfoList = courseMapper.listAll();
-        return new JsonResult(courseInfoList);
+    public JsonResult list(int pageSize,int pageNum) {
+        PageResult<CourseVO> courseVOPageResult = PageEduHelper.selectPageResult(pageSize, pageNum, () -> courseMapper.listAll());
+        return new JsonResult(courseVOPageResult);
+    }
+
+    @Override
+    public JsonResult courseInfo(Long id,int pageSize,int pageNum) {
+        PageResult<CourseInfoVO> courseInfoVOPageResult = PageEduHelper.selectPageResult(pageSize, pageNum,
+                () -> courseInfoMapper.selectByCourseId(id));
+        return new JsonResult(courseInfoVOPageResult);
     }
 
 }

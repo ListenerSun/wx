@@ -35,14 +35,12 @@ public class GlobalExceptionTranslator {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public JsonResult handleError(MissingServletRequestParameterException e) {
         log.warn("==========>Missing Request Parameter", e);
-        String message = String.format("==========>Missing Request Parameter: %s", e.getParameterName());
         return new JsonResult(ResultCode.PARAM_MISS);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public JsonResult handleError(MethodArgumentTypeMismatchException e) {
         log.warn("==========>Method Argument Type Mismatch", e);
-        String message = String.format("==========>Method Argument Type Mismatch: %s", e.getName());
         return new JsonResult(ResultCode.PARAM_TYPE_ERROR);
     }
 
@@ -51,7 +49,6 @@ public class GlobalExceptionTranslator {
         log.warn("==========>Method Argument Not Valid", e);
         BindingResult result = e.getBindingResult();
         FieldError error = result.getFieldError();
-        String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
         return new JsonResult(ResultCode.FAILURE.getCode(),e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
@@ -59,7 +56,6 @@ public class GlobalExceptionTranslator {
     public JsonResult handleError(BindException e) {
         log.warn("==========>Bind Exception", e);
         FieldError error = e.getFieldError();
-        String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
         return new JsonResult(ResultCode.PARAM_BIND_ERROR);
     }
 
@@ -69,7 +65,6 @@ public class GlobalExceptionTranslator {
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         ConstraintViolation<?> violation = violations.iterator().next();
         String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
-        String message = String.format("%s:%s", path, violation.getMessage());
         return new JsonResult(ResultCode.PARAM_VALID_ERROR);
     }
 
@@ -95,6 +90,12 @@ public class GlobalExceptionTranslator {
     public JsonResult handleError(HttpMediaTypeNotSupportedException e) {
         log.error("==========>Media Type Not Supported", e);
         return new JsonResult(ResultCode.MEDIA_TYPE_NOT_SUPPORTED);
+
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public JsonResult handleError(IllegalArgumentException e) {
+        log.error("==========>IllegalArgumentException:", e);
+        return new JsonResult(ResultCode.PARAM_VALID_ERROR.getCode(),e.getMessage());
 
     }
 
