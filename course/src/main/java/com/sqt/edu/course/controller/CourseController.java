@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @Description:
@@ -38,7 +39,7 @@ public class CourseController {
         return courseService.getCourseInfoById(courseId);
     }
 
-    @GetMapping("list_by_teacher_id/{teacherId}")
+    @GetMapping("/list_by_teacher_id/{teacherId}")
     @ApiOperation(value = "C-1.3-根据teacherId查询课程列表")
     public JsonResult listByTeacherId(@PathVariable @Valid @NotNull Long teacherId){
         return courseService.listByTeacherId(teacherId);
@@ -54,6 +55,23 @@ public class CourseController {
     @ApiOperation(value = "C-1.5-查询课程详情信息")
     public JsonResult courseInfo(@PathVariable Long id,@RequestParam int pageSize,@RequestParam int pageNum){
         return courseService.courseInfo(id,pageSize,pageNum);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ApiOperation(value = "C-1.6-删除课程")
+    public JsonResult delete(@PathVariable Long id){
+        return courseService.delete(id);
+    }
+
+    @PostMapping("/upShelf")
+    @ApiOperation(value = "C-1.7-上架课程")
+    public JsonResult upShelf(@RequestBody List<Long> ids){
+        return courseService.upShelf(ids);
+    }
+    @PostMapping("/downShelf")
+    @ApiOperation(value = "C-1.8-下架课程")
+    public JsonResult downShelf(@RequestBody List<Long> ids){
+        return courseService.downShelf(ids);
     }
 
 

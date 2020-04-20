@@ -3,6 +3,8 @@ package com.sqt.edu.course.service;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.course.request.CourseDTO;
 
+import java.util.List;
+
 /**
  * @Description:
  * @author: ListenerSun(男, 未婚) 微信:810548252
@@ -42,4 +44,22 @@ public interface CourseService {
      * @return
      */
     JsonResult courseInfo(Long id,int pageSize,int pageNum);
+
+    /**删除课程
+     * @param id
+     * @return
+     */
+    JsonResult delete(Long id);
+
+    /**上架课程
+     * @param ids
+     * @return
+     */
+    JsonResult upShelf(List<Long> ids);
+
+    /**下架课程
+     * @param ids
+     * @return
+     */
+    JsonResult downShelf(List<Long> ids);
 }

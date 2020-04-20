@@ -1,6 +1,7 @@
 package com.sqt.edu.common.api.service;
 
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.config.InitConfiguration;
 import com.sqt.edu.common.constant.CacheConstants;
 import com.sqt.edu.common.utils.RedisHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,16 @@ import java.util.Map;
 public class CommonService {
 
     @Autowired
-    private SysDicService sysDicService;
-    @Autowired
     private RedisHelper redisHelper;
-
+    @Autowired
+    private InitConfiguration initConfiguration;
 
     public JsonResult getAllDic() {
         Map<String, Object> dicMap = redisHelper.hgetAll(CacheConstants.DIC_CACHE, CacheConstants.CACHE_KEY_DEFAULT);
+        if (null == dicMap) {
+            initConfiguration.SysDicInit();
+        }
+        dicMap = redisHelper.hgetAll(CacheConstants.DIC_CACHE, CacheConstants.CACHE_KEY_DEFAULT);
         return new JsonResult(dicMap);
     }
 }

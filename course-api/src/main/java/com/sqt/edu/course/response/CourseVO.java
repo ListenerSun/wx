@@ -23,6 +23,8 @@ import java.math.BigDecimal;
 public class CourseVO implements Serializable {
 
     private static final long serialVersionUID = 854098411931329669L;
+    @ApiModelProperty(value = "课程id")
+    private Long id;
     @ApiModelProperty(value = "课程名字")
     private String courseName;
     @ApiModelProperty(value = "课程价格")
@@ -39,4 +41,6 @@ public class CourseVO implements Serializable {
     private Integer countStudy;
     @ApiModelProperty(value = "课程上架状态")
     private String courseState;
+    @ApiModelProperty(value = "课程类型")
+    private String courseType;
 }

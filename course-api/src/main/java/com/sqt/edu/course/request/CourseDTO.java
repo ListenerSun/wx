@@ -35,4 +35,8 @@ public class CourseDTO implements Serializable {
     private Boolean isFree;
     @ApiModelProperty(value = "是否视频")
     private Boolean isVideo;
+    @ApiModelProperty(value ="课程类型")
+    private String courseType;
+    @ApiModelProperty(value ="讲师id")
+    private Long teacherId;
 }

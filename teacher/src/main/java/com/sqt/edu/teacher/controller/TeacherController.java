@@ -23,13 +23,13 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    @ApiOperation(value = "T-1.1-添加一个老师信息")
+    @ApiOperation(value = "Teacher-1.1-添加一个老师信息")
     @PostMapping("/auth_teacher")
     public JsonResult add(@RequestBody @Valid TeacherInfoDTO teacherInfoDTO){
         return teacherService.add(teacherInfoDTO);
     }
 
-    @ApiOperation(value = "T-1.2-根据acc_user_id查询老师信息")
+    @ApiOperation(value = "Teacher-1.2-根据acc_user_id查询老师信息")
     @GetMapping("info_by_acc_user_id")
     public JsonResult getTeacherInfoByAccUserId(@RequestParam Long accUserId){
         return teacherService.getTeacherInfoByAccUserId(accUserId);

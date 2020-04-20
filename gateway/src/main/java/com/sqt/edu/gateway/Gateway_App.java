@@ -1,11 +1,13 @@
 package com.sqt.edu.gateway;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.sqt.edu.core.exception.GlobalExceptionTranslator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
@@ -28,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @ComponentScan(basePackages = "com.sqt.edu",
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes ={GlobalExceptionTranslator.class})})
 @EnableDiscoveryClient
-@SpringBootApplication()
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,DruidDataSourceAutoConfigure.class})
 public class Gateway_App {
 
     public static void main(String[] args) {

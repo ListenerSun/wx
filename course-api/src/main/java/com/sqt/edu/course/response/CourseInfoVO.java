@@ -30,4 +30,5 @@ public class CourseInfoVO implements Serializable {
     private Boolean isFree;
     @ApiModelProperty(value = "课程名字")
     private String videoName;
+
 }

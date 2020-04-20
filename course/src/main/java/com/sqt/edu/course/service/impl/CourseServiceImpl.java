@@ -7,7 +7,6 @@ import com.sqt.edu.common.base.PageResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.common.utils.PageEduHelper;
-import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.course.constant.CourseConstant;
 import com.sqt.edu.course.entity.Course;
 import com.sqt.edu.course.mapper.CourseInfoMapper;
@@ -23,6 +22,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,10 +44,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public JsonResult create(CourseDTO courseDTO) {
-        Long accUserId = RequestHelper.getUserId();
-        JsonResult<TeacherInfo> teacherInfoJsonResult = teacherFeignClient.getTeacherInfoByAccUserId(accUserId);
-        log.info("==========>调用edu-teacher服务,根据accUserId查询老师信息返回结果:{}", JSON.toJSONString(teacherInfoJsonResult));
+        JsonResult<TeacherInfo> teacherInfoJsonResult = teacherFeignClient.getTeacherInfoByAccUserId(courseDTO.getTeacherId());
+        log.info("==========>调用edu-teacher服务,查询条件teacherId:{},根据accUserId查询老师信息返回结果:{}",
+                courseDTO.getTeacherId(),JSON.toJSONString(teacherInfoJsonResult));
         Course course = Course.builder()
+                .courseType(courseDTO.getCourseType())
                 .courseName(courseDTO.getCourseName())
                 .coursePrice(courseDTO.getCoursePrice())
                 .isFree(courseDTO.getIsFree())
@@ -96,6 +97,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public JsonResult list(int pageSize,int pageNum) {
         PageResult<CourseVO> courseVOPageResult = PageEduHelper.selectPageResult(pageSize, pageNum, () -> courseMapper.listAll());
+        //按照 上架状态排序
+        List<CourseVO> courseVOSortedList =
+                courseVOPageResult.getList().stream().sorted(Comparator.comparing(CourseVO::getCourseState)).collect(Collectors.toList());
+        courseVOPageResult.setList(courseVOSortedList);
         return new JsonResult(courseVOPageResult);
     }
 
@@ -104,6 +109,24 @@ public class CourseServiceImpl implements CourseService {
         PageResult<CourseInfoVO> courseInfoVOPageResult = PageEduHelper.selectPageResult(pageSize, pageNum,
                 () -> courseInfoMapper.selectByCourseId(id));
         return new JsonResult(courseInfoVOPageResult);
+    }
+
+    @Override
+    public JsonResult delete(Long id) {
+        courseMapper.deleteById(id);
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult upShelf(List<Long> ids) {
+        courseMapper.updateCourseState(ids, CourseConstant.COURSE_STATE_1);
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult downShelf(List<Long> ids) {
+        courseMapper.updateCourseState(ids, CourseConstant.COURSE_STATE_2);
+        return new JsonResult();
     }
 
 }
