@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sqt.edu.course.mapper.CourseMapper">
+
+     <!--修改课程状态-->
+     <update id="updateCourseState">
+          update course set course_state = #{courseState,jdbcType=VARCHAR} where id in
+          <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+               #{id,jdbcType=BIGINT}
+          </foreach>
+     </update>
+
+
+</mapper>

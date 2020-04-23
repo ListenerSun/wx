@@ -33,7 +33,7 @@ spring:
       # http 全局超时设置 ms 为单位
       httpclient:
         connect-timeout: 10000 # 暂时设置 本地环境太差
-        response-timeout: 20s  # 暂时设置 本地环境太差
+        response-timeout: 50000  # 暂时设置 本地环境太差
       # 允许服务发现
       discovery:
         locator:
