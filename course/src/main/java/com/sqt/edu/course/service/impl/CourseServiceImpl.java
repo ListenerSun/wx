@@ -3,6 +3,7 @@ package com.sqt.edu.course.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.JsonResultHandler;
 import com.sqt.edu.common.base.PageResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
@@ -14,6 +15,7 @@ import com.sqt.edu.course.mapper.CourseMapper;
 import com.sqt.edu.course.request.CourseDTO;
 import com.sqt.edu.course.response.CourseInfoVO;
 import com.sqt.edu.course.response.CourseVO;
+import com.sqt.edu.course.response.DiscoverCourseVo;
 import com.sqt.edu.course.service.CourseService;
 import com.sqt.edu.teacher.client.TeacherFeignClient;
 import com.sqt.edu.teacher.entity.TeacherInfo;
@@ -21,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.plugin2.main.server.ResultHandler;
 
 import java.util.Comparator;
 import java.util.List;
@@ -127,6 +130,13 @@ public class CourseServiceImpl implements CourseService {
     public JsonResult downShelf(List<Long> ids) {
         courseMapper.updateCourseState(ids, CourseConstant.COURSE_STATE_2);
         return new JsonResult();
+    }
+
+    /**********************************************用户端需要的接口******************************/
+    @Override
+    public JsonResult listDiscoverCourses() {
+        List<DiscoverCourseVo> discoverCourseList = courseMapper.listDiscoverCourses();
+        return JsonResultHandler.success(discoverCourseList);
     }
 
 }

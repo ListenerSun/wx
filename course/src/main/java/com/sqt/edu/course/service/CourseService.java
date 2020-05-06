@@ -62,4 +62,12 @@ public interface CourseService {
      * @return
      */
     JsonResult downShelf(List<Long> ids);
+
+    /**********************************************用户端需要的接口******************************/
+
+    /**查询推荐课程
+     * @return
+     */
+    JsonResult listDiscoverCourses();
+
 }

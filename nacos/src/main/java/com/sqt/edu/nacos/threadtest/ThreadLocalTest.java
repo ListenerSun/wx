@@ -19,7 +19,7 @@ public class ThreadLocalTest {
         threadLocal = new ThreadLocal<Integer>() {
             /**
              * 通过重写该方法来初始化ThreadLocal的值
-             */M
+             */
             @Override
             protected Integer initialValue() {
                 return 10;

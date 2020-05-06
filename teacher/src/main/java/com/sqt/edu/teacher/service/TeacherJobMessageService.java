@@ -2,6 +2,7 @@ package com.sqt.edu.teacher.service;
 
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.teacher.request.TeacherJobMessageDTO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Description:
@@ -33,4 +34,14 @@ public interface TeacherJobMessageService {
      * @return
      */
     JsonResult selectByTeacherId(Long userId);
+
+    /**********************************************用户端需要的接口******************************/
+
+    /**分页查询 家教信息列表
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    JsonResult listTeacherJobMessage(int pageSize, int pageNum);
+
 }

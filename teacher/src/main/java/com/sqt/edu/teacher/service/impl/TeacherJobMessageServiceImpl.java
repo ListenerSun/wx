@@ -2,14 +2,18 @@ package com.sqt.edu.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sqt.edu.common.base.JsonResult;
+import com.sqt.edu.common.base.JsonResultHandler;
+import com.sqt.edu.common.base.PageResult;
 import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
+import com.sqt.edu.common.utils.PageEduHelper;
 import com.sqt.edu.common.utils.RequestHelper;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.entity.TeacherJobMessage;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
 import com.sqt.edu.teacher.mapper.TeacherJobMessageMapper;
 import com.sqt.edu.teacher.request.TeacherJobMessageDTO;
+import com.sqt.edu.teacher.response.TeacherJobMessageVO;
 import com.sqt.edu.teacher.service.TeacherJobMessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -78,6 +82,13 @@ public class TeacherJobMessageServiceImpl implements TeacherJobMessageService {
         List<TeacherJobMessage> teacherJobMessageList =
                 teacherJobMessageMapper.selectList(Wrappers.<TeacherJobMessage>lambdaQuery().eq(TeacherJobMessage::getTeacherId, teacherInfo.getId()));
         return new JsonResult(teacherJobMessageList);
+    }
+
+    /**********************************************用户端需要的接口******************************/
+    @Override
+    public JsonResult listTeacherJobMessage(int pageSize, int pageNum) {
+        PageResult<TeacherJobMessageVO> teacherJobMessagePageResult = PageEduHelper.selectPageResult(pageSize, pageNum, () -> teacherJobMessageMapper.listTeacherJobMessage());
+        return JsonResultHandler.success(teacherJobMessagePageResult);
     }
 
 }

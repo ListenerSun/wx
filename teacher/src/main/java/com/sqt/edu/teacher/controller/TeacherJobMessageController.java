@@ -6,10 +6,7 @@ import com.sqt.edu.teacher.service.TeacherJobMessageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -46,5 +43,13 @@ public class TeacherJobMessageController {
     @PostMapping("list_by_teacherId")
     public JsonResult listByTeacherId(@RequestBody @Valid @NotBlank Long userId){
         return teacherJobMessageService.selectByTeacherId(userId);
+    }
+
+    /**********************************************用户端需要的接口******************************/
+
+    @ApiOperation(value = "TeacherMessageJob-C-1-1查询所有贴心老师列表")
+    @PostMapping("list_teacher_job_message")
+    public JsonResult listTeacherJobMessage(@RequestParam int pageSize, @RequestParam int pageNum){
+        return teacherJobMessageService.listTeacherJobMessage(pageSize,pageNum);
     }
 }

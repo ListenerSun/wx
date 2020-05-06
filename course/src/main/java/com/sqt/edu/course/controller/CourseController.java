@@ -25,7 +25,7 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-
+    /**********************************************后台管理端需要的接口******************************/
 
     @PostMapping("/create")
     @ApiOperation(value = "C-1.1-创建一个课程")
@@ -35,44 +35,51 @@ public class CourseController {
 
     @GetMapping("/{courseId}")
     @ApiOperation(value = "C-1.2-根据courseId查询课程详细信息")
-    public JsonResult getCourseInfoById(@PathVariable @Valid @NotNull Long courseId){
+    public JsonResult getCourseInfoById(@PathVariable @Valid @NotNull Long courseId) {
         return courseService.getCourseInfoById(courseId);
     }
 
     @GetMapping("/list_by_teacher_id/{teacherId}")
     @ApiOperation(value = "C-1.3-根据teacherId查询课程列表")
-    public JsonResult listByTeacherId(@PathVariable @Valid @NotNull Long teacherId){
+    public JsonResult listByTeacherId(@PathVariable @Valid @NotNull Long teacherId) {
         return courseService.listByTeacherId(teacherId);
     }
 
     @GetMapping("/list")
     @ApiOperation(value = "C-1.4-查询课程列表")
-    public JsonResult list(@RequestParam int pageSize,@RequestParam int pageNum){
-        return courseService.list(pageSize,pageNum);
+    public JsonResult list(@RequestParam int pageSize, @RequestParam int pageNum) {
+        return courseService.list(pageSize, pageNum);
     }
 
     @GetMapping("/course_info/{id}")
     @ApiOperation(value = "C-1.5-查询课程详情信息")
-    public JsonResult courseInfo(@PathVariable Long id,@RequestParam int pageSize,@RequestParam int pageNum){
-        return courseService.courseInfo(id,pageSize,pageNum);
+    public JsonResult courseInfo(@PathVariable Long id, @RequestParam int pageSize, @RequestParam int pageNum) {
+        return courseService.courseInfo(id, pageSize, pageNum);
     }
 
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "C-1.6-删除课程")
-    public JsonResult delete(@PathVariable Long id){
+    public JsonResult delete(@PathVariable Long id) {
         return courseService.delete(id);
     }
 
     @PostMapping("/upShelf")
     @ApiOperation(value = "C-1.7-上架课程")
-    public JsonResult upShelf(@RequestBody List<Long> ids){
+    public JsonResult upShelf(@RequestBody List<Long> ids) {
         return courseService.upShelf(ids);
     }
+
     @PostMapping("/downShelf")
     @ApiOperation(value = "C-1.8-下架课程")
-    public JsonResult downShelf(@RequestBody List<Long> ids){
+    public JsonResult downShelf(@RequestBody List<Long> ids) {
         return courseService.downShelf(ids);
     }
 
+    /**********************************************用户端需要的接口******************************/
+    @GetMapping("/discover")
+    @ApiOperation(value = "C-10-查询推荐课程")
+    public JsonResult listDiscoverCourses() {
+        return courseService.listDiscoverCourses();
+    }
 
 }
