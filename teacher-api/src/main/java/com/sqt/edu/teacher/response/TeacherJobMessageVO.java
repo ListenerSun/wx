@@ -29,6 +29,10 @@ public class TeacherJobMessageVO implements Serializable {
     @ApiModelProperty(value = "主键id")
     @TableId(value = "id",type = IdType.AUTO)
     private Long id;
+    @ApiModelProperty(value = "老师姓名")
+    private String teacherName;
+    @ApiModelProperty(value = "老师logo图片")
+    private String teacherLogo;
     @ApiModelProperty(value = "学科")
     private String subject;
     @ApiModelProperty(value = "年级")

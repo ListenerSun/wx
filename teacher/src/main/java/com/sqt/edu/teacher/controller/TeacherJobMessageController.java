@@ -48,7 +48,7 @@ public class TeacherJobMessageController {
     /**********************************************用户端需要的接口******************************/
 
     @ApiOperation(value = "TeacherMessageJob-C-1-1查询所有贴心老师列表")
-    @PostMapping("list_teacher_job_message")
+    @GetMapping("list_teacher_job_message")
     public JsonResult listTeacherJobMessage(@RequestParam int pageSize, @RequestParam int pageNum){
         return teacherJobMessageService.listTeacherJobMessage(pageSize,pageNum);
     }

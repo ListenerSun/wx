@@ -20,6 +20,7 @@ public interface TeacherJobMessageMapper extends BaseMapper<TeacherJobMessage> {
      * 查询列表
      * @return
      */
-    @Select(value = "select * from teacher_job_message")
+    @Select(value = "select tjm.*,ti.graduate_school,ti.teacher_name,ti.teacher_logo from teacher_job_message tjm , " +
+                 "teacher_info ti where tjm.teacher_id = ti.id")
     List<TeacherJobMessageVO> listTeacherJobMessage();
 }

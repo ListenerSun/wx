@@ -47,6 +47,8 @@ public class TeacherInfo extends BaseModel {
     private String phone;
     @ApiModelProperty("类型: 1:在校大学生,2:已工作人员,3:其他")
     private String type;
+    @ApiModelProperty("老师的logo照片")
+    private String teacherLogo;
     @ApiModelProperty("用户id")
     private Long accUserId;
 }
