@@ -1,21 +1,12 @@
-package com.sqt.edu.account.aspect;
+package com.sqt.edu.nacos.config;
 
-import cn.hutool.db.Db;
-import com.alibaba.fastjson.JSON;
-import com.sqt.edu.core.config.datasource.MyRoutingDataSource;
-import com.sqt.edu.core.config.mybatisplus.MybatisConfiguration;
-import com.sqt.edu.core.holder.DbContextHolder;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -32,17 +23,13 @@ import java.util.Map;
  * @author: ListenerSun(男, 未婚) 微信:810548252
  * @Date: Created in 2019-12-21 16:49
  */
-//@Aspect
-//@Configuration
-//@AutoConfigureAfter({MybatisConfiguration.class, MyRoutingDataSource.class})
-//@Slf4j
-//@Order(2)
+@Aspect
+@Configuration
+@Slf4j
 public class TransactionConfig {
 
     private static final int TX_METHOD_TIMEOUT = 300;
-    //* cn.swifthealth..api..service..*Service.*(..)
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (public * com.sqt.edu.*.service..*.*(..))" +
-            ") and @target(org.springframework.stereotype.Service)";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.sqt..service..*Service.*(..))";
 
     @Autowired
     private DataSourceTransactionManager dataSourceTransactionManager;

@@ -1,6 +1,7 @@
 package com.sqt.edu.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.sqt.edu.common.annotation.DS;
 import com.sqt.edu.common.base.JsonResult;
 import com.sqt.edu.common.base.JsonResultHandler;
 import com.sqt.edu.common.base.PageResult;
@@ -8,6 +9,8 @@ import com.sqt.edu.common.base.ResultCode;
 import com.sqt.edu.common.exception.ServiceException;
 import com.sqt.edu.common.utils.PageEduHelper;
 import com.sqt.edu.common.utils.RequestHelper;
+import com.sqt.edu.core.entity.TestTable;
+import com.sqt.edu.core.mapper.TestTableMapper;
 import com.sqt.edu.teacher.entity.TeacherInfo;
 import com.sqt.edu.teacher.entity.TeacherJobMessage;
 import com.sqt.edu.teacher.mapper.TeacherInfoMapper;
@@ -19,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -30,12 +34,15 @@ import java.util.List;
  */
 @Slf4j
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class TeacherJobMessageServiceImpl implements TeacherJobMessageService {
 
     @Autowired
     private TeacherJobMessageMapper teacherJobMessageMapper;
     @Autowired
     private TeacherInfoMapper teacherInfoMapper;
+    @Autowired
+    private TestTableMapper testTableMapper;
 
     @Override
     public JsonResult create(TeacherJobMessageDTO teacherJobMessageDTO) {
@@ -90,5 +97,7 @@ public class TeacherJobMessageServiceImpl implements TeacherJobMessageService {
         PageResult<TeacherJobMessageVO> teacherJobMessagePageResult = PageEduHelper.selectPageResult(pageSize, pageNum, () -> teacherJobMessageMapper.listTeacherJobMessage());
         return JsonResultHandler.success(teacherJobMessagePageResult);
     }
+
+
 
 }

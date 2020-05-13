@@ -44,4 +44,6 @@ public interface TeacherJobMessageService {
      */
     JsonResult listTeacherJobMessage(int pageSize, int pageNum);
 
+
+
 }

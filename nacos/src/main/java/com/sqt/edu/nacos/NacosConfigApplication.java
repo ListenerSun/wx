@@ -4,7 +4,8 @@ import com.alibaba.cloud.sentinel.SentinelProperties;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.sqt.edu.common.base.JsonResult;
-import com.sqt.edu.teacher.client.TestFeginClient;
+import com.sqt.edu.nacos.service.TestService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,9 @@ public class NacosConfigApplication {
         @Autowired
         private RestTemplate restTemplate;
         @Autowired
-        private TestFeginClient testFeginClient;
+        private TestService testService;
+//        @Autowired
+//        private TestFeginClient testFeginClient;
 
         @Value("${spring.application.name}")
         private String appName;
@@ -58,11 +61,11 @@ public class NacosConfigApplication {
             return restTemplate.getForObject(path, String.class);
         }
 
-        @GetMapping("/test_fegin")
-        public JsonResult testFeginClient() {
-            log.error("==========> 调用teacher的 test ");
-            return testFeginClient.test();
-        }
+//        @GetMapping("/test_fegin")
+//        public JsonResult testFeginClient() {
+//            log.error("==========> 调用teacher的 test ");
+//            return testFeginClient.test();
+//        }
 
         @SentinelResource(value = "test_annotation_01", fallback = "helloFallback")
         @GetMapping("/test_annotation")
@@ -83,6 +86,12 @@ public class NacosConfigApplication {
             // Do some log here.
             log.info("调用了 exceptionHandler");
             return new JsonResult(ex);
+        }
+
+        @ApiOperation(value = "test_annotation_01tx事务测试")
+        @GetMapping("/tx")
+        public JsonResult createTx(){
+            return testService.createTx();
         }
 
     }

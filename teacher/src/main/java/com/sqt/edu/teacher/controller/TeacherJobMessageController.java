@@ -25,22 +25,22 @@ public class TeacherJobMessageController {
     private TeacherJobMessageService teacherJobMessageService;
 
     @ApiOperation(value = "J-1-发布一条教教信息")
-    @PostMapping("create")
+    @PostMapping("/create")
     public JsonResult create(@RequestBody @Valid TeacherJobMessageDTO teacherJobMessageDTO){
         return teacherJobMessageService.create(teacherJobMessageDTO);
     }
     @ApiOperation(value = "J-2-更新一条教教信息")
-    @PostMapping("update")
+    @PostMapping("/update")
     public JsonResult update(@RequestBody @Valid TeacherJobMessageDTO teacherJobMessageDTO){
         return teacherJobMessageService.update(teacherJobMessageDTO);
     }
     @ApiOperation(value = "J-3-删除一条教教信息")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public JsonResult delete(@RequestBody @Valid @NotBlank Long teacherJobMessageId){
         return teacherJobMessageService.delete(teacherJobMessageId);
     }
     @ApiOperation(value = "J-4-查询某个教师发布的信息列表")
-    @PostMapping("list_by_teacherId")
+    @PostMapping("/list_by_teacherId")
     public JsonResult listByTeacherId(@RequestBody @Valid @NotBlank Long userId){
         return teacherJobMessageService.selectByTeacherId(userId);
     }
@@ -48,8 +48,9 @@ public class TeacherJobMessageController {
     /**********************************************用户端需要的接口******************************/
 
     @ApiOperation(value = "TeacherMessageJob-C-1-1查询所有贴心老师列表")
-    @GetMapping("list_teacher_job_message")
+    @GetMapping("/list_teacher_job_message")
     public JsonResult listTeacherJobMessage(@RequestParam int pageSize, @RequestParam int pageNum){
         return teacherJobMessageService.listTeacherJobMessage(pageSize,pageNum);
     }
+
 }
