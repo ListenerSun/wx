@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
 
@@ -69,6 +70,7 @@ public class DsAspect {
      * 执行完切面后，将线程共享中的数据源名称清空，
      * 数据源恢复为原来的默认数据源
      */
+
     @After("dataSourcePointCut()")
     public void after(JoinPoint joinPoint) {
         log.info("==========>clean datasource[{}]", DbContextHolder.getCurrentDsStr());

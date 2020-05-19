@@ -23,11 +23,6 @@ import java.util.Map;
 @Configuration
 public class DataSourceConfiguration {
 
-    /**
-     * 数据源类型
-     */
-    @Value("${spring.datasource.druid.type}")
-    private Class<? extends DataSource> dataSourceType;
 
     /**
      * 默认是数据源
@@ -64,7 +59,6 @@ public class DataSourceConfiguration {
         dynamicDataSource.setDefaultTargetDataSource(dataSourceMaster);
         dynamicDataSource.setTargetDataSources(targetDataResources);
         DbContextHolder.setDefaultDs(defaultDs);
-
         return dynamicDataSource;
     }
 
