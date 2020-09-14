@@ -23,7 +23,7 @@
           <httpasyncclient.version>4.1.3</httpasyncclient.version>
           <aliyun-oss.version>3.4.0</aliyun-oss.version>
           <aliyun-rocket.version>1.7.8.Final</aliyun-rocket.version>
-          <ant.version>1.9.7</ant.version>
+          <ant.version>1.9.15</ant.version>
           <dynamic-datasource-spring-boot-starter.version>2.5.0</dynamic-datasource-spring-boot-starter.version>
           <guava.version>28.2-jre</guava.version>
      </properties>
